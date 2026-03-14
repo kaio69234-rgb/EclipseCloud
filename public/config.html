@@ -1,45 +1,16 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-
-<head>
-
-<meta charset="UTF-8">
-<title>eclipsecloud.config</title>
-
-<script src="https://unpkg.com/lucide@latest"></script>
-
-<link rel="stylesheet" href="/css/style.css">
-
-</head>
-
-<body>
-
-<div class="container">
-
-<div class="title">
-
-<h1><i data-lucide="settings"></i> eclipsecloud.config</h1>
+<!DOCTYPE html><html lang="pt-br"><head><meta charset="UTF-8">
+<title>eclipsecloud.config</title><script src="https://unpkg.com/lucide@latest"></script><link rel="stylesheet" href="/css/style.css"></head><body><div class="container"><div class="title"><h1><i data-lucide="settings"></i> eclipsecloud.config</h1>
 <p class="subtitle">
 Gerador inteligente para configurar aplicações
-</p>
-
-</div>
-
-
-<div class="panel">
-
-<h2><i data-lucide="settings"></i> Configuração</h2>
-
-<label>Arquivo Principal *</label>
+</p></div><div class="panel"><h2><i data-lucide="settings"></i> Configuração</h2><label>Arquivo Principal *</label>
 <input id="main" value="index.js">
 
 <label>Tipo</label>
 <select id="type">
-<option>bot</option>
-<option>site</option>
-</select>
 
-<label>RAM (MB)</label>
+<option value="bot">bot</option>
+<option value="site">site</option>
+</select><label>RAM (MB)</label>
 <input id="ram" value="100">
 
 <label>Nome</label>
@@ -59,194 +30,79 @@ Gerador inteligente para configurar aplicações
 
 <label>Auto Restart</label>
 <select id="restart">
-<option>true</option>
-<option>false</option>
-</select>
 
-<button class="generate" onclick="gerar()">Gerar Config</button>
+<option value="true">true</option>
+<option value="false">false</option>
+</select><button class="generate" onclick="gerar()">Gerar Config</button>
 
-</div>
-
-
-
-<div class="panel">
-
-<div class="buttons">
-
-<button class="copy" onclick="copiar()">
+</div><div class="panel"><div class="buttons"><button class="copy" onclick="copiar()">
 <i data-lucide="copy"></i> Copiar
-</button>
-
-<button class="download" onclick="baixar()">
+</button><button class="download" onclick="baixar()">
 <i data-lucide="download"></i> Baixar
-</button>
-
-</div>
-
-<h2><i data-lucide="file-text"></i> Preview do Arquivo</h2>
-
-<div class="preview-box">
-
-<pre id="output">MAIN=index.js</pre>
-
-</div>
-
-</div>
-
-
-
-<div class="panel">
-
-<h2><i data-lucide="info"></i> O que é o eclipsecloud.config?</h2>
-
-<p>
-
+</button></div><h2><i data-lucide="file-text"></i> Preview do Arquivo</h2><div class="preview-box"><pre id="output">MAIN=index.js</pre></div></div><div class="panel"><h2><i data-lucide="info"></i> O que é o eclipsecloud.config?</h2><p>
 Arquivo de configuração usado para automatizar o deploy de aplicações na EclipseCloud.
 Ele define informações como memória, arquivo principal e comandos de inicialização.
-
-</p>
-
-</div>
-
-
-
-<div class="panel">
-
-<h2><i data-lucide="list"></i> Parâmetros do Arquivo</h2>
-
-<div class="grid">
-
-<div class="card">
+</p></div><div class="panel"><h2><i data-lucide="list"></i> Parâmetros do Arquivo</h2><div class="grid"><div class="card">
 <h3>MAIN</h3>
 Arquivo principal da aplicação
-</div>
-
-<div class="card">
+</div><div class="card">
 <h3>TYPE</h3>
 bot ou site
-</div>
-
-<div class="card">
+</div><div class="card">
 <h3>RAM</h3>
 Memória da aplicação
-</div>
-
-<div class="card">
+</div><div class="card">
 <h3>NAME</h3>
 Nome exibido no painel
-</div>
-
-<div class="card">
+</div><div class="card">
 <h3>APT</h3>
 Pacotes extras do sistema
-</div>
-
-<div class="card">
+</div><div class="card">
 <h3>START</h3>
 Comando de inicialização
-</div>
-
-</div>
-
-</div>
-
-
-
-<div class="panel">
-
-<h2><i data-lucide="package"></i> Exemplos</h2>
-
-<div class="grid">
-
-<div class="card">
-
-<h3>Bot</h3>
-
-<pre>
-
+</div></div></div><div class="panel"><h2><i data-lucide="package"></i> Exemplos</h2><div class="grid"><div class="card"><h3>Bot</h3><pre>
 NAME=Meu Bot
 TYPE=bot
 MAIN=index.js
 RAM=100
-
-</pre>
-
-</div>
-
-<div class="card">
-
-<h3>Site</h3>
-
-<pre>
-
+</pre></div><div class="card"><h3>Site</h3><pre>
 TYPE=site
 MAIN=index.ts
 RAM=512
 START=npm start
-
-</pre>
-
-</div>
-
-</div>
-
-</div>
-
-
-
-<div class="panel">
-
-<h2><i data-lucide="folder"></i> Onde salvar</h2>
-
-<pre>
-
+</pre></div></div></div><div class="panel"><h2><i data-lucide="folder"></i> Onde salvar</h2><pre>
 my-project/
 
-eclipse.config
+eclipsecloud.config
 index.js
 package.json
-
-</pre>
-
-</div>
-
-
-
-<div class="footer">
-
+</pre></div><div class="footer">
 © EclipseCloud
-
-</div>
-
-</div>
-
-
-
-<script>
+</div></div><script>
 
 function gerar(){
 
-let main=document.getElementById("main").value
-let type=document.getElementById("type").value
-let ram=document.getElementById("ram").value
-let name=document.getElementById("name").value
-let avatar=document.getElementById("avatar").value
-let apt=document.getElementById("apt").value
-let start=document.getElementById("start").value
-let build=document.getElementById("build").value
-let restart=document.getElementById("restart").value
+let main=document.getElementById("main").value.trim()
+let type=document.getElementById("type").value.trim()
+let ram=document.getElementById("ram").value.trim()
+let name=document.getElementById("name").value.trim()
+let avatar=document.getElementById("avatar").value.trim()
+let apt=document.getElementById("apt").value.trim()
+let start=document.getElementById("start").value.trim()
+let build=document.getElementById("build").value.trim()
+let restart=document.getElementById("restart").value.trim()
 
-let config=
+let config=""
 
-`MAIN=${main}
-TYPE=${type}
-RAM=${ram}
-NAME=${name}
-AVATAR=${avatar}
-APT=${apt}
-START=${start}
-BUILD=${build}
-AUTORESTART=${restart}`
+if(main) config += `MAIN=${main}\n`
+if(type) config += `TYPE=${type}\n`
+if(ram) config += `RAM=${ram}\n`
+if(name) config += `NAME=${name}\n`
+if(avatar) config += `AVATAR=${avatar}\n`
+if(apt) config += `APT=${apt}\n`
+if(start) config += `START=${start}\n`
+if(build) config += `BUILD=${build}\n`
+if(restart) config += `AUTORESTART=${restart}\n`
 
 document.getElementById("output").textContent=config
 
@@ -255,9 +111,12 @@ document.getElementById("output").textContent=config
 function copiar(){
 
 let text=document.getElementById("output").textContent
-navigator.clipboard.writeText(text)
 
-alert("Copiado!")
+navigator.clipboard.writeText(text).then(()=>{
+alert("Config copiado!")
+}).catch(()=>{
+alert("Erro ao copiar")
+})
 
 }
 
@@ -273,13 +132,15 @@ link.href=URL.createObjectURL(blob)
 
 link.download="eclipsecloud.config"
 
+document.body.appendChild(link)
+
 link.click()
+
+document.body.removeChild(link)
 
 }
 
 lucide.createIcons()
 
-</script>
-
-</body>
+</script></body>
 </html>
