@@ -1,11 +1,115 @@
-<!DOCTYPE html><html lang="pt-br"><head>
+<!DOCTYPE html><html lang="pt-br">
+<head>
 <meta charset="UTF-8">
-<title>eclipsecloud.config</title><script src="https://unpkg.com/lucide@latest"></script><link rel="stylesheet" href="css/style.css"></head><body><div class="container"><div class="title">
+<title>eclipsecloud.config</title>
+<script src="https://unpkg.com/lucide@latest"></script><style>
+
+body{
+background:linear-gradient(180deg,#08142c,#0c2a4d);
+color:white;
+font-family:Arial, sans-serif;
+margin:0;
+}
+
+.container{
+max-width:1100px;
+margin:auto;
+padding:20px;
+}
+
+.title{
+text-align:center;
+margin-bottom:30px;
+}
+
+.subtitle{
+color:#cbd5ff;
+}
+
+.panel{
+background:rgba(255,255,255,0.05);
+border-radius:12px;
+padding:25px;
+margin:20px auto;
+}
+
+label{
+display:block;
+margin-top:15px;
+}
+
+input,select{
+width:100%;
+padding:10px;
+border-radius:6px;
+border:none;
+margin-top:5px;
+background:#0f1d3a;
+color:white;
+}
+
+button{
+padding:10px 15px;
+background:#7b5cff;
+border:none;
+color:white;
+margin-top:15px;
+border-radius:8px;
+cursor:pointer;
+}
+
+button:hover{
+background:#6a4be6;
+}
+
+.buttons{
+display:flex;
+gap:10px;
+margin-bottom:10px;
+}
+
+.copy{background:#2ecc71;}
+.download{background:#3498db;}
+
+.preview-box{
+background:black;
+padding:15px;
+border-radius:8px;
+margin-top:10px;
+font-family:monospace;
+}
+
+.grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:20px;
+margin-top:20px;
+}
+
+.card{
+background:rgba(255,255,255,0.05);
+padding:20px;
+border-radius:10px;
+}
+
+.footer{
+text-align:center;
+margin-top:40px;
+color:#ccc;
+}
+
+@media(max-width:768px){
+
+.grid{
+grid-template-columns:1fr;
+}
+
+}
+
+</style></head><body><div class="container"><div class="title">
 <h1><i data-lucide="settings"></i> eclipsecloud.config</h1>
-<p class="subtitle">
-Gerador inteligente para configurar aplicações
-</p>
-</div><div class="panel"><h2><i data-lucide="settings"></i> Configuração</h2><label>Arquivo Principal *</label>
+<p class="subtitle">Gerador inteligente para configurar aplicações</p>
+</div><div class="panel"><h2>Configuração</h2><label>Arquivo Principal *</label>
 <input id="main" value="index.js">
 
 <label>Tipo</label>
@@ -20,10 +124,10 @@ Gerador inteligente para configurar aplicações
 <input id="name" placeholder="Meu Bot Incrível">
 
 <label>Avatar URL</label>
-<input id="avatar" placeholder="https://example.com/avatar.png">
+<input id="avatar">
 
 <label>Pacotes APT</label>
-<input id="apt" placeholder="tools, ffmpeg, canvas">
+<input id="apt">
 
 <label>Comando de início</label>
 <input id="start" value="npm run start">
@@ -36,18 +140,17 @@ Gerador inteligente para configurar aplicações
 
 <option value="true">true</option>
 <option value="false">false</option>
-</select><button class="generate" onclick="gerar()">Gerar Config</button>
+</select><button onclick="gerar()">Gerar Config</button>
 
-</div><div class="panel"><div class="buttons"><button class="copy" onclick="copiar()">
-<i data-lucide="copy"></i> Copiar
-</button><button class="download" onclick="baixar()">
-<i data-lucide="download"></i> Baixar
-</button></div><h2><i data-lucide="file-text"></i> Preview do Arquivo</h2><div class="preview-box">
+</div><div class="panel"><div class="buttons">
+<button class="copy" onclick="copiar()">Copiar</button>
+<button class="download" onclick="baixar()">Baixar</button>
+</div><h2>Preview do Arquivo</h2><div class="preview-box">
 <pre id="output">MAIN=index.js</pre>
-</div></div><div class="panel"><h2><i data-lucide="info"></i> O que é o eclipsecloud.config?</h2><p>
+</div></div><div class="panel"><h2>O que é o eclipsecloud.config?</h2><p>
 Arquivo de configuração usado para automatizar o deploy de aplicações na EclipseCloud.
 Ele define informações como memória, arquivo principal e comandos de inicialização.
-</p></div><div class="panel"><h2><i data-lucide="list"></i> Parâmetros do Arquivo</h2><div class="grid"><div class="card">
+</p></div><div class="panel"><h2>Parâmetros do Arquivo</h2><div class="grid"><div class="card">
 <h3>MAIN</h3>
 Arquivo principal da aplicação
 </div><div class="card">
@@ -65,23 +168,7 @@ Pacotes extras do sistema
 </div><div class="card">
 <h3>START</h3>
 Comando de inicialização
-</div></div></div><div class="panel"><h2><i data-lucide="package"></i> Exemplos</h2><div class="grid"><div class="card"><h3>Bot</h3><pre>
-NAME=Meu Bot
-TYPE=bot
-MAIN=index.js
-RAM=100
-</pre></div><div class="card"><h3>Site</h3><pre>
-TYPE=site
-MAIN=index.ts
-RAM=512
-START=npm start
-</pre></div></div></div><div class="panel"><h2><i data-lucide="folder"></i> Onde salvar</h2><pre>
-my-project/
-
-eclipsecloud.config
-index.js
-package.json
-</pre></div><div class="footer">
+</div></div></div><div class="footer">
 © EclipseCloud
 </div></div><script>
 
@@ -148,4 +235,4 @@ document.body.removeChild(link)
 lucide.createIcons()
 
 </script></body>
-</html> 
+  </html>
