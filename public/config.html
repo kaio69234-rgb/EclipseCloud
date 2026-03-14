@@ -1,64 +1,134 @@
 <!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Configuração - EclipseCloud</title><link rel="stylesheet" href="/css/style.css"><style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>eclipsecloud.config</title><link rel="stylesheet" href="/css/style.css"><style>
 
-.config-container{
+body{
+background:#0b0f14;
+font-family:Arial;
+color:white;
+margin:0;
+}
+
+header{
 display:flex;
-flex-wrap:wrap;
-gap:30px;
-justify-content:center;
-margin-top:40px;
+justify-content:space-between;
+align-items:center;
+padding:15px 40px;
+background:#0f1621;
+}
+
+nav a{
+color:#ccc;
+margin-left:20px;
+text-decoration:none;
+}
+
+nav a:hover{
+color:#8b5cf6;
+}
+
+.container{
+max-width:900px;
+margin:auto;
+padding:40px 20px;
+}
+
+.title{
+text-align:center;
+margin-bottom:40px;
+}
+
+.title h1{
+color:#22c55e;
+font-size:40px;
 }
 
 .config-box{
-background:#11163d;
-padding:30px;
-border-radius:12px;
-width:300px;
-box-shadow:0 0 15px rgba(0,0,0,0.5);
+background:#111827;
+padding:25px;
+border-radius:10px;
+margin-bottom:25px;
 }
 
-.config-box input{
+.config-box h2{
+margin-bottom:20px;
+}
+
+label{
+display:block;
+margin-top:15px;
+margin-bottom:5px;
+}
+
+input,select{
 width:100%;
 padding:10px;
-margin:6px 0 15px 0;
-border-radius:6px;
 border:none;
-background:#0b0f30;
+border-radius:6px;
+background:#1f2937;
 color:white;
 }
 
-.preview{
-background:#0b0f30;
-padding:25px;
-border-radius:12px;
-width:350px;
-box-shadow:0 0 15px rgba(0,0,0,0.5);
+button{
+margin-top:20px;
+padding:10px 20px;
+background:#22c55e;
+border:none;
+border-radius:6px;
+cursor:pointer;
 }
 
-.preview pre{
-background:#050816;
-padding:15px;
-border-radius:8px;
+button:hover{
+background:#16a34a;
+}
+
+.preview{
+background:#111827;
+padding:25px;
+border-radius:10px;
+}
+
+pre{
+background:#020617;
+padding:20px;
+border-radius:6px;
+color:#22c55e;
 overflow:auto;
 }
 
-</style></head><body><header><h2>☁ EclipseCloud</h2><nav>
-<a href="/">Início</a>
-<a href="/status.html">Status</a>
+.actions{
+margin-top:15px;
+display:flex;
+gap:10px;
+}
+
+.actions button{
+background:#1f2937;
+}
+
+</style></head><body><header><h3>☁ EclipseCloud</h3><nav><a href="/">Início</a>
 <a href="/planos.html">Planos</a>
-<a href="/docs.html">Docs</a>
-</nav></header><section class="panel"><h1>⚙ eclipsecloud.config</h1>
-<p>Gerador inteligente de configuração</p><div class="config-container"><div class="config-box"><h3>Configuração</h3><label>Arquivo principal</label>
+<a href="/docs.html">Documentação</a>
+
+</nav></header><div class="container"><div class="title"><h1>eclipsecloud.config</h1><p>Gerador inteligente para configurar bots</p></div><div class="config-box"><h2>⚙ Configuração</h2><label>Arquivo principal *</label>
 <input id="main" value="index.js">
 
-<label>RAM (MB)</label>
+<label>Tipo</label>
+<select id="type">
+
+<option>bot</option>
+<option>site</option>
+<option>api</option>
+</select><label>RAM (MB)</label>
 <input id="ram" value="100">
 
 <label>Nome</label>
-<input id="name" placeholder="Meu Bot">
+<input id="name" placeholder="Meu Bot Incrível">
 
 <label>Avatar URL</label>
-<input id="avatar" placeholder="https://link.com/avatar.png">
+<input id="avatar" placeholder="https://site.com/avatar.png">
+
+<label>Pacotes APT</label>
+<input id="apt" placeholder="ffmpeg, canvas">
 
 <label>Comando de início</label>
 <input id="start" value="npm start">
@@ -66,29 +136,46 @@ overflow:auto;
 <label>Comando de build</label>
 <input id="build" value="npm run build">
 
-<button onclick="gerar()">Gerar Config</button>
+<label>Auto Restart</label>
+<select id="restart">
 
-</div><div class="preview"><h3>Preview do Arquivo</h3><pre id="output">MAIN=index.js</pre><button onclick="copiar()">Copiar</button>
+<option>true</option>
+<option>false</option>
+</select><button onclick="gerar()">Gerar Config</button>
+
+</div><div class="preview"><h2>Preview do Arquivo</h2><pre id="output">
+
+MAIN=index.js
+
+</pre><div class="actions"><button onclick="copiar()">Copiar</button>
+
 <button onclick="baixar()">Baixar</button>
 
-</div></div></section><script>
+</div></div></div><script>
 
 function gerar(){
 
-const main=document.getElementById("main").value
-const ram=document.getElementById("ram").value
-const name=document.getElementById("name").value
-const avatar=document.getElementById("avatar").value
-const start=document.getElementById("start").value
-const build=document.getElementById("build").value
+let main=document.getElementById("main").value
+let type=document.getElementById("type").value
+let ram=document.getElementById("ram").value
+let name=document.getElementById("name").value
+let avatar=document.getElementById("avatar").value
+let apt=document.getElementById("apt").value
+let start=document.getElementById("start").value
+let build=document.getElementById("build").value
+let restart=document.getElementById("restart").value
 
-const config =
+let config=
+
 `MAIN=${main}
+TYPE=${type}
 RAM=${ram}
 NAME=${name}
 AVATAR=${avatar}
+APT=${apt}
 START=${start}
-BUILD=${build}`
+BUILD=${build}
+AUTORESTART=${restart}`
 
 document.getElementById("output").textContent=config
 
@@ -96,7 +183,7 @@ document.getElementById("output").textContent=config
 
 function copiar(){
 
-const texto=document.getElementById("output").textContent
+let texto=document.getElementById("output").textContent
 
 navigator.clipboard.writeText(texto)
 
@@ -106,13 +193,14 @@ alert("Config copiada!")
 
 function baixar(){
 
-const texto=document.getElementById("output").textContent
+let texto=document.getElementById("output").textContent
 
-const blob=new Blob([texto],{type:"text/plain"})
+let blob=new Blob([texto],{type:"text/plain"})
 
-const link=document.createElement("a")
+let link=document.createElement("a")
 
 link.href=URL.createObjectURL(blob)
+
 link.download="eclipsecloud.config"
 
 link.click()
