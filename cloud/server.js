@@ -3,50 +3,52 @@ const multer = require("multer")
 const unzipper = require("unzipper")
 const fs = require("fs")
 const { exec } = require("child_process")
+const path = require("path")
 
 const app = express()
 
-const upload = multer({ dest: "uploads/" })
+app.use(express.static("public"))
+app.use(express.json())
 
-app.post("/deploy", upload.single("bot"), async (req,res)=>{
+const upload = multer({ dest: "cloud/uploads/" })
+
+app.post("/upload", upload.single("bot"), (req, res) => {
 
 const zipPath = req.file.path
 const id = Date.now()
 
 const botFolder = `cloud/apps/${id}`
 
-fs.mkdirSync(botFolder,{recursive:true})
+fs.mkdirSync(botFolder, { recursive: true })
 
 fs.createReadStream(zipPath)
 .pipe(unzipper.Extract({ path: botFolder }))
-.on("close",()=>{
+.on("close", () => {
 
-console.log("Bot extraído")
+console.log("Bot extraído!")
 
 iniciarBot(botFolder)
 
 })
 
-res.send("Bot enviado com sucesso")
+res.json({status:"Bot enviado com sucesso"})
 
 })
 
 function iniciarBot(folder){
 
-const configPath = `${folder}/eclipsecloud.config`
+const configFile = path.join(folder,"eclipsecloud.config")
 
-if(!fs.existsSync(configPath)){
+if(!fs.existsSync(configFile)){
 console.log("Config não encontrada")
 return
 }
 
-const config = fs.readFileSync(configPath,"utf8")
-
-const linhas = config.split("\n")
+const config = fs.readFileSync(configFile,"utf8")
 
 let dados = {}
 
-linhas.forEach(linha=>{
+config.split("\n").forEach(linha=>{
 let [key,value] = linha.split("=")
 dados[key]=value
 })
@@ -59,6 +61,6 @@ exec(`cd ${folder} && npm install && ${start}`)
 
 }
 
-app.listen(3000,()=>{
+app.listen(3000, ()=>{
 console.log("EclipseCloud rodando na porta 3000")
 })
