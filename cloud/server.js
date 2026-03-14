@@ -10,70 +10,102 @@ const app = express()
 const uploads = "./uploads"
 const apps = "./apps"
 
+let runningBots = {}
+
 if (!fs.existsSync(uploads)) fs.mkdirSync(uploads)
 if (!fs.existsSync(apps)) fs.mkdirSync(apps)
 
 const storage = multer.diskStorage({
 destination: uploads,
-filename: (req, file, cb) => {
-cb(null, Date.now() + ".zip")
+filename: (req,file,cb)=>{
+cb(null, Date.now()+".zip")
 }
 })
 
-const upload = multer({ storage })
+const upload = multer({storage})
 
-let runningBots = {}
+function readConfig(folder){
 
-app.get("/", (req,res)=>{
-res.send("☁ EclipseCloud funcionando")
+const configPath = path.join(folder,"eclipse.config")
+
+if(!fs.existsSync(configPath))
+return null
+
+const lines = fs.readFileSync(configPath,"utf8").split("\n")
+
+let config = {}
+
+lines.forEach(line=>{
+const [key,value] = line.split("=")
+if(key && value){
+config[key.trim()] = value.trim()
+}
 })
 
-app.post("/upload", upload.single("bot"), async (req,res)=>{
+return config
+}
+
+app.post("/upload", upload.single("bot"), (req,res)=>{
 
 const zipPath = req.file.path
 const botId = Date.now().toString()
-const botFolder = path.join(apps, botId)
+const botFolder = path.join(apps,botId)
 
 fs.mkdirSync(botFolder)
 
 fs.createReadStream(zipPath)
 .pipe(unzipper.Extract({ path: botFolder }))
-.on("close", ()=>{
+.on("close", async ()=>{
 
 fs.unlinkSync(zipPath)
 
+const config = readConfig(botFolder)
+
+if(!config)
+return res.send("eclipse.config não encontrado")
+
 res.json({
-status:"ok",
-id:botId
+status:"bot enviado",
+id:botId,
+config
 })
 
 })
 
 })
 
-app.post("/start/:id", (req,res)=>{
+app.post("/start/:id",(req,res)=>{
 
 const id = req.params.id
 const botPath = path.join(apps,id)
 
-if (!fs.existsSync(botPath))
-return res.send("Bot não encontrado")
+if(!fs.existsSync(botPath))
+return res.send("bot não encontrado")
 
-const proc = spawn("node", ["index.js"], {
-cwd: botPath
+const config = readConfig(botPath)
+
+if(!config)
+return res.send("config não encontrado")
+
+const startCommand = config.START || "node index.js"
+
+const parts = startCommand.split(" ")
+
+const proc = spawn(parts[0], parts.slice(1),{
+cwd:botPath
 })
 
 runningBots[id] = proc
 
-proc.stdout.on("data",data=>{
+proc.stdout.on("data",(data)=>{
 console.log(`[BOT ${id}] ${data}`)
 })
 
-proc.stderr.on("data",data=>{
-console.log(`[BOT ${id} ERROR] ${data}`)
+proc.stderr.on("data",(data)=>{
+console.log(`[BOT ${id} ERRO] ${data}`)
 })
 
-res.send("Bot iniciado")
+res.send("bot iniciado")
 
 })
 
@@ -81,16 +113,17 @@ app.post("/stop/:id",(req,res)=>{
 
 const id = req.params.id
 
-if (!runningBots[id])
-return res.send("Bot não está rodando")
+if(!runningBots[id])
+return res.send("bot não está rodando")
 
 runningBots[id].kill()
+
 delete runningBots[id]
 
-res.send("Bot parado")
+res.send("bot parado")
 
 })
 
-app.listen(3000, ()=>{
+app.listen(3000,()=>{
 console.log("☁ EclipseCloud rodando na porta 3000")
 })
