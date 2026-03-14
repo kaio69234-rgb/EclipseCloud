@@ -1,8 +1,16 @@
-<!DOCTYPE html><html lang="pt-br"><head><meta charset="UTF-8">
+<!DOCTYPE html><html lang="pt-br"><head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>EclipseCloud Config Generator</title><link rel="stylesheet" href="style.css"><script src="https://unpkg.com/lucide@latest"></script></head><body><div class="container"><div class="title">
-<h1><i data-lucide="settings"></i> eclipsecloud.config</h1>
-<p class="subtitle">Gerador inteligente para configurar aplicações</p>
-</div><div class="panel"><h2>Configuração</h2><label>Arquivo Principal *</label>
+<h1>
+<i data-lucide="settings"></i>
+eclipsecloud.config
+</h1><p class="subtitle">
+Gerador inteligente para configurar aplicações
+</p>
+</div><div class="panel"><h2>
+<i data-lucide="sliders"></i>
+Configuração
+</h2><label>Arquivo Principal *</label>
 <input id="main" value="index.js">
 
 <label>Tipo</label>
@@ -33,12 +41,18 @@
 
 <option value="true">true</option>
 <option value="false">false</option>
-</select><button class="generate" onclick="gerar()">Gerar Config</button>
-
-</div><div class="panel"><div class="preview-header"><h2>Preview do Arquivo</h2><div class="buttons"><button class="copy" onclick="copiar()">
-<i data-lucide="copy"></i> Copiar
+</select><button class="generate" onclick="gerar()">
+<i data-lucide="zap"></i>
+Gerar Config
+</button></div><div class="panel"><div class="preview-header"><h2>
+<i data-lucide="file-text"></i>
+Preview do Arquivo
+</h2><div class="buttons"><button class="copy" onclick="copiar()">
+<i data-lucide="copy"></i>
+Copiar
 </button><button class="download" onclick="baixar()">
-<i data-lucide="download"></i> Baixar
+<i data-lucide="download"></i>
+Baixar
 </button></div>
 </div><div class="terminal"><div class="terminal-top"><div class="dots">
 <span class="dot red"></span>
@@ -46,10 +60,17 @@
 <span class="dot green"></span>
 </div><div class="terminal-title">
 ⚙ eclipse.config
-</div></div><pre id="output">MAIN=index.js</pre></div></div><div class="panel"><h2>O que é o eclipsecloud.config?</h2><p>
+</div></div><pre id="output">MAIN=index.js</pre></div>
+</div><div class="panel"><h2>
+<i data-lucide="book-open"></i>
+O que é o eclipsecloud.config?
+</h2><p>
 Arquivo usado para configurar aplicações automaticamente na EclipseCloud.
 Define memória, tipo da aplicação e comandos de inicialização.
-</p></div><div class="panel"><h2>Parâmetros do Arquivo</h2><div class="grid"><div class="card">
+</p></div><div class="panel"><h2>
+<i data-lucide="code"></i>
+Parâmetros do Arquivo
+</h2><div class="grid"><div class="card">
 <h3>MAIN</h3>
 Arquivo principal
 </div><div class="card">
