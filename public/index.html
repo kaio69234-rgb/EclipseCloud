@@ -1,13 +1,12 @@
 <!DOCTYPE html><html lang="pt-br"><head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>EclipseCloud Config Generator</title><link rel="stylesheet" href="style.css"><script src="https://unpkg.com/lucide@latest"></script></head><body><div class="container"><div class="title">
-<h1>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>EclipseCloud Config Generator</title><link rel="stylesheet" href="style.css">
+<script src="https://unpkg.com/lucide@latest"></script></head><body><div class="container"><div class="title"><h1>
 <i data-lucide="settings"></i>
 eclipsecloud.config
 </h1><p class="subtitle">
 Gerador inteligente para configurar aplicações
-</p>
-</div><div class="panel"><h2>
+</p></div><div class="panel"><h2>
 <i data-lucide="sliders"></i>
 Configuração
 </h2><label>Arquivo Principal *</label>
@@ -53,15 +52,13 @@ Copiar
 </button><button class="download" onclick="baixar()">
 <i data-lucide="download"></i>
 Baixar
-</button></div>
-</div><div class="terminal"><div class="terminal-top"><div class="dots">
+</button></div></div><div class="terminal"><div class="terminal-top"><div class="dots">
 <span class="dot red"></span>
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div><div class="terminal-title">
 ⚙ eclipse.config
-</div></div><pre id="output">MAIN=index.js</pre></div>
-</div><div class="panel"><h2>
+</div></div><pre id="output">MAIN=index.js</pre></div></div><div class="panel"><h2>
 <i data-lucide="book-open"></i>
 O que é o eclipsecloud.config?
 </h2><p>
@@ -88,7 +85,32 @@ Pacotes extras
 </div><div class="card">
 <h3>START</h3>
 Comando de inicialização
-</div></div></div><div class="footer">
+</div></div></div><div class="panel"><h2>
+<i data-lucide="file-text"></i>
+Exemplos Práticos
+</h2><div class="grid"><div class="card"><h3>🤖 Configuração para Bot</h3><pre>
+NAME=Meu Bot Discord
+TYPE=bot
+MAIN=index.js
+RAM=100
+</pre><p>Ideal para: Bots Discord, Telegram, WhatsApp, etc.</p></div><div class="card"><h3>🌐 Configuração para Site</h3><pre>
+ID=meusite.eclipse.app
+TYPE=site
+MAIN=index.ts
+RAM=512
+START=npm run start
+</pre><p>Ideal para: APIs, sites web, dashboards, etc.</p></div></div></div><div class="panel"><h2>
+<i data-lucide="folder"></i>
+Onde salvar o eclipse.config
+</h2><div class="card"><h3>Estrutura Correta do Projeto</h3><pre>
+my-project/
+ ├ eclipse.config
+ ├ index.js
+ ├ package.json
+ ├ src/
+ ├ functions/
+ └ .env
+</pre></div></div><div class="footer">
 © EclipseCloud
 </div></div><script>
 
