@@ -1,7 +1,16 @@
 <!DOCTYPE html><html lang="pt-br"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>EclipseCloud Config Generator</title><link rel="stylesheet" href="style.css">
-<script src="https://unpkg.com/lucide@latest"></script></head><body><div class="container"><div class="title"><h1>
+<script src="https://unpkg.com/lucide@latest"></script></head><body><nav class="navbar"><div class="nav-left">
+<h2>EclipseCloud</h2>
+</div><ul class="nav-menu">
+<li>Planos</li>
+<li>Serviços</li>
+<li>Ferramentas</li>
+<li>Recursos</li>
+<li>Templates</li>
+<li>Documentação</li>
+</ul></nav><div class="container"><div class="title"><h1>
 <i data-lucide="settings"></i>
 eclipsecloud.config
 </h1><p class="subtitle">
@@ -10,40 +19,37 @@ Gerador inteligente para configurar aplicações
 <i data-lucide="sliders"></i>
 Configuração
 </h2><label>Arquivo Principal *</label>
-<input id="main" value="index.js">
+<input id="main" value="index.js" oninput="gerar()">
 
 <label>Tipo</label>
-<select id="type">
+<select id="type" oninput="gerar()">
 
 <option value="bot">bot</option>
 <option value="site">site</option>
 </select><label>RAM (MB)</label>
-<input id="ram" value="100">
+<input id="ram" value="100" oninput="gerar()">
 
 <label>Nome</label>
-<input id="name" placeholder="Meu Bot Incrível">
+<input id="name" placeholder="Meu Bot Incrível" oninput="gerar()">
 
 <label>Avatar URL</label>
-<input id="avatar">
+<input id="avatar" oninput="gerar()">
 
 <label>Pacotes APT</label>
-<input id="apt">
+<input id="apt" oninput="gerar()">
 
 <label>Comando de início</label>
-<input id="start" value="npm run start">
+<input id="start" value="npm run start" oninput="gerar()">
 
 <label>Comando de build</label>
-<input id="build" value="npm run build">
+<input id="build" value="npm run build" oninput="gerar()">
 
 <label>Auto Restart</label>
-<select id="restart">
+<select id="restart" oninput="gerar()">
 
 <option value="true">true</option>
 <option value="false">false</option>
-</select><button class="generate" onclick="gerar()">
-<i data-lucide="zap"></i>
-Gerar Config
-</button></div><div class="panel"><div class="preview-header"><h2>
+</select></div><div class="panel"><div class="preview-header"><h2>
 <i data-lucide="file-text"></i>
 Preview do Arquivo
 </h2><div class="buttons"><button class="copy" onclick="copiar()">
@@ -58,7 +64,7 @@ Baixar
 <span class="dot green"></span>
 </div><div class="terminal-title">
 ⚙ eclipse.config
-</div></div><pre id="output">MAIN=index.js</pre></div></div><div class="panel"><h2>
+</div></div><pre id="output"></pre></div></div><div class="panel"><h2>
 <i data-lucide="book-open"></i>
 O que é o eclipsecloud.config?
 </h2><p>
@@ -128,8 +134,8 @@ let restart=document.getElementById("restart").value
 
 let config=""
 
-if(main) config+=`MAIN=${main}\n`
 if(type) config+=`TYPE=${type}\n`
+if(main) config+=`MAIN=${main}\n`
 if(ram) config+=`RAM=${ram}\n`
 if(name) config+=`NAME=${name}\n`
 if(avatar) config+=`AVATAR=${avatar}\n`
@@ -169,6 +175,8 @@ link.click()
 }
 
 lucide.createIcons()
+
+gerar()
 
 </script></body>
 </html>
