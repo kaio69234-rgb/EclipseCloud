@@ -5,6 +5,26 @@ font-family:Arial;
 margin:0;
 }
 
+/* CONTAINER */
+
+.container{
+max-width:1200px;
+margin:auto;
+padding:20px;
+}
+
+/* TITLE */
+
+.title{
+text-align:center;
+margin-bottom:30px;
+}
+
+.subtitle{
+color:#cbd5ff;
+margin-top:5px;
+}
+
 /* HEADER */
 
 header{
@@ -85,6 +105,28 @@ button:hover{
 background:#6a4be6;
 }
 
+.generate{
+width:100%;
+margin-top:15px;
+font-weight:bold;
+}
+
+/* BUTTON AREA */
+
+.buttons{
+display:flex;
+gap:10px;
+margin-bottom:10px;
+}
+
+.copy{
+background:#2ecc71;
+}
+
+.download{
+background:#3498db;
+}
+
 /* CARDS */
 
 .cards{
@@ -126,6 +168,7 @@ padding:15px;
 border-radius:8px;
 margin-top:10px;
 font-family:monospace;
+overflow:auto;
 }
 
 /* GRID */
@@ -138,7 +181,7 @@ gap:20px;
 
 /* FOOTER */
 
-footer{
+.footer{
 margin-top:50px;
 text-align:center;
 color:#ccc;
@@ -161,6 +204,10 @@ align-items:flex-start;
 .cards{
 flex-direction:column;
 align-items:center;
+}
+
+.buttons{
+flex-direction:column;
 }
 
 button{
