@@ -1,51 +1,140 @@
 body{
-background:#060818;
+background:linear-gradient(180deg,#050816,#0b0f30);
 color:white;
-font-family:Arial;
+font-family:Arial, Helvetica, sans-serif;
 margin:0;
 }
+
+/* HEADER */
 
 header{
 display:flex;
 justify-content:space-between;
-padding:20px;
+align-items:center;
+padding:20px 40px;
 background:#0b0f30;
+box-shadow:0 0 10px #000;
+}
+
+header h2{
+color:#7b5cff;
 }
 
 nav a{
-margin-left:15px;
+margin-left:20px;
 color:#aaa;
 text-decoration:none;
+font-weight:bold;
+transition:0.3s;
 }
+
+nav a:hover{
+color:white;
+}
+
+/* HERO */
 
 .hero{
 text-align:center;
-padding:80px;
+padding:100px 20px;
 }
+
+.hero h1{
+font-size:40px;
+margin-bottom:10px;
+}
+
+.hero p{
+color:#aaa;
+}
+
+/* PANEL */
 
 .panel{
 text-align:center;
-padding:40px;
+padding:60px 20px;
 }
 
 button{
-padding:10px 15px;
+padding:12px 20px;
 background:#7b5cff;
 border:none;
 color:white;
-margin:5px;
-border-radius:8px;
+margin:8px;
+border-radius:10px;
 cursor:pointer;
+font-weight:bold;
+transition:0.3s;
+}
+
+button:hover{
+background:#6a4de0;
+}
+
+/* STATUS */
+
+.status{
+padding:60px 20px;
+text-align:center;
 }
 
 .cards{
 display:flex;
 justify-content:center;
+flex-wrap:wrap;
 gap:20px;
 }
 
 .card{
 background:#11163d;
-padding:20px;
-border-radius:10px;
+padding:30px;
+border-radius:12px;
+width:200px;
+box-shadow:0 0 10px #000;
+}
+
+/* PLANOS */
+
+.planos{
+padding:80px 20px;
+text-align:center;
+}
+
+.planos-grid{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:25px;
+}
+
+.plano{
+background:#11163d;
+padding:30px;
+width:250px;
+border-radius:14px;
+box-shadow:0 0 15px #000;
+transition:0.3s;
+}
+
+.plano:hover{
+transform:translateY(-5px);
+}
+
+.plano h3{
+color:#7b5cff;
+margin-bottom:10px;
+}
+
+.preco{
+font-size:22px;
+margin:10px 0;
+color:#7bffb0;
+}
+
+.plano button{
+background:#00c97a;
+}
+
+.plano button:hover{
+background:#00a764;
 }
