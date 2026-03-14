@@ -14,11 +14,17 @@ align-items:center;
 padding:20px;
 background:#0b0b0b;
 border-bottom:1px solid #1f3f2b;
+flex-wrap:wrap;
 }
 
 header h1{
 color:#2ecc71;
 margin:0;
+}
+
+nav{
+display:flex;
+flex-wrap:wrap;
 }
 
 nav a{
@@ -87,6 +93,7 @@ border:1px solid #1f3f2b;
 border-radius:6px;
 color:white;
 margin-top:5px;
+box-sizing:border-box;
 }
 
 /* CARDS */
@@ -126,6 +133,7 @@ padding:15px;
 border-radius:8px;
 margin-top:10px;
 font-family:monospace;
+overflow:auto;
 }
 
 /* GRID */
@@ -143,4 +151,49 @@ margin-top:50px;
 text-align:center;
 color:#777;
 padding:20px;
+}
+
+/* RESPONSIVO (CELULAR) */
+
+@media (max-width:768px){
+
+header{
+flex-direction:column;
+align-items:flex-start;
+}
+
+nav{
+margin-top:10px;
+}
+
+.hero{
+padding:50px 20px;
+}
+
+.hero h2{
+font-size:28px;
+}
+
+.panel{
+margin:15px;
+padding:20px;
+}
+
+.grid{
+grid-template-columns:1fr;
+}
+
+.cards{
+padding:20px;
+}
+
+.card{
+width:100%;
+}
+
+button{
+width:100%;
+margin-top:10px;
+}
+
 }
