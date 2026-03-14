@@ -1,29 +1,19 @@
-<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>eclipsecloud.config</title><link rel="stylesheet" href="/css/style.css"><style>
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>eclipsecloud.config</title>
+
+<link rel="stylesheet" href="/css/style.css">
+
+<style>
 
 body{
-background:#0b0f14;
+background:#0b0b0b;
 font-family:Arial;
 color:white;
 margin:0;
-}
-
-header{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:15px 40px;
-background:#0f1621;
-}
-
-nav a{
-color:#ccc;
-margin-left:20px;
-text-decoration:none;
-}
-
-nav a:hover{
-color:#8b5cf6;
 }
 
 .container{
@@ -34,22 +24,24 @@ padding:40px 20px;
 
 .title{
 text-align:center;
-margin-bottom:40px;
+margin-bottom:30px;
 }
 
 .title h1{
-color:#22c55e;
+color:#2ecc71;
 font-size:40px;
 }
 
-.config-box{
-background:#111827;
-padding:25px;
+.box{
+background:#111;
+border:1px solid #1f3f2b;
 border-radius:10px;
+padding:25px;
 margin-bottom:25px;
 }
 
-.config-box h2{
+.box h2{
+color:#2ecc71;
 margin-bottom:20px;
 }
 
@@ -57,101 +49,151 @@ label{
 display:block;
 margin-top:15px;
 margin-bottom:5px;
+color:#aaa;
 }
 
 input,select{
+
 width:100%;
-padding:10px;
-border:none;
+padding:12px;
+background:#0f0f0f;
+border:1px solid #2ecc71;
 border-radius:6px;
-background:#1f2937;
 color:white;
+
 }
 
 button{
-margin-top:20px;
-padding:10px 20px;
-background:#22c55e;
+
+padding:10px 15px;
 border:none;
 border-radius:6px;
 cursor:pointer;
+margin-top:15px;
+
 }
 
-button:hover{
-background:#16a34a;
+.generate{
+
+background:#2ecc71;
+color:black;
+
 }
 
 .preview{
-background:#111827;
-padding:25px;
-border-radius:10px;
-}
 
-pre{
-background:#020617;
-padding:20px;
-border-radius:6px;
-color:#22c55e;
-overflow:auto;
-}
-
-.actions{
+background:black;
+border-radius:8px;
+padding:15px;
 margin-top:15px;
+font-family:monospace;
+
+}
+
+.top-buttons{
+
 display:flex;
+justify-content:flex-end;
 gap:10px;
+
 }
 
-.actions button{
-background:#1f2937;
+.copy{
+
+background:#1f3f2b;
+color:#2ecc71;
+
 }
 
-</style></head><body><header><h3>☁ EclipseCloud</h3><nav><a href="/">Início</a>
-<a href="/planos.html">Planos</a>
-<a href="/docs.html">Documentação</a>
+.download{
 
-</nav></header><div class="container"><div class="title"><h1>eclipsecloud.config</h1><p>Gerador inteligente para configurar bots</p></div><div class="config-box"><h2>⚙ Configuração</h2><label>Arquivo principal *</label>
+background:#2ecc71;
+color:black;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="title">
+
+<h1>⚙ eclipsecloud.config</h1>
+<p>Gerador inteligente para configurar bots</p>
+
+</div>
+
+<div class="box">
+
+<h2>⚙ Configuração</h2>
+
+<h3>Campos Obrigatórios</h3>
+
+<label>Arquivo Principal *</label>
 <input id="main" value="index.js">
+
+<h3>Campos Opcionais</h3>
 
 <label>Tipo</label>
 <select id="type">
-
 <option>bot</option>
 <option>site</option>
-<option>api</option>
-</select><label>RAM (MB)</label>
+</select>
+
+<label>RAM (MB)</label>
 <input id="ram" value="100">
 
 <label>Nome</label>
 <input id="name" placeholder="Meu Bot Incrível">
 
 <label>Avatar URL</label>
-<input id="avatar" placeholder="https://site.com/avatar.png">
+<input id="avatar" placeholder="https://example.com/avatar.png">
 
 <label>Pacotes APT</label>
-<input id="apt" placeholder="ffmpeg, canvas">
+<input id="apt" placeholder="tools, ffmpeg, canvas">
 
 <label>Comando de início</label>
-<input id="start" value="npm start">
+<input id="start" value="npm run start">
 
 <label>Comando de build</label>
 <input id="build" value="npm run build">
 
 <label>Auto Restart</label>
 <select id="restart">
-
 <option>true</option>
 <option>false</option>
-</select><button onclick="gerar()">Gerar Config</button>
+</select>
 
-</div><div class="preview"><h2>Preview do Arquivo</h2><pre id="output">
+<button class="generate" onclick="gerar()">Gerar Config</button>
 
-MAIN=index.js
+</div>
 
-</pre><div class="actions"><button onclick="copiar()">Copiar</button>
+<div class="box">
 
-<button onclick="baixar()">Baixar</button>
+<div class="top-buttons">
 
-</div></div></div><script>
+<button class="copy" onclick="copiar()">Copiar</button>
+<button class="download" onclick="baixar()">Baixar</button>
+
+</div>
+
+<h2>Preview do Arquivo</h2>
+
+<div class="preview">
+
+<pre id="output">MAIN=index.js</pre>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
 
 function gerar(){
 
@@ -165,9 +207,7 @@ let start=document.getElementById("start").value
 let build=document.getElementById("build").value
 let restart=document.getElementById("restart").value
 
-let config=
-
-`MAIN=${main}
+let config=`MAIN=${main}
 TYPE=${type}
 RAM=${ram}
 NAME=${name}
@@ -207,5 +247,8 @@ link.click()
 
 }
 
-</script></body>
+</script>
+
+</body>
+
 </html>
