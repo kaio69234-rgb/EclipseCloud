@@ -1,37 +1,181 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
 <title>EclipseCloud</title>
+
 <style>
+
 body{
 font-family: Arial;
+background: #0b0f19;
+color: white;
+margin:0;
+}
+
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 40px;
 background:#0f172a;
-color:white;
+box-shadow:0 0 10px rgba(0,0,0,0.5);
+}
+
+.logo{
+font-size:22px;
+font-weight:bold;
+color:#7c8cff;
+}
+
+nav a{
+margin-left:20px;
+color:#ccc;
+text-decoration:none;
+font-size:14px;
+}
+
+.hero{
 text-align:center;
-padding-top:100px;
+padding:100px 20px;
+}
+
+.hero h1{
+font-size:48px;
+color:#7c8cff;
+}
+
+.hero p{
+color:#aaa;
+margin-top:10px;
+}
+
+.panel{
+margin-top:40px;
 }
 
 button{
-padding:15px;
+padding:14px 22px;
 margin:10px;
 border:none;
-background:#6366f1;
+border-radius:8px;
+background:linear-gradient(45deg,#6366f1,#8b5cf6);
 color:white;
-font-size:18px;
-border-radius:10px;
+font-size:16px;
 cursor:pointer;
+transition:0.3s;
 }
+
+button:hover{
+transform:scale(1.05);
+}
+
+input{
+margin-top:20px;
+color:white;
+}
+
+.features{
+display:flex;
+justify-content:center;
+gap:30px;
+padding:60px;
+flex-wrap:wrap;
+}
+
+.card{
+background:#0f172a;
+padding:25px;
+border-radius:10px;
+width:200px;
+box-shadow:0 0 10px rgba(0,0,0,0.4);
+text-align:center;
+}
+
+.card h3{
+color:#7c8cff;
+}
+
+footer{
+text-align:center;
+padding:30px;
+color:#777;
+}
+
 </style>
 </head>
 
 <body>
 
-<h1>☁ EclipseCloud</h1>
-<p>Painel de hospedagem de bots</p>
+<header>
 
-<button>Enviar Bot</button>
-<button>Iniciar Bot</button>
-<button>Parar Bot</button>
+<div class="logo">☁ EclipseCloud</div>
+
+<nav>
+<a href="#">Painel</a>
+<a href="#">Planos</a>
+<a href="#">Documentação</a>
+</nav>
+
+</header>
+
+<section class="hero">
+
+<h1>Hospedagem de Bots</h1>
+<p>Simples, rápida e gratuita</p>
+
+<input type="file" id="botFile">
+
+<div class="panel">
+
+<button onclick="uploadBot()">Enviar Bot</button>
+<button onclick="startBot()">Iniciar Bot</button>
+<button onclick="stopBot()">Parar Bot</button>
+
+</div>
+
+</section>
+
+<section class="features">
+
+<div class="card">
+<h3>⚡ Rápido</h3>
+<p>Hospedagem otimizada para bots</p>
+</div>
+
+<div class="card">
+<h3>🔒 Seguro</h3>
+<p>Ambiente isolado</p>
+</div>
+
+<div class="card">
+<h3>☁ Cloud</h3>
+<p>Deploy fácil e rápido</p>
+</div>
+
+</section>
+
+<footer>
+
+EclipseCloud © 2026
+
+</footer>
+
+<script>
+
+function uploadBot(){
+alert("Bot enviado (simulação)")
+}
+
+function startBot(){
+alert("Bot iniciado")
+}
+
+function stopBot(){
+alert("Bot parado")
+}
+
+</script>
 
 </body>
 </html>
