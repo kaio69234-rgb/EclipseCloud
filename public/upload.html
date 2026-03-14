@@ -1,1 +1,107 @@
+<!DOCTYPE html>
+<html>
 
+<head>
+
+<title>Deploy Bot - EclipseCloud</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+
+body{
+background:#0f0f0f;
+color:white;
+font-family:Arial;
+text-align:center;
+padding:40px;
+}
+
+.upload-box{
+
+border:2px dashed #2ecc71;
+padding:80px;
+border-radius:10px;
+margin-top:40px;
+cursor:pointer;
+
+}
+
+.upload-box:hover{
+background:#111;
+}
+
+button{
+
+background:#2ecc71;
+border:none;
+padding:12px 20px;
+color:white;
+border-radius:6px;
+cursor:pointer;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>☁ EclipseCloud Deploy</h1>
+
+<p>Envie seu bot .zip</p>
+
+<div class="upload-box" onclick="document.getElementById('file').click()">
+
+<p>Solte o arquivo aqui ou clique para enviar</p>
+
+</div>
+
+<input type="file" id="file" hidden>
+
+<br><br>
+
+<button onclick="uploadBot()">Enviar Bot</button>
+
+<p id="status"></p>
+
+<script>
+
+async function uploadBot(){
+
+let file = document.getElementById("file").files[0]
+
+if(!file){
+
+alert("Escolha um arquivo")
+
+return
+
+}
+
+let form = new FormData()
+
+form.append("bot", file)
+
+document.getElementById("status").innerText="Enviando..."
+
+let res = await fetch("/upload",{
+
+method:"POST",
+
+body:form
+
+})
+
+let data = await res.text()
+
+document.getElementById("status").innerText=data
+
+}
+
+</script>
+
+</body>
+
+</html>
