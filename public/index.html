@@ -1,12 +1,5 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-
-<head>
-
-<meta charset="UTF-8">
-<title>EclipseCloud</title>
-
-<style>
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0"><title>EclipseCloud</title><style>
 
 *{
 margin:0;
@@ -15,10 +8,13 @@ box-sizing:border-box;
 font-family:Segoe UI,Arial;
 }
 
+html{
+scroll-behavior:smooth;
+}
+
 body{
-background:radial-gradient(circle at top,#111633,#05070f);
+background:radial-gradient(circle at top,#1b1f3a,#060913);
 color:white;
-min-height:100vh;
 }
 
 /* HEADER */
@@ -28,22 +24,25 @@ display:flex;
 justify-content:space-between;
 align-items:center;
 padding:20px 40px;
-background:rgba(15,21,41,0.7);
+background:rgba(10,12,25,0.7);
 backdrop-filter:blur(10px);
-border-bottom:1px solid rgba(122,140,255,0.15);
+border-bottom:1px solid rgba(120,120,255,0.2);
+position:sticky;
+top:0;
+z-index:999;
 }
 
 .logo{
 font-size:22px;
 font-weight:bold;
-color:#8ea2ff;
-text-shadow:0 0 8px rgba(138,158,255,0.6);
+color:#9ea7ff;
+text-shadow:0 0 10px rgba(120,120,255,0.7);
 }
 
 nav a{
 margin-left:25px;
 text-decoration:none;
-color:#b8c0ff;
+color:#aeb5ff;
 font-size:14px;
 transition:.3s;
 }
@@ -61,9 +60,9 @@ padding:90px 20px;
 }
 
 .hero h1{
-font-size:44px;
-color:#8ea2ff;
-text-shadow:0 0 15px rgba(120,130,255,0.6);
+font-size:46px;
+color:#9ea7ff;
+text-shadow:0 0 18px rgba(120,120,255,0.7);
 margin-bottom:10px;
 }
 
@@ -72,18 +71,18 @@ color:#9fa7d9;
 margin-bottom:40px;
 }
 
-/* PAINEL */
+/* PANEL */
 
 .panel{
-background:rgba(15,22,45,0.85);
+background:rgba(15,20,40,0.8);
 width:420px;
 margin:auto;
 padding:35px;
 border-radius:16px;
-box-shadow:
-0 0 30px rgba(100,110,255,0.25),
-0 0 10px rgba(0,0,0,0.6);
 backdrop-filter:blur(12px);
+box-shadow:
+0 0 35px rgba(120,120,255,0.25),
+0 0 10px rgba(0,0,0,0.8);
 }
 
 .panel input{
@@ -94,7 +93,7 @@ color:white;
 .buttons{
 display:flex;
 justify-content:center;
-gap:12px;
+gap:10px;
 flex-wrap:wrap;
 }
 
@@ -107,7 +106,7 @@ color:white;
 font-weight:bold;
 cursor:pointer;
 transition:.25s;
-box-shadow:0 0 10px rgba(90,110,255,0.4);
+box-shadow:0 0 12px rgba(120,120,255,0.4);
 }
 
 button:hover{
@@ -118,23 +117,47 @@ box-shadow:0 0 20px #7a8cff;
 .status{
 margin-top:15px;
 font-size:14px;
-color:#9fa7ff;
+color:#9ea7ff;
 }
 
 /* LOGS */
 
 .logs{
-margin:50px auto;
-width:650px;
+margin:60px auto;
+width:70%;
 background:#04070f;
 border-radius:12px;
 padding:20px;
-color:#9fa7ff;
-min-height:130px;
+color:#9ea7ff;
+min-height:150px;
 box-shadow:
-0 0 25px rgba(0,0,0,0.6),
-inset 0 0 10px rgba(100,110,255,0.2);
+0 0 20px rgba(0,0,0,0.7),
+inset 0 0 10px rgba(120,120,255,0.2);
 font-family:monospace;
+overflow:auto;
+}
+
+/* STATUS SECTION */
+
+.status-section{
+text-align:center;
+padding:80px 20px;
+}
+
+.status-cards{
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:25px;
+margin-top:30px;
+}
+
+.status-card{
+background:#0f162d;
+padding:25px;
+border-radius:12px;
+width:200px;
+box-shadow:0 0 20px rgba(120,120,255,0.15);
 }
 
 /* FEATURES */
@@ -148,30 +171,46 @@ padding:70px 20px;
 }
 
 .card{
-background:rgba(15,22,45,0.9);
+background:#0f162d;
 padding:28px;
 width:220px;
 border-radius:14px;
 text-align:center;
 box-shadow:
 0 0 20px rgba(0,0,0,0.5),
-0 0 10px rgba(100,110,255,0.2);
+0 0 10px rgba(120,120,255,0.2);
 transition:.3s;
 }
 
 .card:hover{
 transform:translateY(-8px);
-box-shadow:
-0 0 25px rgba(100,110,255,0.5);
+box-shadow:0 0 25px rgba(120,120,255,0.5);
 }
 
 .card h3{
-color:#8ea2ff;
+color:#9ea7ff;
 margin-bottom:10px;
 }
 
 .card p{
 font-size:14px;
+color:#b6bcff;
+}
+
+/* DOCS */
+
+.docs{
+padding:80px 20px;
+text-align:center;
+}
+
+.docs ul{
+margin-top:20px;
+list-style:none;
+}
+
+.docs li{
+margin:10px 0;
 color:#aab2ff;
 }
 
@@ -182,89 +221,54 @@ text-align:center;
 padding:35px;
 color:#6c73a8;
 font-size:13px;
-border-top:1px solid rgba(100,110,255,0.1);
+border-top:1px solid rgba(120,120,255,0.1);
 }
 
-</style>
-
-</head>
-
-<body>
-
-<header>
-
-<div class="logo">☁ EclipseCloud</div>
-
-<nav>
-<a href="#">Painel</a>
-<a href="#">Status</a>
-<a href="#">Documentação</a>
-</nav>
-
-</header>
-
-<section class="hero">
-
-<h1>Hospedagem de Bots</h1>
-<p>Hospede seu bot de forma rápida e simples</p>
-
-<div class="panel">
-
-<input type="file" id="botFile">
-
-<div class="buttons">
-
-<button onclick="uploadBot()">Enviar Bot</button>
+</style></head><body><header><div class="logo">☁ EclipseCloud</div><nav>
+<a href="#painel">Painel</a>
+<a href="#status">Status</a>
+<a href="#docs">Documentação</a>
+</nav></header><section class="hero" id="painel"><h1>Hospedagem de Bots</h1>
+<p>Hospede seu bot de forma rápida e simples</p><div class="panel"><input type="file" id="botFile"><div class="buttons"><button onclick="uploadBot()">Enviar Bot</button>
 <button onclick="startBot()">Iniciar Bot</button>
 <button onclick="stopBot()">Parar Bot</button>
 
-</div>
-
-<div class="status">
+</div><div class="status" id="botStatus">
 Status: Nenhum bot rodando
-</div>
-
-</div>
-
-</section>
-
-<div class="logs" id="logs">
+</div></div></section><div class="logs" id="logs">
 Logs aparecerão aqui...
-</div>
-
-<section class="features">
-
-<div class="card">
+</div><section class="status-section" id="status"><h2>Status do Servidor</h2><div class="status-cards"><div class="status-card">
+<h3>🟢 Servidor</h3>
+<p>Online</p>
+</div><div class="status-card">
+<h3>⚡ Node.js</h3>
+<p>Ativo</p>
+</div><div class="status-card">
+<h3>☁ Cloud</h3>
+<p>EclipseCloud</p>
+</div></div></section><section class="features"><div class="card">
 <h3>⚡ Ultra rápido</h3>
 <p>Infraestrutura otimizada para bots</p>
-</div>
-
-<div class="card">
+</div><div class="card">
 <h3>🔒 Seguro</h3>
 <p>Ambiente isolado para execução</p>
-</div>
-
-<div class="card">
+</div><div class="card">
 <h3>☁ Cloud Deploy</h3>
 <p>Deploy automático em segundos</p>
-</div>
-
-<div class="card">
+</div><div class="card">
 <h3>📊 Monitoramento</h3>
 <p>Status e logs em tempo real</p>
-</div>
+</div></section><section class="docs" id="docs"><h2>Documentação</h2><ul>
+<li>📁 Envie seu bot em arquivo .zip</li>
+<li>🚀 Clique em iniciar bot para executar</li>
+<li>🛑 Use parar bot para desligar</li>
+<li>📜 Veja os logs em tempo real</li>
+</ul></section><footer>EclipseCloud © 2026
 
-</section>
-
-<footer>
-
-EclipseCloud © 2026
-
-</footer>
-
-<script>
+</footer><script>
 
 const logs = document.getElementById("logs")
+const status = document.getElementById("botStatus")
 
 function addLog(text){
 logs.innerHTML += "<br>➜ "+text
@@ -274,6 +278,11 @@ logs.scrollTop = logs.scrollHeight
 async function uploadBot(){
 
 const file = document.getElementById("botFile").files[0]
+
+if(!file){
+alert("Escolha um arquivo")
+return
+}
 
 const form = new FormData()
 
@@ -292,6 +301,8 @@ async function startBot(){
 
 await fetch("/start")
 
+status.innerText="Status: Bot rodando"
+
 addLog("Bot iniciado")
 
 }
@@ -300,11 +311,11 @@ async function stopBot(){
 
 await fetch("/stop")
 
+status.innerText="Status: Bot parado"
+
 addLog("Bot parado")
 
 }
 
-</script>
-
-</body>
+</script></body>
 </html>
