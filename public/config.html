@@ -1,39 +1,54 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Configuração - EclipseCloud</title><link rel="stylesheet" href="/css/style.css"><style>
 
-<head>
+.config-container{
+display:flex;
+flex-wrap:wrap;
+gap:30px;
+justify-content:center;
+margin-top:40px;
+}
 
-<title>Configuração - EclipseCloud</title>
-<link rel="stylesheet" href="/css/style.css">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+.config-box{
+background:#11163d;
+padding:30px;
+border-radius:12px;
+width:300px;
+box-shadow:0 0 15px rgba(0,0,0,0.5);
+}
 
-</head>
+.config-box input{
+width:100%;
+padding:10px;
+margin:6px 0 15px 0;
+border-radius:6px;
+border:none;
+background:#0b0f30;
+color:white;
+}
 
-<body>
+.preview{
+background:#0b0f30;
+padding:25px;
+border-radius:12px;
+width:350px;
+box-shadow:0 0 15px rgba(0,0,0,0.5);
+}
 
-<header>
+.preview pre{
+background:#050816;
+padding:15px;
+border-radius:8px;
+overflow:auto;
+}
 
-<h2>☁ EclipseCloud</h2>
-
-<nav>
+</style></head><body><header><h2>☁ EclipseCloud</h2><nav>
 <a href="/">Início</a>
 <a href="/status.html">Status</a>
 <a href="/planos.html">Planos</a>
 <a href="/docs.html">Docs</a>
-</nav>
-
-</header>
-
-<section class="panel">
-
-<h1>⚙ eclipsecloud.config</h1>
-<p>Gerador inteligente de configuração</p>
-
-<div class="config-box">
-
-<h3>Configuração</h3>
-
-<label>Arquivo principal</label>
+</nav></header><section class="panel"><h1>⚙ eclipsecloud.config</h1>
+<p>Gerador inteligente de configuração</p><div class="config-container"><div class="config-box"><h3>Configuração</h3><label>Arquivo principal</label>
 <input id="main" value="index.js">
 
 <label>RAM (MB)</label>
@@ -53,38 +68,21 @@
 
 <button onclick="gerar()">Gerar Config</button>
 
-</div>
-
-<div class="preview">
-
-<h3>Preview do Arquivo</h3>
-
-<pre id="output">
-
-MAIN=index.js
-
-</pre>
-
-<button onclick="copiar()">Copiar</button>
+</div><div class="preview"><h3>Preview do Arquivo</h3><pre id="output">MAIN=index.js</pre><button onclick="copiar()">Copiar</button>
 <button onclick="baixar()">Baixar</button>
 
-</div>
-
-</section>
-
-<script>
+</div></div></section><script>
 
 function gerar(){
 
-let main=document.getElementById("main").value
-let ram=document.getElementById("ram").value
-let name=document.getElementById("name").value
-let avatar=document.getElementById("avatar").value
-let start=document.getElementById("start").value
-let build=document.getElementById("build").value
+const main=document.getElementById("main").value
+const ram=document.getElementById("ram").value
+const name=document.getElementById("name").value
+const avatar=document.getElementById("avatar").value
+const start=document.getElementById("start").value
+const build=document.getElementById("build").value
 
-let config=
-
+const config =
 `MAIN=${main}
 RAM=${ram}
 NAME=${name}
@@ -98,7 +96,8 @@ document.getElementById("output").textContent=config
 
 function copiar(){
 
-let texto=document.getElementById("output").textContent
+const texto=document.getElementById("output").textContent
+
 navigator.clipboard.writeText(texto)
 
 alert("Config copiada!")
@@ -107,11 +106,11 @@ alert("Config copiada!")
 
 function baixar(){
 
-let texto=document.getElementById("output").textContent
+const texto=document.getElementById("output").textContent
 
-let blob=new Blob([texto],{type:"text/plain"})
+const blob=new Blob([texto],{type:"text/plain"})
 
-let link=document.createElement("a")
+const link=document.createElement("a")
 
 link.href=URL.createObjectURL(blob)
 link.download="eclipsecloud.config"
@@ -120,8 +119,5 @@ link.click()
 
 }
 
-</script>
-
-</body>
-
+</script></body>
 </html>
