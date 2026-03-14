@@ -3,6 +3,22 @@ background:linear-gradient(180deg,#050816,#0b0f30);
 color:white;
 font-family:Arial, Helvetica, sans-serif;
 margin:0;
+overflow-x:hidden;
+}
+
+/* FUNDO GLOW */
+
+body::before{
+content:"";
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:
+radial-gradient(circle at 20% 30%,#7b5cff33,transparent),
+radial-gradient(circle at 80% 70%,#00ffd533,transparent);
+z-index:-1;
 }
 
 /* HEADER */
@@ -13,11 +29,12 @@ justify-content:space-between;
 align-items:center;
 padding:20px 40px;
 background:#0b0f30;
-box-shadow:0 0 10px #000;
+box-shadow:0 0 20px rgba(0,0,0,0.6);
 }
 
 header h2{
 color:#7b5cff;
+font-weight:bold;
 }
 
 nav a{
@@ -29,23 +46,24 @@ transition:0.3s;
 }
 
 nav a:hover{
-color:white;
+color:#7b5cff;
 }
 
 /* HERO */
 
 .hero{
 text-align:center;
-padding:100px 20px;
+padding:120px 20px;
 }
 
 .hero h1{
-font-size:40px;
+font-size:42px;
 margin-bottom:10px;
 }
 
 .hero p{
 color:#aaa;
+font-size:18px;
 }
 
 /* PANEL */
@@ -55,9 +73,11 @@ text-align:center;
 padding:60px 20px;
 }
 
+/* BOTÕES */
+
 button{
-padding:12px 20px;
-background:#7b5cff;
+padding:12px 22px;
+background:linear-gradient(45deg,#7b5cff,#9f8cff);
 border:none;
 color:white;
 margin:8px;
@@ -68,7 +88,8 @@ transition:0.3s;
 }
 
 button:hover{
-background:#6a4de0;
+transform:scale(1.05);
+box-shadow:0 0 15px #7b5cff;
 }
 
 /* STATUS */
@@ -82,7 +103,7 @@ text-align:center;
 display:flex;
 justify-content:center;
 flex-wrap:wrap;
-gap:20px;
+gap:25px;
 }
 
 .card{
@@ -90,7 +111,13 @@ background:#11163d;
 padding:30px;
 border-radius:12px;
 width:200px;
-box-shadow:0 0 10px #000;
+box-shadow:0 0 15px rgba(0,0,0,0.6);
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-5px);
+box-shadow:0 0 20px #7b5cff;
 }
 
 /* PLANOS */
@@ -100,41 +127,95 @@ padding:80px 20px;
 text-align:center;
 }
 
+.planos h1{
+font-size:36px;
+margin-bottom:10px;
+}
+
 .planos-grid{
 display:flex;
 flex-wrap:wrap;
 justify-content:center;
-gap:25px;
+gap:30px;
+margin-top:40px;
 }
+
+/* CARD DO PLANO */
 
 .plano{
 background:#11163d;
-padding:30px;
-width:250px;
-border-radius:14px;
-box-shadow:0 0 15px #000;
-transition:0.3s;
+padding:35px;
+width:260px;
+border-radius:16px;
+box-shadow:0 0 20px rgba(0,0,0,0.7);
+transition:0.4s;
+position:relative;
 }
 
 .plano:hover{
-transform:translateY(-5px);
+transform:translateY(-10px);
+box-shadow:0 0 30px #7b5cff;
 }
+
+/* PLANO DESTAQUE */
+
+.plano.destaque{
+border:2px solid #7b5cff;
+box-shadow:0 0 30px #7b5cff;
+}
+
+/* TITULO */
 
 .plano h3{
 color:#7b5cff;
-margin-bottom:10px;
+margin-bottom:15px;
+font-size:22px;
 }
+
+/* INFO */
+
+.plano p{
+color:#ccc;
+margin:6px 0;
+}
+
+/* PREÇO */
 
 .preco{
-font-size:22px;
-margin:10px 0;
-color:#7bffb0;
+font-size:24px;
+margin:15px 0;
+color:#00ffa6;
+font-weight:bold;
 }
 
+/* BOTÃO PLANO */
+
 .plano button{
-background:#00c97a;
+background:linear-gradient(45deg,#00c97a,#00ffa6);
+color:black;
 }
 
 .plano button:hover{
-background:#00a764;
+transform:scale(1.05);
+box-shadow:0 0 15px #00ffa6;
+}
+
+/* RESPONSIVO */
+
+@media (max-width:768px){
+
+header{
+flex-direction:column;
+gap:10px;
+}
+
+nav a{
+margin:10px;
+}
+
+.planos-grid{
+flex-direction:column;
+align-items:center;
+}
+
 }
