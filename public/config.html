@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Configuração - EclipseCloud</title>
+<link rel="stylesheet" href="/css/style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+
+<body>
+
+<header>
+
+<h2>☁ EclipseCloud</h2>
+
+<nav>
+<a href="/">Início</a>
+<a href="/status.html">Status</a>
+<a href="/planos.html">Planos</a>
+<a href="/docs.html">Docs</a>
+</nav>
+
+</header>
+
+<section class="panel">
+
+<h1>⚙ eclipsecloud.config</h1>
+<p>Gerador inteligente de configuração</p>
+
+<div class="config-box">
+
+<h3>Configuração</h3>
+
+<label>Arquivo principal</label>
+<input id="main" value="index.js">
+
+<label>RAM (MB)</label>
+<input id="ram" value="100">
+
+<label>Nome</label>
+<input id="name" placeholder="Meu Bot">
+
+<label>Avatar URL</label>
+<input id="avatar" placeholder="https://link.com/avatar.png">
+
+<label>Comando de início</label>
+<input id="start" value="npm start">
+
+<label>Comando de build</label>
+<input id="build" value="npm run build">
+
+<button onclick="gerar()">Gerar Config</button>
+
+</div>
+
+<div class="preview">
+
+<h3>Preview do Arquivo</h3>
+
+<pre id="output">
+
+MAIN=index.js
+
+</pre>
+
+<button onclick="copiar()">Copiar</button>
+<button onclick="baixar()">Baixar</button>
+
+</div>
+
+</section>
+
+<script>
+
+function gerar(){
+
+let main=document.getElementById("main").value
+let ram=document.getElementById("ram").value
+let name=document.getElementById("name").value
+let avatar=document.getElementById("avatar").value
+let start=document.getElementById("start").value
+let build=document.getElementById("build").value
+
+let config=
+
+`MAIN=${main}
+RAM=${ram}
+NAME=${name}
+AVATAR=${avatar}
+START=${start}
+BUILD=${build}`
+
+document.getElementById("output").textContent=config
+
+}
+
+function copiar(){
+
+let texto=document.getElementById("output").textContent
+navigator.clipboard.writeText(texto)
+
+alert("Config copiada!")
+
+}
+
+function baixar(){
+
+let texto=document.getElementById("output").textContent
+
+let blob=new Blob([texto],{type:"text/plain"})
+
+let link=document.createElement("a")
+
+link.href=URL.createObjectURL(blob)
+link.download="eclipsecloud.config"
+
+link.click()
+
+}
+
+</script>
+
+</body>
+
+</html>
