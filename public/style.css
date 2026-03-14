@@ -1,6 +1,8 @@
+/* BACKGROUND */
+
 body{
-background:linear-gradient(180deg,#08142c,#0c2a4d);
-color:white;
+background:linear-gradient(180deg,#050807,#0b1f14);
+color:#e6ffe6;
 font-family:Arial;
 margin:0;
 }
@@ -20,8 +22,12 @@ text-align:center;
 margin-bottom:30px;
 }
 
+.title h1{
+color:#3cff7a;
+}
+
 .subtitle{
-color:#cbd5ff;
+color:#8fbfa0;
 margin-top:5px;
 }
 
@@ -32,23 +38,24 @@ display:flex;
 justify-content:space-between;
 align-items:center;
 padding:20px;
-background:rgba(0,0,0,0.3);
+background:rgba(0,0,0,0.4);
+border-bottom:1px solid #1e3326;
 }
 
 header h2{
 margin:0;
-color:white;
+color:#3cff7a;
 }
 
 nav a{
 margin-left:15px;
-color:#cbd5ff;
+color:#9ed3b0;
 text-decoration:none;
 font-size:14px;
 }
 
 nav a:hover{
-color:white;
+color:#3cff7a;
 }
 
 /* HERO */
@@ -61,16 +68,18 @@ padding:80px 20px;
 .hero h1{
 font-size:40px;
 margin-bottom:10px;
+color:#3cff7a;
 }
 
 .hero p{
-color:#cbd5ff;
+color:#8fbfa0;
 }
 
 /* PAINEL */
 
 .panel{
-background:rgba(255,255,255,0.05);
+background:rgba(20,40,30,0.6);
+border:1px solid #1e3326;
 border-radius:12px;
 padding:25px;
 margin:20px auto;
@@ -83,32 +92,32 @@ input,select{
 width:100%;
 padding:10px;
 border-radius:6px;
-border:none;
+border:1px solid #1e3326;
 margin-top:5px;
-background:#0f1d3a;
-color:white;
+background:#08140d;
+color:#e6ffe6;
 }
 
 /* BOTÕES */
 
 button{
 padding:10px 15px;
-background:#7b5cff;
+background:#2bd96b;
 border:none;
-color:white;
+color:#03140a;
 margin:5px;
 border-radius:8px;
 cursor:pointer;
+font-weight:bold;
 }
 
 button:hover{
-background:#6a4be6;
+background:#24c05e;
 }
 
 .generate{
 width:100%;
 margin-top:15px;
-font-weight:bold;
 }
 
 /* BUTTON AREA */
@@ -120,11 +129,13 @@ margin-bottom:10px;
 }
 
 .copy{
-background:#2ecc71;
+background:#22c55e;
+color:black;
 }
 
 .download{
-background:#3498db;
+background:#16a34a;
+color:white;
 }
 
 /* CARDS */
@@ -138,7 +149,8 @@ padding:40px;
 }
 
 .card{
-background:rgba(255,255,255,0.05);
+background:rgba(20,40,30,0.6);
+border:1px solid #1e3326;
 padding:20px;
 border-radius:10px;
 width:230px;
@@ -169,6 +181,7 @@ border-radius:8px;
 margin-top:10px;
 font-family:monospace;
 overflow:auto;
+color:#00ff88;
 }
 
 /* GRID */
@@ -184,8 +197,9 @@ gap:20px;
 .footer{
 margin-top:50px;
 text-align:center;
-color:#ccc;
+color:#6ea884;
 padding:20px;
+border-top:1px solid #1e3326;
 }
 
 /* RESPONSIVO */
