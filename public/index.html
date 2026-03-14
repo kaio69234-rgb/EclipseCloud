@@ -1,47 +1,59 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
+
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>EclipseCloud</title>
 
 <style>
 
 body{
-font-family: Arial;
-background: #0b0f19;
-color: white;
 margin:0;
+font-family:Arial, Helvetica, sans-serif;
+background:#0b0f19;
+color:white;
 }
+
+/* HEADER */
 
 header{
 display:flex;
 justify-content:space-between;
 align-items:center;
-padding:20px 40px;
+padding:20px 50px;
 background:#0f172a;
-box-shadow:0 0 10px rgba(0,0,0,0.5);
+box-shadow:0 0 15px rgba(0,0,0,0.6);
 }
 
 .logo{
-font-size:22px;
+font-size:24px;
 font-weight:bold;
 color:#7c8cff;
 }
 
 nav a{
-margin-left:20px;
-color:#ccc;
+margin-left:25px;
 text-decoration:none;
-font-size:14px;
+color:#ccc;
+font-size:15px;
+transition:0.3s;
 }
+
+nav a:hover{
+color:white;
+}
+
+/* HERO */
 
 .hero{
 text-align:center;
-padding:100px 20px;
+padding:80px 20px;
 }
 
 .hero h1{
-font-size:48px;
+font-size:50px;
 color:#7c8cff;
 }
 
@@ -50,19 +62,30 @@ color:#aaa;
 margin-top:10px;
 }
 
+/* PANEL */
+
 .panel{
 margin-top:40px;
+background:#0f172a;
+display:inline-block;
+padding:30px;
+border-radius:10px;
+box-shadow:0 0 15px rgba(0,0,0,0.5);
+}
+
+.panel input{
+margin-bottom:20px;
 }
 
 button{
-padding:14px 22px;
-margin:10px;
+padding:14px 24px;
+margin:8px;
 border:none;
 border-radius:8px;
-background:linear-gradient(45deg,#6366f1,#8b5cf6);
-color:white;
-font-size:16px;
+font-size:15px;
 cursor:pointer;
+color:white;
+background:linear-gradient(45deg,#6366f1,#8b5cf6);
 transition:0.3s;
 }
 
@@ -70,10 +93,30 @@ button:hover{
 transform:scale(1.05);
 }
 
-input{
+/* STATUS */
+
+.status{
 margin-top:20px;
-color:white;
+font-size:14px;
+color:#9ca3af;
 }
+
+/* LOGS */
+
+.logs{
+margin-top:30px;
+background:#020617;
+padding:15px;
+border-radius:8px;
+width:500px;
+max-width:90%;
+height:150px;
+overflow:auto;
+font-size:13px;
+text-align:left;
+}
+
+/* FEATURES */
 
 .features{
 display:flex;
@@ -87,8 +130,8 @@ flex-wrap:wrap;
 background:#0f172a;
 padding:25px;
 border-radius:10px;
-width:200px;
-box-shadow:0 0 10px rgba(0,0,0,0.4);
+width:220px;
+box-shadow:0 0 15px rgba(0,0,0,0.5);
 text-align:center;
 }
 
@@ -96,10 +139,13 @@ text-align:center;
 color:#7c8cff;
 }
 
+/* FOOTER */
+
 footer{
 text-align:center;
 padding:30px;
 color:#777;
+margin-top:40px;
 }
 
 </style>
@@ -113,7 +159,7 @@ color:#777;
 
 <nav>
 <a href="#">Painel</a>
-<a href="#">Planos</a>
+<a href="#">Status</a>
 <a href="#">Documentação</a>
 </nav>
 
@@ -122,16 +168,26 @@ color:#777;
 <section class="hero">
 
 <h1>Hospedagem de Bots</h1>
-<p>Simples, rápida e gratuita</p>
+<p>Hospede seu bot de forma rápida e simples</p>
+
+<div class="panel">
 
 <input type="file" id="botFile">
 
-<div class="panel">
+<br>
 
 <button onclick="uploadBot()">Enviar Bot</button>
 <button onclick="startBot()">Iniciar Bot</button>
 <button onclick="stopBot()">Parar Bot</button>
 
+<div class="status" id="status">
+Status: Nenhum bot rodando
+</div>
+
+</div>
+
+<div class="logs" id="logs">
+Logs aparecerão aqui...
 </div>
 
 </section>
@@ -139,18 +195,23 @@ color:#777;
 <section class="features">
 
 <div class="card">
-<h3>⚡ Rápido</h3>
-<p>Hospedagem otimizada para bots</p>
+<h3>⚡ Ultra rápido</h3>
+<p>Infraestrutura otimizada para bots</p>
 </div>
 
 <div class="card">
 <h3>🔒 Seguro</h3>
-<p>Ambiente isolado</p>
+<p>Ambiente isolado para execução</p>
 </div>
 
 <div class="card">
-<h3>☁ Cloud</h3>
-<p>Deploy fácil e rápido</p>
+<h3>☁ Cloud Deploy</h3>
+<p>Deploy automático em segundos</p>
+</div>
+
+<div class="card">
+<h3>📊 Monitoramento</h3>
+<p>Status e logs em tempo real</p>
 </div>
 
 </section>
@@ -163,16 +224,58 @@ EclipseCloud © 2026
 
 <script>
 
-function uploadBot(){
-alert("Bot enviado (simulação)")
+/* LOG SYSTEM */
+
+function log(message){
+const logs = document.getElementById("logs")
+logs.innerHTML += "<br>"+message
+logs.scrollTop = logs.scrollHeight
 }
 
-function startBot(){
-alert("Bot iniciado")
+/* UPLOAD BOT */
+
+async function uploadBot(){
+
+const file = document.getElementById("botFile").files[0]
+
+if(!file){
+alert("Escolha um arquivo .zip")
+return
 }
 
-function stopBot(){
-alert("Bot parado")
+const form = new FormData()
+form.append("bot", file)
+
+await fetch("/upload",{
+method:"POST",
+body:form
+})
+
+log("📤 Bot enviado para o servidor")
+}
+
+/* START BOT */
+
+async function startBot(){
+
+await fetch("/start")
+
+document.getElementById("status").innerText="Status: Bot rodando"
+
+log("▶ Bot iniciado")
+
+}
+
+/* STOP BOT */
+
+async function stopBot(){
+
+await fetch("/stop")
+
+document.getElementById("status").innerText="Status: Bot parado"
+
+log("⛔ Bot parado")
+
 }
 
 </script>
