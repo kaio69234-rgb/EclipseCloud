@@ -1,34 +1,281 @@
-<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>EclipseCloud</title><!-- CSS GLOBAL --><link rel="stylesheet" href="css/style.css"></head><body><header><h2>☁ EclipseCloud</h2><nav><a href="index.html">Início</a>
-<a href="painel.html">Painel</a>
-<a href="status.html">Status</a>
-<a href="planos.html">Planos</a>
-<a href="docs.html">Documentação</a>
+<!DOCTYPE html><html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>eclipsecloud.config</title><script src="https://unpkg.com/lucide@latest"></script><style>
 
-</nav></header><section class="hero"><h1>🚀 Hospedagem de Bots</h1><p>
-Hospede bots Node.js rapidamente usando a EclipseCloud
-</p><div class="hero-buttons"><button onclick="window.location.href='planos.html'">
-Ver Planos
-</button><button onclick="window.location.href='docs.html'">
-Documentação
-</button></div></section><section class="panel"><h2>📦 Gerenciar Bot</h2><div class="bot-controls"><input type="file" id="botFile"><button onclick="uploadBot()">Enviar Bot</button>
+body{
+background:#0b0f0c;
+color:#e6ffe6;
+font-family:Arial,Helvetica,sans-serif;
+margin:0;
+}
 
-<button onclick="startBot()">Iniciar Bot</button>
+.container{
+max-width:1100px;
+margin:auto;
+padding:30px 20px;
+}
 
-<button onclick="stopBot()">Parar Bot</button>
+.hero{
+text-align:center;
+margin-bottom:40px;
+}
 
-</div><p id="botStatus">
-Status: Nenhum bot rodando
-</p></section><section class="status"><h2>📊 Status do servidor</h2><div class="cards"><div class="card">
-🟢 Servidor Online
+.hero h1{
+font-size:42px;
+color:#3cff7a;
+margin-bottom:10px;
+}
+
+.subtitle{
+color:#9bd8a8;
+}
+
+.panel{
+background:#0f1512;
+border:1px solid #1f2b23;
+border-radius:12px;
+padding:25px;
+margin-top:25px;
+}
+
+.panel h2{
+color:#3cff7a;
+margin-bottom:15px;
+}
+
+label{
+display:block;
+margin-top:15px;
+}
+
+input,select{
+width:100%;
+padding:12px;
+margin-top:6px;
+background:#0b0f0c;
+border:1px solid #1e2b23;
+border-radius:8px;
+color:white;
+}
+
+button{
+padding:12px 16px;
+border:none;
+border-radius:8px;
+margin-top:15px;
+cursor:pointer;
+font-weight:bold;
+}
+
+.generate{
+background:#2bd96b;
+color:black;
+}
+
+.copy{
+background:#1c8f46;
+color:white;
+}
+
+.download{
+background:#2bd96b;
+color:black;
+}
+
+.buttons{
+display:flex;
+gap:10px;
+margin-bottom:10px;
+}
+
+.preview{
+background:black;
+border-radius:10px;
+padding:15px;
+font-family:monospace;
+color:#00ff88;
+}
+
+.grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:20px;
+margin-top:20px;
+}
+
+.card{
+background:#0f1512;
+border:1px solid #1f2b23;
+border-radius:10px;
+padding:20px;
+}
+
+.card h3{
+color:#3cff7a;
+}
+
+.footer{
+margin-top:60px;
+border-top:1px solid #1f2b23;
+padding-top:30px;
+text-align:center;
+color:#8aa08f;
+}
+
+@media(max-width:700px){
+
+.grid{
+grid-template-columns:1fr;
+}
+
+.hero h1{
+font-size:32px;
+}
+
+}
+
+</style></head><body><div class="container"><div class="hero">
+<h1><i data-lucide="settings"></i> eclipsecloud.config</h1>
+<p class="subtitle">Gerador inteligente para configurar aplicações</p>
+</div><div class="panel"><h2>Configuração</h2><label>Arquivo Principal *</label>
+<input id="main" value="index.js">
+
+<label>Tipo</label>
+<select id="type">
+
+<option value="">Selecionar</option>
+<option value="bot">bot</option>
+<option value="site">site</option>
+</select><label>RAM (MB)</label>
+<input id="ram" value="100">
+
+<label>Nome</label>
+<input id="name" placeholder="Meu Bot Incrível">
+
+<label>Avatar URL</label>
+<input id="avatar" placeholder="https://site.com/avatar.png">
+
+<label>Pacotes APT</label>
+<input id="apt" placeholder="tools, ffmpeg, canvas">
+
+<label>Comando de início</label>
+<input id="start" value="npm run start">
+
+<label>Comando de build</label>
+<input id="build" value="npm run build">
+
+<label>Auto Restart</label>
+<select id="restart">
+
+<option value="true">true</option>
+<option value="false">false</option>
+</select><button class="generate" onclick="gerar()">Gerar Config</button>
+
+</div><div class="panel"><h2>Preview do Arquivo</h2><div class="buttons">
+<button class="copy" onclick="copiar()">Copiar</button>
+<button class="download" onclick="baixar()">Baixar</button>
+</div><div class="preview">
+<pre id="output">MAIN=index.js</pre>
+</div></div><div class="panel"><h2>Parâmetros do Arquivo</h2><div class="grid"><div class="card">
+<h3>MAIN</h3>
+Arquivo principal da aplicação
 </div><div class="card">
-⚡ Node.js ativo
+<h3>TYPE</h3>
+Tipo da aplicação (bot ou site)
 </div><div class="card">
-☁ EclipseCloud funcionando
-</div></div></section><section class="about"><h2>💡 O que é EclipseCloud?</h2><p>
-A EclipseCloud é uma plataforma de hospedagem de bots Node.js
-onde você pode enviar seu projeto em .zip e executar diretamente
-no servidor de forma simples e rápida.
-</p></section><footer><p>☁ EclipseCloud © 2026</p>
-<p>Hospedagem simples para bots Node.js</p></footer><!-- SCRIPTS --><script src="js/script.js"></script><script src="js/global.js"></script></body>
+<h3>RAM</h3>
+Memória usada pela aplicação
+</div><div class="card">
+<h3>NAME</h3>
+Nome exibido no painel
+</div><div class="card">
+<h3>APT</h3>
+Pacotes extras do sistema
+</div><div class="card">
+<h3>START</h3>
+Comando de inicialização
+</div></div></div><div class="panel"><h2>Exemplos</h2><div class="grid"><div class="card"><h3>Bot</h3><pre>
+NAME=Meu Bot
+TYPE=bot
+MAIN=index.js
+RAM=100
+</pre></div><div class="card"><h3>Site</h3><pre>
+TYPE=site
+MAIN=index.ts
+RAM=512
+START=npm run start
+</pre></div></div></div><div class="panel"><h2>Onde salvar</h2><pre>
+
+my-project/
+
+eclipsecloud.config
+index.js
+package.json
+
+</pre></div><div class="footer">
+© EclipseCloud
+</div></div><script>
+
+function gerar(){
+
+let main=document.getElementById("main").value.trim()
+let type=document.getElementById("type").value.trim()
+let ram=document.getElementById("ram").value.trim()
+let name=document.getElementById("name").value.trim()
+let avatar=document.getElementById("avatar").value.trim()
+let apt=document.getElementById("apt").value.trim()
+let start=document.getElementById("start").value.trim()
+let build=document.getElementById("build").value.trim()
+let restart=document.getElementById("restart").value.trim()
+
+let config=""
+
+if(main) config += `MAIN=${main}\n`
+if(type) config += `TYPE=${type}\n`
+if(ram) config += `RAM=${ram}\n`
+if(name) config += `NAME=${name}\n`
+if(avatar) config += `AVATAR=${avatar}\n`
+if(apt) config += `APT=${apt}\n`
+if(start) config += `START=${start}\n`
+if(build) config += `BUILD=${build}\n`
+if(restart) config += `AUTORESTART=${restart}\n`
+
+document.getElementById("output").textContent=config
+
+}
+
+function copiar(){
+
+let text=document.getElementById("output").textContent
+
+navigator.clipboard.writeText(text)
+
+alert("Config copiado!")
+
+}
+
+function baixar(){
+
+let text=document.getElementById("output").textContent
+
+let blob=new Blob([text],{type:"text/plain"})
+
+let link=document.createElement("a")
+
+link.href=URL.createObjectURL(blob)
+
+link.download="eclipsecloud.config"
+
+document.body.appendChild(link)
+
+link.click()
+
+document.body.removeChild(link)
+
+}
+
+lucide.createIcons()
+
+</script></body>
 </html>
