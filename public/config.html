@@ -1,63 +1,68 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 
 <head>
 
+<meta charset="UTF-8">
 <title>eclipsecloud.config</title>
-
-<link rel="stylesheet" href="/css/style.css">
 
 <style>
 
 body{
-background:#0b0b0b;
+background:#070707;
 font-family:Arial;
-color:white;
 margin:0;
+color:#fff;
 }
 
 .container{
-max-width:900px;
+max-width:1100px;
 margin:auto;
 padding:40px 20px;
 }
 
 .title{
 text-align:center;
-margin-bottom:30px;
+margin-bottom:40px;
 }
 
 .title h1{
 color:#2ecc71;
-font-size:40px;
+font-size:42px;
 }
 
-.box{
-background:#111;
+.subtitle{
+color:#9ca3af;
+}
+
+.panel{
+
+background:#0b0b0b;
 border:1px solid #1f3f2b;
-border-radius:10px;
+border-radius:12px;
 padding:25px;
-margin-bottom:25px;
+margin-bottom:30px;
+
 }
 
-.box h2{
+.panel h2{
 color:#2ecc71;
-margin-bottom:20px;
+margin-bottom:15px;
 }
 
 label{
 display:block;
 margin-top:15px;
-margin-bottom:5px;
-color:#aaa;
+margin-bottom:6px;
+color:#9ca3af;
 }
 
 input,select{
 
 width:100%;
 padding:12px;
-background:#0f0f0f;
-border:1px solid #2ecc71;
+background:#070707;
+border:1px solid #1f3f2b;
 border-radius:6px;
 color:white;
 
@@ -65,11 +70,10 @@ color:white;
 
 button{
 
-padding:10px 15px;
+padding:10px 14px;
 border:none;
 border-radius:6px;
 cursor:pointer;
-margin-top:15px;
 
 }
 
@@ -77,38 +81,66 @@ margin-top:15px;
 
 background:#2ecc71;
 color:black;
+margin-top:15px;
 
 }
 
-.preview{
+.preview-box{
 
 background:black;
-border-radius:8px;
 padding:15px;
-margin-top:15px;
+border-radius:8px;
+margin-top:10px;
 font-family:monospace;
 
 }
 
-.top-buttons{
+.buttons{
 
 display:flex;
-justify-content:flex-end;
 gap:10px;
+justify-content:flex-end;
 
 }
 
 .copy{
+background:#13321f;
+color:#2ecc71;
+}
 
-background:#1f3f2b;
+.download{
+background:#2ecc71;
+color:black;
+}
+
+.grid{
+
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:20px;
+
+}
+
+.card{
+
+background:#0b0b0b;
+border:1px solid #1f3f2b;
+padding:18px;
+border-radius:10px;
+
+}
+
+.card h3{
+
 color:#2ecc71;
 
 }
 
-.download{
+.footer{
 
-background:#2ecc71;
-color:black;
+margin-top:50px;
+text-align:center;
+color:#777;
 
 }
 
@@ -123,20 +155,19 @@ color:black;
 <div class="title">
 
 <h1>⚙ eclipsecloud.config</h1>
-<p>Gerador inteligente para configurar bots</p>
+<p class="subtitle">
+Gerador inteligente para configurar aplicações
+</p>
 
 </div>
 
-<div class="box">
+
+<div class="panel">
 
 <h2>⚙ Configuração</h2>
 
-<h3>Campos Obrigatórios</h3>
-
 <label>Arquivo Principal *</label>
 <input id="main" value="index.js">
-
-<h3>Campos Opcionais</h3>
 
 <label>Tipo</label>
 <select id="type">
@@ -172,9 +203,11 @@ color:black;
 
 </div>
 
-<div class="box">
 
-<div class="top-buttons">
+
+<div class="panel">
+
+<div class="buttons">
 
 <button class="copy" onclick="copiar()">Copiar</button>
 <button class="download" onclick="baixar()">Baixar</button>
@@ -183,7 +216,7 @@ color:black;
 
 <h2>Preview do Arquivo</h2>
 
-<div class="preview">
+<div class="preview-box">
 
 <pre id="output">MAIN=index.js</pre>
 
@@ -191,7 +224,134 @@ color:black;
 
 </div>
 
+
+
+<div class="panel">
+
+<h2>O que é o eclipsecloud.config?</h2>
+
+<p>
+
+Arquivo de configuração usado para automatizar o deploy de aplicações na EclipseCloud.
+Ele define informações como memória, arquivo principal e comandos de inicialização.
+
+</p>
+
 </div>
+
+
+
+<div class="panel">
+
+<h2>Parâmetros do Arquivo</h2>
+
+<div class="grid">
+
+<div class="card">
+<h3>MAIN</h3>
+Arquivo principal da aplicação
+</div>
+
+<div class="card">
+<h3>TYPE</h3>
+bot ou site
+</div>
+
+<div class="card">
+<h3>RAM</h3>
+Memória da aplicação
+</div>
+
+<div class="card">
+<h3>NAME</h3>
+Nome exibido no painel
+</div>
+
+<div class="card">
+<h3>APT</h3>
+Pacotes extras do sistema
+</div>
+
+<div class="card">
+<h3>START</h3>
+Comando de inicialização
+</div>
+
+</div>
+
+</div>
+
+
+
+<div class="panel">
+
+<h2>Exemplos</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<h3>Bot</h3>
+
+<pre>
+
+NAME=Meu Bot
+TYPE=bot
+MAIN=index.js
+RAM=100
+
+</pre>
+
+</div>
+
+<div class="card">
+
+<h3>Site</h3>
+
+<pre>
+
+TYPE=site
+MAIN=index.ts
+RAM=512
+START=npm start
+
+</pre>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<div class="panel">
+
+<h2>Onde salvar</h2>
+
+<pre>
+
+my-project/
+
+discloud.config
+index.js
+package.json
+
+</pre>
+
+</div>
+
+
+
+<div class="footer">
+
+© EclipseCloud
+
+</div>
+
+</div>
+
+
 
 <script>
 
@@ -207,7 +367,9 @@ let start=document.getElementById("start").value
 let build=document.getElementById("build").value
 let restart=document.getElementById("restart").value
 
-let config=`MAIN=${main}
+let config=
+
+`MAIN=${main}
 TYPE=${type}
 RAM=${ram}
 NAME=${name}
@@ -221,21 +383,24 @@ document.getElementById("output").textContent=config
 
 }
 
+
+
 function copiar(){
 
-let texto=document.getElementById("output").textContent
+let text=document.getElementById("output").textContent
+navigator.clipboard.writeText(text)
 
-navigator.clipboard.writeText(texto)
-
-alert("Config copiada!")
+alert("Copiado!")
 
 }
 
+
+
 function baixar(){
 
-let texto=document.getElementById("output").textContent
+let text=document.getElementById("output").textContent
 
-let blob=new Blob([texto],{type:"text/plain"})
+let blob=new Blob([text],{type:"text/plain"})
 
 let link=document.createElement("a")
 
