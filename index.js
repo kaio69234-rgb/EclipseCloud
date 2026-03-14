@@ -7,124 +7,66 @@ const { spawn } = require("child_process")
 
 const app = express()
 
-app.use(express.static(path.join(__dirname, "public")))
+app.use(express.static(path.join(__dirname,"public")))
 
-const upload = multer({ dest: "uploads/" })
+const upload = multer({ dest:"uploads/" })
 
 let botProcess = null
 
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "index.html"))
-})
+app.post("/upload", upload.single("bot"), async (req,res)=>{
 
+if(!req.file){
+return res.send("Nenhum arquivo enviado")
+}
 
-// =======================
-// ENVIAR BOT
-// =======================
+const filePath = req.file.path
 
-app.post("/upload", upload.single("bot"), async (req, res) => {
+if(!fs.existsSync("./bots")){
+fs.mkdirSync("./bots")
+}
 
-  if (!req.file) {
-    return res.send("Nenhum arquivo enviado")
-  }
+fs.createReadStream(filePath)
+.pipe(unzipper.Extract({ path:"./bots/bot1" }))
 
-  const filePath = req.file.path
-  const botFolder = "./bots/bot1"
-
-  try {
-
-    if (!fs.existsSync("./bots")) {
-      fs.mkdirSync("./bots")
-    }
-
-    if (!fs.existsSync(botFolder)) {
-      fs.mkdirSync(botFolder)
-    }
-
-    fs.createReadStream(filePath)
-    .pipe(unzipper.Extract({ path: botFolder }))
-    .on("close", () => {
-
-      fs.unlinkSync(filePath)
-
-      console.log("Bot extraído com sucesso")
-
-      res.send("Bot enviado com sucesso!")
-
-    })
-
-  } catch (err) {
-
-    console.error(err)
-
-    res.send("Erro ao enviar bot")
-
-  }
+res.send("Bot enviado com sucesso")
 
 })
 
+app.get("/start",(req,res)=>{
 
-// =======================
-// INICIAR BOT
-// =======================
+if(botProcess){
+return res.send("Bot já está rodando")
+}
 
-app.get("/start", (req, res) => {
+botProcess = spawn("node",["bots/bot1/index.js"])
 
-  if (botProcess) {
-    return res.send("Bot já está rodando")
-  }
+botProcess.stdout.on("data",(data)=>{
+console.log(`BOT: ${data}`)
+})
 
-  const botPath = "bots/bot1/index.js"
+botProcess.stderr.on("data",(data)=>{
+console.error(`BOT ERROR: ${data}`)
+})
 
-  if (!fs.existsSync(botPath)) {
-    return res.send("Arquivo index.js do bot não encontrado")
-  }
-
-  botProcess = spawn("node", [botPath])
-
-  botProcess.stdout.on("data", (data)=>{
-    console.log(`BOT: ${data}`)
-  })
-
-  botProcess.stderr.on("data", (data)=>{
-    console.error(`BOT ERROR: ${data}`)
-  })
-
-  botProcess.on("close",(code)=>{
-    console.log(`Bot finalizado com código ${code}`)
-    botProcess = null
-  })
-
-  res.send("Bot iniciado!")
+res.send("Bot iniciado")
 
 })
 
+app.get("/stop",(req,res)=>{
 
-// =======================
-// PARAR BOT
-// =======================
+if(!botProcess){
+return res.send("Nenhum bot rodando")
+}
 
-app.get("/stop", (req, res) => {
+botProcess.kill()
+botProcess = null
 
-  if (!botProcess) {
-    return res.send("Nenhum bot rodando")
-  }
-
-  botProcess.kill()
-
-  botProcess = null
-
-  res.send("Bot parado!")
+res.send("Bot parado")
 
 })
-
-
-// =======================
-// PORTA
-// =======================
 
 const PORT = process.env.PORT || 3000
 
-app.listen(PORT, () => {
-  console.log("☁ EclipseCloud está online!")
+app.listen(PORT,()=>{
+console.log("☁ EclipseCloud online")
 })
