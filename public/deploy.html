@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Deploy - EclipseCloud</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+
+body{
+background:#0d0d0d;
+color:white;
+font-family:Arial;
+margin:0;
+}
+
+header{
+padding:20px;
+border-bottom:1px solid #222;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.logo{
+color:#2ecc71;
+font-size:20px;
+}
+
+.container{
+max-width:900px;
+margin:auto;
+padding:40px;
+}
+
+.upload-box{
+
+border:2px dashed #2ecc71;
+border-radius:10px;
+padding:100px;
+text-align:center;
+cursor:pointer;
+transition:0.3s;
+
+}
+
+.upload-box:hover{
+background:#111;
+}
+
+.upload-box.drag{
+background:#111;
+}
+
+button{
+
+background:#2ecc71;
+border:none;
+padding:12px 20px;
+border-radius:6px;
+cursor:pointer;
+color:white;
+margin-top:20px;
+
+}
+
+.status{
+margin-top:20px;
+color:#aaa;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+☁ EclipseCloud
+</div>
+
+</header>
+
+<div class="container">
+
+<h2>Deploy Bot</h2>
+
+<p>Envie seu bot em .zip</p>
+
+<div class="upload-box" id="drop">
+
+<p>Solte o arquivo aqui</p>
+<p>ou clique para selecionar</p>
+
+</div>
+
+<input type="file" id="file" hidden>
+
+<button onclick="upload()">Enviar</button>
+
+<div class="status" id="status">
+Nenhum arquivo enviado
+</div>
+
+</div>
+
+<script>
+
+const drop = document.getElementById("drop")
+const fileInput = document.getElementById("file")
+
+drop.onclick = ()=> fileInput.click()
+
+drop.addEventListener("dragover",(e)=>{
+e.preventDefault()
+drop.classList.add("drag")
+})
+
+drop.addEventListener("dragleave",()=>{
+drop.classList.remove("drag")
+})
+
+drop.addEventListener("drop",(e)=>{
+
+e.preventDefault()
+
+drop.classList.remove("drag")
+
+fileInput.files = e.dataTransfer.files
+
+})
+
+async function upload(){
+
+let file = fileInput.files[0]
+
+if(!file){
+alert("Escolha um arquivo .zip")
+return
+}
+
+let form = new FormData()
+
+form.append("bot",file)
+
+document.getElementById("status").innerText="Enviando..."
+
+let res = await fetch("/upload",{
+method:"POST",
+body:form
+})
+
+let text = await res.text()
+
+document.getElementById("status").innerText=text
+
+}
+
+</script>
+
+</body>
+
+</html>
