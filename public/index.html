@@ -17,76 +17,62 @@ box-sizing:border-box;
 font-family:Segoe UI,Arial;
 }
 
-html{
-scroll-behavior:smooth;
-}
-
 body{
-background:#05070f;
+background:#06060f;
 color:white;
-}
-
-/* BACKGROUND */
-
-body::before{
-content:"";
-position:fixed;
-width:100%;
-height:100%;
-background:
-radial-gradient(circle at 20% 20%,#00ff9c33,transparent),
-radial-gradient(circle at 80% 10%,#5865f233,transparent),
-radial-gradient(circle at 50% 80%,#ff00aa22,transparent);
-z-index:-1;
 }
 
 /* HEADER */
 
 header{
+
 display:flex;
 justify-content:space-between;
 align-items:center;
-padding:18px 40px;
-background:rgba(10,12,25,0.7);
-backdrop-filter:blur(10px);
-border-bottom:1px solid rgba(255,255,255,0.05);
-position:sticky;
-top:0;
-z-index:999;
+
+padding:20px 40px;
+
+background:#0b0b1a;
+
+border-bottom:1px solid rgba(255,255,255,0.1);
+
 }
 
 .logo{
 font-size:20px;
 font-weight:bold;
-color:#00ff9c;
+color:#b58cff;
+text-shadow:0 0 10px white;
 }
 
 nav a{
 margin-left:25px;
 text-decoration:none;
-color:#b9c2ff;
+color:#d0d0ff;
 font-size:14px;
-transition:.3s;
 }
 
 nav a:hover{
 color:white;
+text-shadow:0 0 10px white;
 }
 
 /* HERO */
 
 .hero{
 text-align:center;
-padding:100px 20px;
+padding:90px 20px;
 }
 
 .hero h1{
 font-size:46px;
+color:#c9a8ff;
+text-shadow:0 0 20px white;
 margin-bottom:10px;
 }
 
 .hero p{
-color:#aab1ff;
+color:#bfbfff;
 margin-bottom:40px;
 }
 
@@ -94,55 +80,81 @@ margin-bottom:40px;
 
 .panel{
 
-background:rgba(15,20,40,0.6);
+background:#0b0b22;
+
 width:420px;
 margin:auto;
+
 padding:35px;
+
 border-radius:16px;
-backdrop-filter:blur(15px);
 
 box-shadow:
-0 0 30px rgba(0,0,0,0.8),
-0 0 20px rgba(88,101,242,0.2);
+0 0 30px rgba(255,255,255,0.2);
 
 }
 
 .panel input{
-margin-bottom:20px;
+
 width:100%;
 padding:10px;
-background:#05070f;
-border:1px solid #1c2040;
+
+background:black;
+
+border:1px solid #333;
+
 border-radius:8px;
+
 color:white;
+
+margin-bottom:15px;
+
 }
 
+/* BUTTONS */
+
 .buttons{
+
 display:flex;
 justify-content:center;
 gap:10px;
 flex-wrap:wrap;
+
 }
 
 button{
+
 padding:12px 18px;
+
 border:none;
 border-radius:10px;
-background:linear-gradient(135deg,#5865f2,#00ff9c);
+
+background:linear-gradient(135deg,#7a4dff,#b58cff);
+
 color:white;
+
 font-weight:bold;
+
 cursor:pointer;
+
+box-shadow:0 0 15px rgba(255,255,255,0.4);
+
 transition:.25s;
+
 }
 
 button:hover{
+
 transform:scale(1.05);
+
 }
 
 .status{
+
 margin-top:15px;
 font-size:14px;
-color:#aab1ff;
+color:#cfcfff;
+
 }
 
 /* LOGS */
@@ -150,18 +162,24 @@ color:#aab1ff;
 .logs{
 
 margin:60px auto;
-width:75%;
-background:#04070f;
+
+width:70%;
+
+background:black;
+
 border-radius:12px;
+
 padding:20px;
-color:#9ea7ff;
+
+color:#ccc;
+
 min-height:150px;
 
 box-shadow:
-inset 0 0 10px rgba(0,0,0,0.8),
-0 0 20px rgba(0,0,0,0.7);
+0 0 25px rgba(255,255,255,0.2);
 
 font-family:monospace;
+
 overflow:auto;
 
 }
@@ -169,127 +187,178 @@ overflow:auto;
 /* STATUS */
 
 .status-section{
+
 text-align:center;
+
 padding:80px 20px;
+
 }
 
 .status-cards{
+
 display:flex;
+
 justify-content:center;
+
 flex-wrap:wrap;
+
 gap:25px;
+
 margin-top:30px;
+
 }
 
 .status-card{
 
-background:#0b1022;
+background:#0d0d24;
+
 padding:25px;
+
 border-radius:12px;
+
 width:200px;
 
 box-shadow:
-0 0 20px rgba(0,0,0,0.7);
+0 0 20px rgba(255,255,255,0.15);
 
-}
-
-/* FEATURES */
-
-.features{
-display:flex;
-justify-content:center;
-flex-wrap:wrap;
-gap:25px;
-padding:70px 20px;
-}
-
-.card{
-
-background:#0b1022;
-padding:28px;
-width:220px;
-border-radius:14px;
-text-align:center;
-
-transition:.3s;
-
-}
-
-.card:hover{
-transform:translateY(-8px);
-}
-
-.card h3{
-color:#00ff9c;
-margin-bottom:10px;
 }
 
 /* PLANOS */
 
 .planos{
+
 text-align:center;
+
 padding:80px 20px;
+
 }
 
 .planos-grid{
 
 display:grid;
+
 grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+
 gap:30px;
+
 margin-top:40px;
 
 }
 
 .plano{
 
-background:#0b1022;
+background:#0d0d24;
+
 padding:30px;
+
 border-radius:15px;
 
-box-shadow:0 0 25px rgba(0,0,0,0.8);
+box-shadow:0 0 25px rgba(255,255,255,0.15);
 
 }
 
 .plano h2{
-color:#00ff9c;
+
+color:#caa8ff;
+
 margin-bottom:10px;
+
 }
 
 .plano ul{
+
 list-style:none;
+
 margin:20px 0;
+
 }
 
 .plano li{
+
 margin:6px 0;
-color:#aab1ff;
+
+color:#ccc;
+
 }
 
 .plano button{
-background:#00ff9c;
-color:black;
+
+background:#9b6cff;
+
+}
+
+/* FEATURES */
+
+.features{
+
+display:flex;
+
+justify-content:center;
+
+flex-wrap:wrap;
+
+gap:25px;
+
+padding:70px 20px;
+
+}
+
+.card{
+
+background:#0d0d24;
+
+padding:28px;
+
+width:220px;
+
+border-radius:14px;
+
+text-align:center;
+
+box-shadow:0 0 20px rgba(255,255,255,0.15);
+
+}
+
+.card h3{
+
+color:#caa8ff;
+
+margin-bottom:10px;
+
 }
 
 /* DOCS */
 
 .docs{
+
 padding:80px 20px;
+
 text-align:center;
+
 }
 
 .docs li{
+
 margin:10px 0;
-color:#aab1ff;
+
+color:#bbb;
+
 }
 
 /* FOOTER */
 
 footer{
+
 text-align:center;
+
 padding:40px;
-color:#6c73a8;
+
+color:#888;
+
 font-size:13px;
-border-top:1px solid rgba(255,255,255,0.05);
+
+border-top:1px solid rgba(255,255,255,0.1);
+
 }
 
 </style>
@@ -303,10 +372,12 @@ border-top:1px solid rgba(255,255,255,0.05);
 <div class="logo">☁ EclipseCloud</div>
 
 <nav>
+
 <a href="#painel">Painel</a>
 <a href="#status">Status</a>
 <a href="#planos">Planos</a>
 <a href="#docs">Documentação</a>
+
 </nav>
 
 </header>
@@ -314,6 +385,7 @@ border-top:1px solid rgba(255,255,255,0.05);
 <section class="hero" id="painel">
 
 <h1>Hospedagem de Bots</h1>
+
 <p>Hospede seu bot de forma rápida e simples</p>
 
 <div class="panel">
@@ -323,13 +395,17 @@ border-top:1px solid rgba(255,255,255,0.05);
 <div class="buttons">
 
 <button onclick="uploadBot()">Enviar Bot</button>
+
 <button onclick="startBot()">Iniciar Bot</button>
+
 <button onclick="stopBot()">Parar Bot</button>
 
 </div>
 
 <div class="status" id="botStatus">
+
 Status: Nenhum bot rodando
+
 </div>
 
 </div>
@@ -337,7 +413,9 @@ Status: Nenhum bot rodando
 </section>
 
 <div class="logs" id="logs">
+
 Logs aparecerão aqui...
+
 </div>
 
 <section class="status-section" id="status">
@@ -452,16 +530,23 @@ Logs aparecerão aqui...
 <h2>Documentação</h2>
 
 <ul>
+
 <li>📁 Envie seu bot em .zip</li>
+
 <li>🚀 Clique em iniciar bot</li>
+
 <li>🛑 Use parar bot</li>
+
 <li>📜 Veja logs em tempo real</li>
+
 </ul>
 
 </section>
 
 <footer>
+
 EclipseCloud © 2026
+
 </footer>
 
 <script>
