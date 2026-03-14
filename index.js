@@ -1,12 +1,14 @@
 const express = require("express")
 const app = express()
 
+app.use(express.static("public"))
+
 app.get("/", (req, res) => {
-  res.send("☁️ EclipseCloud está online!")
+  res.sendFile(__dirname + "/public/index.html")
 })
 
-const port = process.env.PORT || 3000
+const PORT = process.env.PORT || 3000
 
-app.listen(port, () => {
-  console.log("Servidor EclipseCloud iniciado na porta " + port)
+app.listen(PORT, () => {
+  console.log("☁ EclipseCloud está online!")
 })
