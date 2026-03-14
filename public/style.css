@@ -35,7 +35,6 @@ margin-bottom:40px;
 .title h1{
 font-size:40px;
 margin-bottom:5px;
-
 background:linear-gradient(90deg,#3cff7a,#1abc9c);
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
@@ -57,7 +56,7 @@ box-shadow:0 0 0 1px rgba(0,0,0,0.4);
 backdrop-filter:blur(6px);
 }
 
-/* HEADER DO PREVIEW */
+/* HEADER PREVIEW */
 
 .preview-header{
 display:flex;
@@ -86,7 +85,6 @@ border:1px solid #1b2a22;
 background:#0a0f0c;
 color:white;
 font-size:14px;
-display:block;
 }
 
 /* INPUT FOCUS */
@@ -97,60 +95,66 @@ border-color:#3cff7a;
 box-shadow:0 0 0 2px rgba(60,255,122,0.2);
 }
 
-/* BOTÕES */
+/* BOTÕES BASE */
 
 button{
-padding:10px 18px;
+padding:8px 16px;
 border-radius:8px;
-border:none;
+border:1px solid #1f3a2d;
 cursor:pointer;
 font-weight:600;
 display:inline-flex;
 align-items:center;
-justify-content:center;
 gap:6px;
+font-size:14px;
 }
 
-button:hover{
-transform:translateY(-2px);
-box-shadow:0 6px 20px rgba(0,0,0,0.4);
+/* BOTÕES PREVIEW */
+
+.buttons{
+display:flex;
+gap:12px;
+margin-bottom:20px;
 }
 
-/* GERAR */
+/* BOTÃO COPIAR */
+
+.copy{
+background:#0e2a1c;
+color:#3cff7a;
+}
+
+/* BOTÃO BAIXAR */
+
+.download{
+background:#0e2a1c;
+color:#3cff7a;
+}
+
+/* HOVER */
+
+.copy:hover,
+.download:hover{
+background:#153d2a;
+}
+
+/* BOTÃO GERAR */
 
 .generate{
 margin-top:20px;
 background:#2ecc71;
 color:#062312;
+border:none;
 box-shadow:0 4px 14px rgba(46,204,113,0.4);
 }
 
 .generate:hover{
 background:#3cff7a;
+transform:translateY(-2px);
+box-shadow:0 6px 20px rgba(0,0,0,0.4);
 }
 
-/* BUTTONS */
-
-.buttons{
-display:flex;
-gap:10px;
-margin-bottom:15px;
-flex-wrap:wrap;
-}
-
-.copy{
-background:#1abc9c;
-color:white;
-box-shadow:0 4px 14px rgba(26,188,156,0.3);
-}
-
-.download{
-background:#2ecc71;
-color:#062312;
-box-shadow:0 4px 14px rgba(46,204,113,0.3);
-}
-
-/* TERMINAL PROFISSIONAL */
+/* TERMINAL */
 
 .terminal{
 background:#060807;
@@ -162,11 +166,13 @@ overflow:hidden;
 .terminal-top{
 display:flex;
 align-items:center;
-gap:15px;
+gap:12px;
 padding:12px 16px;
 background:#090c0a;
 border-bottom:1px solid #1b2a22;
 }
+
+/* DOTS TERMINAL */
 
 .dots{
 display:flex;
@@ -183,10 +189,14 @@ border-radius:50%;
 .yellow{background:#ffbd2e;}
 .green{background:#27c93f;}
 
+/* TITULO TERMINAL */
+
 .terminal-title{
 color:#8aa699;
 font-size:14px;
 }
+
+/* PREVIEW TEXTO */
 
 .terminal pre{
 margin:0;
@@ -195,6 +205,36 @@ font-family:monospace;
 color:#3cff7a;
 font-size:15px;
 white-space:pre-wrap;
+}
+
+/* PRÓXIMOS PASSOS */
+
+.passos h3{
+margin-top:0;
+color:#e7f8ee;
+}
+
+.passos p{
+color:#9bb7aa;
+margin:8px 0;
+}
+
+.passos a{
+color:#3cff7a;
+text-decoration:none;
+}
+
+.passos a:hover{
+text-decoration:underline;
+}
+
+/* CAIXA CODE */
+
+.code{
+background:#050807;
+padding:4px 8px;
+border-radius:6px;
+font-family:monospace;
 }
 
 /* CARDS */
