@@ -1,10 +1,7 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html>
 
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>EclipseCloud</title>
 
@@ -16,14 +13,16 @@
 
 <header>
 
-<div class="logo">☁ EclipseCloud</div>
+<h2>☁ EclipseCloud</h2>
 
 <nav>
+
 <a href="/">Início</a>
 <a href="/painel.html">Painel</a>
 <a href="/status.html">Status</a>
 <a href="/planos.html">Planos</a>
 <a href="/docs.html">Documentação</a>
+
 </nav>
 
 </header>
@@ -31,104 +30,60 @@
 <section class="hero">
 
 <h1>Hospedagem de Bots</h1>
-<p>Hospede bots e aplicações Node.js de forma rápida e simples.</p>
+
+<p>
+Hospede bots Node.js rapidamente usando a EclipseCloud.
+</p>
 
 </section>
 
-
-<!-- PAINEL -->
-
-<section class="panel-section">
-
-<h2>Painel rápido</h2>
-
-<div class="panel">
+<section class="panel">
 
 <input type="file" id="botFile">
-
-<div class="buttons">
 
 <button onclick="uploadBot()">Enviar Bot</button>
 <button onclick="startBot()">Iniciar Bot</button>
 <button onclick="stopBot()">Parar Bot</button>
 
-</div>
-
-<div class="status" id="botStatus">
+<p id="botStatus">
 Status: Nenhum bot rodando
+</p>
+
+</section>
+
+<section class="status">
+
+<h2>Status do servidor</h2>
+
+<div class="cards">
+
+<div class="card">
+Servidor Online
+</div>
+
+<div class="card">
+Node.js ativo
+</div>
+
+<div class="card">
+Cloud Eclipse
 </div>
 
 </div>
 
 </section>
-
-
-<div class="logs" id="logs">
-Logs aparecerão aqui...
-</div>
-
-
-<!-- STATUS -->
-
-<section class="status-section">
-
-<h2>Status do Servidor</h2>
-
-<div class="status-cards">
-
-<div class="status-card">
-<h3>🟢 Servidor</h3>
-<p>Online</p>
-</div>
-
-<div class="status-card">
-<h3>⚡ Node.js</h3>
-<p>Ativo</p>
-</div>
-
-<div class="status-card">
-<h3>☁ Cloud</h3>
-<p>EclipseCloud</p>
-</div>
-
-</div>
-
-</section>
-
-
-<!-- SOBRE -->
 
 <section class="about">
 
 <h2>O que é EclipseCloud?</h2>
 
 <p>
-A EclipseCloud é uma plataforma de hospedagem de bots e aplicações Node.js.
-Envie seu projeto em .zip e execute automaticamente em nosso servidor.
+A EclipseCloud é uma plataforma de hospedagem de bots Node.js
+onde você pode enviar seu projeto em .zip e executar diretamente
+no servidor.
 </p>
 
 </section>
-
-
-<!-- EXEMPLOS -->
-
-<section class="examples">
-
-<h2>Exemplo de Bot</h2>
-
-<pre>
-main: index.js
-ram: 100MB
-start: node index.js
-</pre>
-
-</section>
-
-<footer>
-
-EclipseCloud © 2026
-
-</footer>
 
 <script src="/js/script.js"></script>
 
