@@ -1,117 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
+
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>eclipsecloud.config</title>
 
+<link rel="stylesheet" href="style.css">
+
 <script src="https://unpkg.com/lucide@latest"></script>
-
-<style>
-
-body{
-background:#0b0f0c;
-color:#e6ffe6;
-font-family:Arial;
-margin:0;
-}
-
-.container{
-max-width:900px;
-margin:auto;
-padding:20px;
-}
-
-.title{
-text-align:center;
-margin-bottom:30px;
-}
-
-h1{
-color:#3cff7a;
-}
-
-.subtitle{
-color:#9fb3a5;
-}
-
-.panel{
-background:#0f1512;
-border:1px solid #1f2b23;
-padding:20px;
-margin-bottom:20px;
-border-radius:10px;
-}
-
-label{
-display:block;
-margin-top:10px;
-margin-bottom:5px;
-color:#9fb3a5;
-}
-
-input,select{
-width:100%;
-padding:10px;
-border-radius:6px;
-border:1px solid #1e2b23;
-background:#0b0f0c;
-color:white;
-}
-
-button{
-padding:10px 15px;
-border:none;
-border-radius:8px;
-cursor:pointer;
-margin-top:10px;
-}
-
-.generate{
-background:#2bd96b;
-color:black;
-}
-
-.copy{
-background:#16a34a;
-color:white;
-}
-
-.download{
-background:#22c55e;
-color:black;
-}
-
-.preview-box{
-background:black;
-padding:15px;
-border-radius:8px;
-margin-top:10px;
-}
-
-pre{
-color:#00ff88;
-white-space:pre-wrap;
-}
-
-.grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:15px;
-}
-
-.card{
-background:#121a15;
-padding:15px;
-border-radius:8px;
-}
-
-.footer{
-text-align:center;
-margin-top:30px;
-color:#6b8f77;
-}
-
-</style>
 
 </head>
 
@@ -167,8 +65,10 @@ color:#6b8f77;
 
 <div class="panel">
 
+<div class="buttons">
 <button class="copy" onclick="copiar()">Copiar</button>
 <button class="download" onclick="baixar()">Baixar</button>
+</div>
 
 <h2>Preview do Arquivo</h2>
 
@@ -296,4 +196,4 @@ lucide.createIcons()
 </script>
 
 </body>
-</html> 
+</html>
