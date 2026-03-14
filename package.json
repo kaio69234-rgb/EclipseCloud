@@ -2,9 +2,9 @@
   "name": "eclipsecloud",
   "version": "1.0.0",
   "description": "Cloud hosting for Discord bots",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node server.js"
   },
   "engines": {
     "node": "18.x"
