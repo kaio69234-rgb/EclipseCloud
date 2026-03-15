@@ -8,14 +8,10 @@
 
 <title>EclipseCloud</title>
 
-<!-- LIBS -->
-
 <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
 <script src="https://unpkg.com/scrollreveal"></script>
 
 <style>
-
-/* RESET */
 
 *{
 margin:0;
@@ -233,15 +229,12 @@ transform:scale(1.1);
 filter:grayscale(0);
 }
 
-/* SECTIONS */
+/* SECTION */
 
 .section{
 max-width:1100px;
 margin:auto;
 padding:120px 30px;
-display:flex;
-align-items:center;
-gap:60px;
 }
 
 .section h2{
@@ -282,22 +275,6 @@ width:250px;
 color:#60a5fa;
 }
 
-/* CTA */
-
-.cta{
-text-align:center;
-padding:120px 20px;
-}
-
-.cta button{
-margin-top:20px;
-background:#22c55e;
-border:none;
-padding:12px 25px;
-border-radius:8px;
-cursor:pointer;
-}
-
 /* FOOTER */
 
 footer{
@@ -321,7 +298,6 @@ color:#6b7280;
 
 @media(max-width:900px){
 
-.section,
 .hardware{
 flex-direction:column;
 text-align:center;
@@ -360,9 +336,9 @@ font-size:38px;
 
 <ul class="dropdown-menu">
 
-<li>Hospedagem de Bots</li>
-<li>Hospedagem de Sites</li>
-<li>API Cloud</li>
+<li><a href="/upload.html">Hospedagem de Bots</a></li>
+<li><a href="/sites.html">Hospedagem de Sites</a></li>
+<li><a href="/api.html">API Cloud</a></li>
 
 </ul>
 
@@ -388,8 +364,9 @@ font-size:38px;
 
 <div class="hero-buttons">
 
-<a href="/planos.html" class="btn-primary">Comece gratuitamente →</a>
-<a href="#" class="btn-secondary">Painel</a>
+<a href="/upload.html" class="btn-primary">Comece gratuitamente →</a>
+
+<a href="/dashboard" class="btn-secondary">Painel</a>
 
 </div>
 
@@ -420,19 +397,15 @@ font-size:38px;
 
 <section class="section">
 
-<div>
-
 <p style="color:#22c55e">Por menos de R$0,37 por dia</p>
 
 <h2>Hospedagem de Sites</h2>
 
-<p>Desde um simples site estático até APIs completas, oferecemos infraestrutura escalável.</p>
+<p>Desde um simples site estático até APIs completas.</p>
 
 <button onclick="location.href='/planos.html'">
 Ver todos os recursos →
 </button>
-
-</div>
 
 </section>
 
@@ -477,13 +450,9 @@ Ver todos os recursos →
 
 <script>
 
-/* LOADER */
-
 window.addEventListener("load",()=>{
 document.getElementById("loader").style.display="none"
 })
-
-/* TYPEWRITER */
 
 const text="Seu Bot"
 let i=0
@@ -504,8 +473,6 @@ setTimeout(typeWriter,90)
 
 typeWriter()
 
-/* PARTICLES */
-
 tsParticles.load("particles",{
 particles:{
 number:{value:40},
@@ -514,8 +481,6 @@ move:{speed:0.5},
 opacity:{value:0.4}
 }
 })
-
-/* SCROLL ANIMATION */
 
 ScrollReveal().reveal('.hero',{distance:'60px',duration:1000,origin:'bottom'})
 ScrollReveal().reveal('.section',{interval:200})
