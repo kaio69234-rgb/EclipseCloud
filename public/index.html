@@ -456,22 +456,53 @@ window.addEventListener("load",()=>{
 document.getElementById("loader").style.display="none"
 })
 
-const text="Seu Bot"
-let i=0
+/* NOVO EFEITO DE DIGITAÇÃO (SEM APAGAR NADA DO RESTO) */
 
-function typeWriter(){
+const palavras = ["Seu Bot","Seu Site","Sua API","Seu Banco de Dados"]
 
-if(i<text.length){
+let palavraIndex = 0
+let letraIndex = 0
+let apagando = false
 
-document.getElementById("typing").innerHTML+=text.charAt(i)
-i++
-setTimeout(typeWriter,90)
+const elemento = document.getElementById("typing")
 
+function digitar(){
+
+let palavraAtual = palavras[palavraIndex]
+
+if(!apagando){
+
+elemento.innerHTML = palavraAtual.substring(0, letraIndex + 1)
+letraIndex++
+
+if(letraIndex === palavraAtual.length){
+apagando = true
+setTimeout(digitar,1500)
+return
+}
+
+}else{
+
+elemento.innerHTML = palavraAtual.substring(0, letraIndex - 1)
+letraIndex--
+
+if(letraIndex === 0){
+apagando = false
+palavraIndex++
+
+if(palavraIndex === palavras.length){
+palavraIndex = 0
 }
 
 }
 
-typeWriter()
+}
+
+setTimeout(digitar, apagando ? 50 : 100)
+
+}
+
+digitar()
 
 tsParticles.load("particles",{
 particles:{
