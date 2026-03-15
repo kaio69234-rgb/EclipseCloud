@@ -2,14 +2,20 @@
 <html lang="pt-br">
 
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>EclipseCloud Config Generator</title>
 
-<link rel="stylesheet" href="style.css">
+<meta name="description" content="Gerador de eclipse.config para configurar aplicações na EclipseCloud">
 
+<!-- CSS -->
+<link rel="stylesheet" href="style.css?v=2">
+
+<!-- Ícones -->
 <script src="https://unpkg.com/lucide@latest"></script>
+
 </head>
 
 
@@ -18,6 +24,7 @@
 <!-- NAVBAR -->
 
 <nav class="navbar">
+
 <div class="nav-left">
 <h2>EclipseCloud</h2>
 </div>
@@ -30,6 +37,7 @@
 <li>Templates</li>
 <li>Documentação</li>
 </ul>
+
 </nav>
 
 
@@ -39,6 +47,7 @@
 <!-- TÍTULO -->
 
 <div class="title">
+
 <h1>
 <i data-lucide="settings"></i>
 eclipse.config
@@ -47,6 +56,7 @@ eclipse.config
 <p class="subtitle">
 Gerador inteligente para configurar aplicações
 </p>
+
 </div>
 
 
@@ -107,7 +117,6 @@ Configuração
 </div>
 
 
-
 <!-- PREVIEW -->
 
 <div class="panel">
@@ -155,8 +164,8 @@ Baixar
 <pre id="output"></pre>
 
 </div>
-</div>
 
+</div>
 
 
 <!-- O QUE É -->
@@ -186,7 +195,6 @@ para a EclipseCloud. Sem ele o upload da aplicação não funcionará.
 </div>
 
 </div>
-
 
 
 <!-- PARÂMETROS -->
@@ -231,8 +239,8 @@ Comando de inicialização
 </div>
 
 </div>
-</div>
 
+</div>
 
 
 <!-- EXEMPLOS -->
@@ -245,7 +253,6 @@ Exemplos Práticos
 </h2>
 
 <div class="grid">
-
 
 <div class="card">
 
@@ -288,7 +295,6 @@ Ideal para: APIs, sites web e dashboards.
 </div>
 
 
-
 <!-- ONDE SALVAR -->
 
 <div class="panel">
@@ -317,7 +323,6 @@ my-project/
 </div>
 
 
-
 <!-- FOOTER -->
 
 <div class="footer">
@@ -327,20 +332,19 @@ my-project/
 </div>
 
 
-
 <script>
 
 function gerar(){
 
-let main=document.getElementById("main").value
-let type=document.getElementById("type").value
-let ram=document.getElementById("ram").value
-let name=document.getElementById("name").value
-let avatar=document.getElementById("avatar").value
-let apt=document.getElementById("apt").value
-let start=document.getElementById("start").value
-let build=document.getElementById("build").value
-let restart=document.getElementById("restart").value
+const main=document.getElementById("main").value
+const type=document.getElementById("type").value
+const ram=document.getElementById("ram").value
+const name=document.getElementById("name").value
+const avatar=document.getElementById("avatar").value
+const apt=document.getElementById("apt").value
+const start=document.getElementById("start").value
+const build=document.getElementById("build").value
+const restart=document.getElementById("restart").value
 
 let config=""
 
@@ -361,7 +365,8 @@ document.getElementById("output").textContent=config
 
 function copiar(){
 
-let text=document.getElementById("output").textContent
+const text=document.getElementById("output").textContent
+
 navigator.clipboard.writeText(text)
 
 alert("Config copiado!")
@@ -371,12 +376,14 @@ alert("Config copiado!")
 
 function baixar(){
 
-let text=document.getElementById("output").textContent
+const text=document.getElementById("output").textContent
 
-let blob=new Blob([text],{type:"text/plain"})
+const blob=new Blob([text],{type:"text/plain"})
 
-let link=document.createElement("a")
+const link=document.createElement("a")
+
 link.href=URL.createObjectURL(blob)
+
 link.download="eclipse.config"
 
 link.click()
@@ -385,6 +392,7 @@ link.click()
 
 
 lucide.createIcons()
+
 gerar()
 
 </script>
