@@ -1,19 +1,10 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Eclipse Config Generator</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-
-<style>
-
 /* BACKGROUND */
 
 body{
-background:#050707;
+background:
+radial-gradient(circle at top, rgba(34,197,94,0.08), transparent 60%),
+#050707;
+
 color:#e7f8ee;
 font-family:Inter,Arial,sans-serif;
 margin:0;
@@ -33,11 +24,20 @@ display:flex;
 justify-content:space-between;
 align-items:center;
 padding:16px 40px;
-background:#050707;
-border-bottom:1px solid #22c55e30;
+
+background:linear-gradient(
+180deg,
+#0b1210 0%,
+#050707 100%
+);
+
+border-bottom:1px solid rgba(34,197,94,0.25);
+
 position:sticky;
 top:0;
 z-index:999;
+
+backdrop-filter:blur(6px);
 }
 
 .nav-left h2{
@@ -93,12 +93,29 @@ color:#8aa699;
 /* PANEL */
 
 .panel{
-background:#0f1412;
-border:1px solid #22c55e40;
+background:linear-gradient(
+180deg,
+#0f1412 0%,
+#0b0f0c 100%
+);
+
+border:1px solid rgba(34,197,94,0.25);
 border-radius:14px;
 padding:30px;
 margin-bottom:25px;
-box-shadow:0 0 20px rgba(34,197,94,0.05);
+
+box-shadow:
+0 0 25px rgba(34,197,94,0.06),
+0 10px 30px rgba(0,0,0,0.6);
+}
+
+/* HEADER PREVIEW */
+
+.preview-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:20px;
 }
 
 /* LABEL */
@@ -117,11 +134,13 @@ input,select{
 width:100%;
 padding:12px;
 border-radius:8px;
-border:1px solid #22c55e40;
+border:1px solid rgba(34,197,94,0.25);
 background:#0b0f0c;
 color:white;
 font-size:14px;
 }
+
+/* INPUT FOCUS */
 
 input:focus,select:focus{
 outline:none;
@@ -132,7 +151,7 @@ box-shadow:0 0 0 2px rgba(34,197,94,0.2);
 /* BOTÕES */
 
 button{
-padding:10px 16px;
+padding:8px 16px;
 border-radius:8px;
 border:1px solid #22c55e;
 cursor:pointer;
@@ -149,14 +168,32 @@ button:hover{
 background:#0f1a15;
 }
 
+/* BOTÕES PREVIEW */
+
+.buttons{
+display:flex;
+gap:12px;
+margin-bottom:20px;
+}
+
+.copy,
+.download{
+background:#0e2a1c;
+color:#22c55e;
+}
+
+.copy:hover,
+.download:hover{
+background:#153d2a;
+}
+
 /* TERMINAL */
 
 .terminal{
 background:#050707;
-border:1px solid #22c55e40;
+border:1px solid rgba(34,197,94,0.25);
 border-radius:12px;
 overflow:hidden;
-margin-top:20px;
 }
 
 .terminal-top{
@@ -165,8 +202,10 @@ align-items:center;
 gap:12px;
 padding:12px 16px;
 background:#080c09;
-border-bottom:1px solid #22c55e40;
+border-bottom:1px solid rgba(34,197,94,0.25);
 }
+
+/* DOTS */
 
 .dots{
 display:flex;
@@ -183,10 +222,14 @@ border-radius:50%;
 .yellow{background:#ffbd2e;}
 .green{background:#27c93f;}
 
+/* TITULO TERMINAL */
+
 .terminal-title{
 color:#8aa699;
 font-size:14px;
 }
+
+/* TEXTO PREVIEW */
 
 .terminal pre{
 margin:0;
@@ -197,118 +240,122 @@ font-size:15px;
 white-space:pre-wrap;
 }
 
+/* GRID */
+
+.grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:20px;
+margin-top:20px;
+}
+
+/* CARDS */
+
+.card{
+background:#0b0f0c;
+border:1px solid rgba(34,197,94,0.25);
+border-radius:10px;
+padding:18px;
+display:flex;
+flex-direction:column;
+gap:6px;
+}
+
+.card h3{
+margin-top:0;
+color:#22c55e;
+}
+
+.card:hover{
+transform:translateY(-3px);
+box-shadow:0 6px 20px rgba(0,0,0,0.5);
+}
+
+/* IMPORTANTE */
+
+.important{
+margin-top:20px;
+background:#0d1f16;
+border:1px solid rgba(34,197,94,0.25);
+border-radius:12px;
+padding:20px;
+}
+
+.important h3{
+margin-top:0;
+color:#22c55e;
+}
+
+/* CODE */
+
+code{
+background:#111;
+padding:4px 8px;
+border-radius:6px;
+color:#22c55e;
+font-family:monospace;
+}
+
+/* FOOTER */
+
 .footer{
 text-align:center;
 margin-top:40px;
 color:#6c8a7b;
 padding-top:20px;
-border-top:1px solid #22c55e30;
+border-top:1px solid rgba(34,197,94,0.2);
 }
 
-</style>
-</head>
+/* SCROLLBAR */
 
-<body>
-
-<nav class="navbar">
-<div class="nav-left">
-<h2>⚡ eclipse.config</h2>
-</div>
-
-<ul class="nav-menu">
-<li>Docs</li>
-<li>Templates</li>
-<li>Github</li>
-</ul>
-</nav>
-
-<div class="container">
-
-<div class="title">
-<h1>eclipse.config</h1>
-<p class="subtitle">Gerador inteligente para bots Discord</p>
-</div>
-
-<div class="panel">
-
-<label>Arquivo principal</label>
-<input id="main" placeholder="index.js">
-
-<label>Nome do Bot</label>
-<input id="name" placeholder="Meu Bot Incrível">
-
-<label>RAM (MB)</label>
-<input id="ram" placeholder="100">
-
-<label>Tipo</label>
-<select id="type">
-<option value="bot">Bot</option>
-<option value="site">Site</option>
-</select>
-
-<br><br>
-
-<button onclick="gerar()">Gerar Arquivo</button>
-<button onclick="copiar()">Copiar</button>
-
-<div class="terminal">
-
-<div class="terminal-top">
-
-<div class="dots">
-<div class="dot red"></div>
-<div class="dot yellow"></div>
-<div class="dot green"></div>
-</div>
-
-<div class="terminal-title">eclipse.config</div>
-
-</div>
-
-<pre id="preview">MAIN=index.js
-RAM=100
-TYPE=bot</pre>
-
-</div>
-
-</div>
-
-</div>
-
-<div class="footer">
-EclipseCloud © 2026
-</div>
-
-<script>
-
-function gerar(){
-
-let main = document.getElementById("main").value || "index.js"
-let ram = document.getElementById("ram").value || "100"
-let type = document.getElementById("type").value
-let name = document.getElementById("name").value || "MeuBot"
-
-let config =
-`NAME=${name}
-TYPE=${type}
-MAIN=${main}
-RAM=${ram}`
-
-document.getElementById("preview").textContent = config
-
+::-webkit-scrollbar{
+width:8px;
 }
 
-function copiar(){
-
-let text = document.getElementById("preview").textContent
-
-navigator.clipboard.writeText(text)
-
-alert("Config copiada!")
-
+::-webkit-scrollbar-track{
+background:#050707;
 }
 
-</script>
+::-webkit-scrollbar-thumb{
+background:#22c55e40;
+border-radius:10px;
+}
 
-</body>
-</html>
+::-webkit-scrollbar-thumb:hover{
+background:#22c55e;
+}
+
+/* RESPONSIVO */
+
+@media(max-width:768px){
+
+.grid{
+grid-template-columns:1fr;
+}
+
+.buttons{
+flex-direction:column;
+}
+
+button{
+width:100%;
+}
+
+.container{
+padding:18px;
+}
+
+.panel{
+padding:22px;
+}
+
+.title h1{
+font-size:32px;
+}
+
+.navbar{
+flex-direction:column;
+gap:10px;
+}
+
+}
