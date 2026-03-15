@@ -18,300 +18,241 @@ font-family:Inter,Arial;
 }
 
 body{
-
 background:
 radial-gradient(circle at 20% 0%,#1f8f4a33,transparent 40%),
 radial-gradient(circle at 80% 10%,#1f8f4a33,transparent 40%),
 #040606;
-
 color:white;
-
 }
 
 /* NAVBAR */
 
 .navbar{
-
 display:flex;
 justify-content:space-between;
 align-items:center;
-
 padding:20px 40px;
-
 border-bottom:1px solid #1a1a1a;
-
 }
 
 .navbar h2{
-
 color:#7CFF9E;
-
+font-weight:600;
 }
 
 .navbar ul{
-
 display:flex;
 gap:25px;
 list-style:none;
-
 font-size:14px;
-
+color:#9ca3af;
 }
 
 /* HERO */
 
 .hero{
-
 text-align:center;
-
 padding:80px 20px;
-
 max-width:900px;
-
 margin:auto;
-
 }
 
 .hero h1{
-
 font-size:46px;
-
 margin-bottom:10px;
-
 }
 
 .hero p{
-
 color:#9ca3af;
-
 }
 
 /* CONTAINER */
 
 .container{
-
 max-width:1100px;
-
 margin:auto;
-
 padding:40px 20px;
-
 }
 
 /* PLANOS */
 
 .plans{
-
 display:grid;
-
 grid-template-columns:repeat(2,1fr);
-
 gap:30px;
-
 margin-top:40px;
-
 }
 
 .plan{
-
 background:linear-gradient(160deg,#0f1412,#070a09);
-
 border-radius:16px;
-
 padding:25px;
-
 border:1px solid #1c1c1c;
-
 box-shadow:0 10px 30px rgba(0,0,0,.6);
+transition:all .35s ease;
+position:relative;
+overflow:hidden;
+}
 
+.plan:hover{
+transform:translateY(-6px);
+border-color:#22c55e;
+box-shadow:0 20px 50px rgba(0,0,0,.8);
+}
+
+/* brilho */
+
+.plan::before{
+content:"";
+position:absolute;
+top:-50%;
+left:-50%;
+width:200%;
+height:200%;
+background:radial-gradient(circle,rgba(34,197,94,.08),transparent 70%);
+opacity:0;
+transition:.4s;
+}
+
+.plan:hover::before{
+opacity:1;
 }
 
 .plan h3{
-
 color:#4ade80;
-
 margin-bottom:10px;
-
+font-weight:600;
 }
 
 .plan .ram{
-
-font-size:22px;
-
+font-size:24px;
 font-weight:bold;
-
 margin-bottom:10px;
-
 }
 
 .plan ul{
-
 list-style:none;
-
 color:#9ca3af;
-
 font-size:14px;
-
 }
 
 .plan li{
-
 margin:6px 0;
-
 }
 
 .price{
-
 margin-top:20px;
-
 font-weight:bold;
-
+font-size:18px;
 }
 
 .plan button{
-
-margin-top:10px;
-
-background:#22c55e;
-
+margin-top:15px;
+width:100%;
+background:linear-gradient(90deg,#22c55e,#16a34a);
 border:none;
-
-padding:10px 20px;
-
-border-radius:6px;
-
+padding:11px;
+border-radius:8px;
 cursor:pointer;
+font-weight:600;
+color:white;
+transition:.25s;
+}
 
+.plan button:hover{
+transform:scale(1.05);
+box-shadow:0 8px 25px rgba(34,197,94,.35);
 }
 
 /* RUBY */
 
 .ruby{
-
 background:linear-gradient(160deg,#1b0a0a,#070a09);
-
 border:1px solid #7f1d1d;
-
 }
 
 .ruby h3{
-
 color:#f87171;
-
 }
 
 /* FEATURES */
 
 .features{
-
 display:grid;
-
 grid-template-columns:1fr 1fr;
-
 gap:30px;
-
 margin-top:70px;
-
 }
 
 .feature{
-
 text-align:center;
-
 color:#9ca3af;
-
+padding:20px;
 }
 
 .feature h4{
-
 color:white;
-
 margin-bottom:5px;
-
 }
 
 /* CARD ROXO */
 
 .purple{
-
 background:linear-gradient(135deg,#5b21b6,#9333ea);
-
 padding:30px;
-
 border-radius:16px;
-
 text-align:center;
-
+box-shadow:0 10px 30px rgba(0,0,0,.5);
 }
 
 .purple button{
-
 margin-top:10px;
-
 background:#a855f7;
-
 border:none;
-
 padding:10px 20px;
-
 border-radius:6px;
-
 color:white;
-
+cursor:pointer;
 }
 
 /* TABELA */
 
 .table-section{
-
 margin-top:80px;
-
 }
 
 table{
-
 width:100%;
-
 border-collapse:collapse;
-
 background:#0c0f0e;
-
 border-radius:12px;
-
 overflow:hidden;
-
+box-shadow:0 10px 30px rgba(0,0,0,.5);
 }
 
 th,td{
-
 padding:14px;
-
 border-bottom:1px solid #1a1a1a;
-
 text-align:center;
-
 }
 
 th{
-
 color:#4ade80;
+background:#0f1412;
+}
 
+tr:hover{
+background:#0f1412;
 }
 
 /* FOOTER */
 
 footer{
-
 margin-top:80px;
-
 padding:30px;
-
 text-align:center;
-
 color:#6b7280;
-
 border-top:1px solid #1a1a1a;
-
 }
 
 /* RESPONSIVO */
@@ -319,15 +260,11 @@ border-top:1px solid #1a1a1a;
 @media(max-width:800px){
 
 .plans{
-
 grid-template-columns:1fr;
-
 }
 
 .features{
-
 grid-template-columns:1fr;
-
 }
 
 }
@@ -372,11 +309,9 @@ Comece gratuitamente e altere seu plano sempre que precisar.
 <div class="ram">1 GB RAM</div>
 
 <ul>
-
 <li>1 vCPU</li>
 <li>SSD NVMe</li>
 <li>Banda ilimitada</li>
-
 </ul>
 
 <div class="price">R$5,99 / mês</div>
@@ -392,11 +327,9 @@ Comece gratuitamente e altere seu plano sempre que precisar.
 <div class="ram">2 GB RAM</div>
 
 <ul>
-
 <li>2 vCPU</li>
 <li>SSD NVMe</li>
 <li>Banda ilimitada</li>
-
 </ul>
 
 <div class="price">R$10,99 / mês</div>
@@ -412,11 +345,9 @@ Comece gratuitamente e altere seu plano sempre que precisar.
 <div class="ram">4 GB RAM</div>
 
 <ul>
-
 <li>4 vCPU</li>
 <li>SSD NVMe</li>
 <li>Banda ilimitada</li>
-
 </ul>
 
 <div class="price">R$24 / mês</div>
@@ -432,11 +363,9 @@ Comece gratuitamente e altere seu plano sempre que precisar.
 <div class="ram">8 GB RAM</div>
 
 <ul>
-
 <li>8 vCPU</li>
 <li>SSD NVMe</li>
 <li>Banda ilimitada</li>
-
 </ul>
 
 <div class="price">R$48 / mês</div>
@@ -450,37 +379,24 @@ Comece gratuitamente e altere seu plano sempre que precisar.
 <div class="features">
 
 <div class="feature">
-
 <h4>Milhares de Apps</h4>
-
 <p>Gerencie e controle tudo em um só lugar</p>
-
 </div>
 
 <div class="feature">
-
 <h4>Performance Máxima</h4>
-
 <p>Recursos dedicados e IP exclusivo</p>
-
 </div>
 
 <div class="feature">
-
 <h4>Recursos Sob Medida</h4>
-
 <p>Defina RAM, vCPU e SSD que quiser</p>
-
 </div>
 
 <div class="purple">
-
 <h4>Plano Vibranium</h4>
-
 <p>Para empresas e grandes projetos</p>
-
 <button>Falar com a equipe</button>
-
 </div>
 
 </div>
@@ -490,43 +406,35 @@ Comece gratuitamente e altere seu plano sempre que precisar.
 <table>
 
 <tr>
-
 <th>Plano</th>
 <th>Free</th>
 <th>Gold</th>
 <th>Diamond</th>
 <th>Ruby</th>
-
 </tr>
 
 <tr>
-
 <td>RAM</td>
 <td>100MB</td>
 <td>1GB</td>
 <td>4GB</td>
 <td>8GB</td>
-
 </tr>
 
 <tr>
-
 <td>Processador</td>
 <td>AMD</td>
 <td>AMD</td>
 <td>AMD</td>
 <td>AMD</td>
-
 </tr>
 
 <tr>
-
 <td>Máximo de Bots</td>
 <td>1</td>
 <td>10</td>
 <td>40</td>
 <td>80</td>
-
 </tr>
 
 </table>
