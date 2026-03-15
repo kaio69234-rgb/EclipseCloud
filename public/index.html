@@ -10,6 +10,8 @@
 
 <link rel="stylesheet" href="style.css?v=3">
 
+<link rel="icon" href="https://cdn-icons-png.flaticon.com/512/4140/4140048.png">
+
 <script src="https://unpkg.com/lucide@latest"></script>
 
 <style>
@@ -31,13 +33,21 @@ scroll-behavior:smooth;
 </div>
 
 <ul class="nav-menu">
+
 <li><a href="#home">Home</a></li>
+
 <li><a href="planos.html">Planos</a></li>
+
 <li><a href="#config">Ferramenta</a></li>
-<li>Serviços</li>
-<li>Recursos</li>
-<li>Templates</li>
-<li>Documentação</li>
+
+<li><a href="#">Serviços</a></li>
+
+<li><a href="#">Recursos</a></li>
+
+<li><a href="#">Templates</a></li>
+
+<li><a href="#">Documentação</a></li>
+
 </ul>
 
 </nav>
@@ -51,7 +61,7 @@ scroll-behavior:smooth;
 <h1>EclipseCloud</h1>
 
 <p>
-Hospedagem inteligente para bots e aplicações.
+Hospedagem inteligente para bots e aplicações.<br>
 Deploy rápido, simples e poderoso.
 </p>
 
@@ -94,10 +104,8 @@ Configuração
 
 <label>Tipo</label>
 <select id="type" oninput="gerar()">
-
 <option value="bot">bot</option>
 <option value="site">site</option>
-
 </select>
 
 <label>RAM (MB)</label>
@@ -121,10 +129,8 @@ Configuração
 <label>Auto Restart</label>
 
 <select id="restart" oninput="gerar()">
-
 <option value="true">true</option>
 <option value="false">false</option>
-
 </select>
 
 </div>
@@ -183,7 +189,9 @@ Baixar
 <!-- FOOTER -->
 
 <footer class="footer">
-© EclipseCloud
+
+<p>© 2026 EclipseCloud - Todos os direitos reservados</p>
+
 </footer>
 
 <script>
@@ -219,6 +227,7 @@ document.getElementById("output").textContent=config
 function copiar(){
 
 const text=document.getElementById("output").textContent
+
 navigator.clipboard.writeText(text)
 
 alert("Config copiado!")
@@ -232,7 +241,9 @@ const text=document.getElementById("output").textContent
 const blob=new Blob([text],{type:"text/plain"})
 
 const link=document.createElement("a")
+
 link.href=URL.createObjectURL(blob)
+
 link.download="eclipse.config"
 
 link.click()
@@ -242,6 +253,7 @@ link.click()
 window.onload = () => {
 
 lucide.createIcons()
+
 gerar()
 
 }
