@@ -29,6 +29,7 @@ gap:15px;
 color:#9ca3af;
 font-size:14px;
 margin-bottom:10px;
+cursor:pointer;
 }
 
 .logo{
@@ -71,6 +72,7 @@ justify-content:center;
 flex-direction:column;
 color:#9ca3af;
 font-size:14px;
+cursor:pointer;
 }
 
 /* CARD CONFIG */
@@ -142,7 +144,7 @@ color:white;
 
 <div class="logo">EclipseCloud</div>
 
-<div class="topbar">
+<div class="topbar" onclick="history.back()">
 ← Voltar
 </div>
 
@@ -154,10 +156,23 @@ color:white;
 <button>Templates</button>
 </div>
 
-<div class="upload-box">
+<!-- FORMULÁRIO ADICIONADO -->
+<form action="/upload" method="post" enctype="multipart/form-data">
+
+<input type="file" name="bot" id="fileInput" hidden>
+
+<div class="upload-box" id="uploadBox">
 <p>Solte o arquivo aqui</p>
 <p>ou clique para enviar</p>
 </div>
+
+<br>
+
+<button type="submit" style="background:#22c55e;border:none;padding:10px 18px;border-radius:6px;cursor:pointer;">
+Enviar Aplicação
+</button>
+
+</form>
 
 <div class="config-card">
 
@@ -189,6 +204,36 @@ EclipseCloud © 2019 - 2026 • Todos os direitos reservados
 </div>
 
 </div>
+
+<script>
+
+const uploadBox = document.getElementById("uploadBox")
+const fileInput = document.getElementById("fileInput")
+
+uploadBox.addEventListener("click",()=>{
+fileInput.click()
+})
+
+uploadBox.addEventListener("dragover",(e)=>{
+e.preventDefault()
+uploadBox.style.background="#0f1a14"
+})
+
+uploadBox.addEventListener("dragleave",()=>{
+uploadBox.style.background="transparent"
+})
+
+uploadBox.addEventListener("drop",(e)=>{
+
+e.preventDefault()
+
+fileInput.files = e.dataTransfer.files
+
+uploadBox.style.background="transparent"
+
+})
+
+</script>
 
 </body>
 </html>
