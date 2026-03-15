@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Dashboard - EclipseCloud</title>
+
+<style>
+
+body{
+background:#0b0b0b;
+color:white;
+font-family:Arial;
+padding:40px;
+}
+
+.card{
+background:#111;
+padding:30px;
+border-radius:10px;
+margin-top:20px;
+}
+
+button{
+padding:10px 20px;
+background:#00ff9c;
+border:none;
+border-radius:6px;
+cursor:pointer;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>Dashboard EclipseCloud</h1>
+
+<div class="card">
+
+<h2>Upload do Bot</h2>
+
+<form action="/upload" method="post" enctype="multipart/form-data">
+
+<input type="file" name="bot">
+
+<br><br>
+
+<button>
+Enviar Bot
+</button>
+
+</form>
+
+</div>
+
+</body>
+
+</html>
