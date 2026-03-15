@@ -3,7 +3,7 @@
 body{
 background:#050707;
 color:#e7f8ee;
-font-family:Inter,Arial;
+font-family:Inter,Arial,sans-serif;
 margin:0;
 }
 
@@ -156,11 +156,7 @@ gap:12px;
 margin-bottom:20px;
 }
 
-.copy{
-background:#0e2a1c;
-color:#1aff8c;
-}
-
+.copy,
 .download{
 background:#0e2a1c;
 color:#1aff8c;
@@ -251,9 +247,33 @@ color:#1aff8c;
 }
 
 .card:hover{
-border-color:#1aff8c;
 transform:translateY(-3px);
 box-shadow:0 6px 20px rgba(0,0,0,0.5);
+}
+
+/* IMPORTANTE (EMBED AVISO) */
+
+.important{
+margin-top:20px;
+background:#0d1f16;
+border:1px solid #1aff8c;
+border-radius:12px;
+padding:20px;
+}
+
+.important h3{
+margin-top:0;
+color:#1aff8c;
+}
+
+/* CODE */
+
+code{
+background:#111;
+padding:4px 8px;
+border-radius:6px;
+color:#1aff8c;
+font-family:monospace;
 }
 
 /* FOOTER */
