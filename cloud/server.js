@@ -6,17 +6,23 @@ const unzipper = require("unzipper")
 const cors = require("cors")
 const { spawn } = require("child_process")
 
+const session = require("express-session")
+const passport = require("passport")
+const DiscordStrategy = require("passport-discord").Strategy
+
 const app = express()
 
 //////////////////////////////////////////////////
 // CONFIG
 //////////////////////////////////////////////////
 
-const PORT = process.env.PORT || 3000
+const PORT = 3000
 
-const uploads = path.join(__dirname, "..", "uploads")
-const apps = path.join(__dirname, "..", "apps")
-const publicFolder = path.join(__dirname, "..", "public")
+const uploads = path.join(__dirname,"../uploads")
+const apps = path.join(__dirname,"../apps")
+const database = path.join(__dirname,"../database")
+
+const usersFile = path.join(database,"users.json")
 
 let runningBots = {}
 
@@ -24,8 +30,10 @@ let runningBots = {}
 // CRIAR PASTAS
 //////////////////////////////////////////////////
 
-if (!fs.existsSync(uploads)) fs.mkdirSync(uploads)
-if (!fs.existsSync(apps)) fs.mkdirSync(apps)
+if(!fs.existsSync(uploads)) fs.mkdirSync(uploads)
+if(!fs.existsSync(apps)) fs.mkdirSync(apps)
+if(!fs.existsSync(database)) fs.mkdirSync(database)
+if(!fs.existsSync(usersFile)) fs.writeFileSync(usersFile,"[]")
 
 //////////////////////////////////////////////////
 // MIDDLEWARE
@@ -33,173 +41,211 @@ if (!fs.existsSync(apps)) fs.mkdirSync(apps)
 
 app.use(cors())
 app.use(express.json())
-app.use(express.static(publicFolder))
+app.use(express.static(path.join(__dirname,"../public")))
+
+app.use(session({
+secret:"eclipsecloud_secret",
+resave:false,
+saveUninitialized:false
+}))
+
+app.use(passport.initialize())
+app.use(passport.session())
 
 //////////////////////////////////////////////////
-// MULTER (UPLOAD ZIP)
+// PASSPORT DISCORD
 //////////////////////////////////////////////////
 
-const storage = multer.diskStorage({
-destination: (req, file, cb) => {
-cb(null, uploads)
+passport.serializeUser((user,done)=>{
+done(null,user)
+})
+
+passport.deserializeUser((obj,done)=>{
+done(null,obj)
+})
+
+passport.use(new DiscordStrategy({
+
+clientID:"SEU_CLIENT_ID",
+clientSecret:"SEU_CLIENT_SECRET",
+callbackURL:"http://localhost:3000/auth/discord/callback",
+scope:["identify","email"]
+
 },
-filename: (req, file, cb) => {
-cb(null, Date.now() + ".zip")
+
+(accessToken,refreshToken,profile,done)=>{
+
+let users = JSON.parse(fs.readFileSync(usersFile))
+
+let user = users.find(u=>u.id === profile.id)
+
+if(!user){
+
+user={
+id:profile.id,
+username:profile.username,
+avatar:profile.avatar,
+bots:[]
 }
+
+users.push(user)
+
+fs.writeFileSync(usersFile,JSON.stringify(users,null,2))
+
+}
+
+return done(null,user)
+
+}))
+
+//////////////////////////////////////////////////
+// AUTH MIDDLEWARE
+//////////////////////////////////////////////////
+
+function checkAuth(req,res,next){
+
+if(req.isAuthenticated()) return next()
+
+res.redirect("/login.html")
+
+}
+
+//////////////////////////////////////////////////
+// ROTAS LOGIN
+//////////////////////////////////////////////////
+
+app.get("/auth/discord",
+passport.authenticate("discord"))
+
+app.get("/auth/discord/callback",
+
+passport.authenticate("discord",{
+failureRedirect:"/"
+}),
+
+(req,res)=>{
+res.redirect("/dashboard")
 })
 
-const upload = multer({
-storage,
-fileFilter: (req, file, cb) => {
-
-if (!file.originalname.endsWith(".zip")) {
-return cb(new Error("Apenas arquivos .zip são permitidos"))
-}
-
-cb(null, true)
-}
+app.get("/logout",(req,res)=>{
+req.logout(()=>{
+res.redirect("/")
+})
 })
 
 //////////////////////////////////////////////////
-// LER eclipse.config
+// DASHBOARD
 //////////////////////////////////////////////////
 
-function readConfig(folder) {
+app.get("/dashboard",checkAuth,(req,res)=>{
 
-const configPath = path.join(folder, "eclipse.config")
-
-if (!fs.existsSync(configPath)) return null
-
-const lines = fs.readFileSync(configPath, "utf8").split("\n")
-
-let config = {}
-
-lines.forEach(line => {
-
-if (!line.includes("=")) return
-
-const [key, value] = line.split("=")
-
-if (key && value) {
-config[key.trim()] = value.trim()
-}
-
+res.json({
+user:req.user
 })
 
-return config
-}
+})
 
 //////////////////////////////////////////////////
 // UPLOAD BOT
 //////////////////////////////////////////////////
 
-app.post("/upload", upload.single("bot"), async (req, res) => {
+const storage = multer.diskStorage({
 
-try {
+destination:(req,file,cb)=>{
+cb(null,uploads)
+},
 
-if (!req.file) {
-return res.status(400).send("❌ Nenhum arquivo enviado")
+filename:(req,file,cb)=>{
+cb(null,Date.now()+".zip")
 }
 
-const zipPath = req.file.path
-const botId = Date.now().toString()
-const botFolder = path.join(apps, botId)
+})
+
+const upload = multer({storage})
+
+app.post("/upload",checkAuth,upload.single("bot"),async(req,res)=>{
+
+const zipPath=req.file.path
+const botId=Date.now().toString()
+const botFolder=path.join(apps,botId)
 
 fs.mkdirSync(botFolder)
 
 await fs.createReadStream(zipPath)
-.pipe(unzipper.Extract({ path: botFolder }))
+.pipe(unzipper.Extract({path:botFolder}))
 .promise()
 
 fs.unlinkSync(zipPath)
 
-const config = readConfig(botFolder)
+let users = JSON.parse(fs.readFileSync(usersFile))
 
-if (!config) {
-return res.status(400).send("❌ eclipse.config não encontrado")
-}
+let user = users.find(u=>u.id === req.user.id)
+
+user.bots.push(botId)
+
+fs.writeFileSync(usersFile,JSON.stringify(users,null,2))
 
 res.json({
-status: "✅ Bot enviado",
-id: botId,
-config
+status:"Bot enviado",
+id:botId
 })
-
-} catch (err) {
-
-console.error(err)
-res.status(500).send("❌ Erro ao enviar bot")
-
-}
 
 })
 
 //////////////////////////////////////////////////
-// INICIAR BOT
+// START BOT
 //////////////////////////////////////////////////
 
-app.post("/start/:id", (req, res) => {
+app.post("/start/:id",checkAuth,(req,res)=>{
 
-const id = req.params.id
-const botPath = path.join(apps, id)
+const id=req.params.id
+const botPath=path.join(apps,id)
 
-if (!fs.existsSync(botPath)) {
-return res.status(404).send("❌ Bot não encontrado")
-}
+if(!fs.existsSync(botPath))
+return res.send("Bot não encontrado")
 
-const config = readConfig(botPath)
+if(runningBots[id])
+return res.send("Bot já rodando")
 
-if (!config) {
-return res.status(400).send("❌ eclipse.config não encontrado")
-}
-
-if (runningBots[id]) {
-return res.send("⚠ Bot já está rodando")
-}
-
-const startCommand = config.START || "node index.js"
-const parts = startCommand.split(" ")
-
-const proc = spawn(parts[0], parts.slice(1), {
-cwd: botPath,
-shell: true
+const proc=spawn("node",["index.js"],{
+cwd:botPath,
+shell:true
 })
 
-runningBots[id] = proc
+runningBots[id]=proc
 
-proc.stdout.on("data", data => {
+proc.stdout.on("data",data=>{
 console.log(`[BOT ${id}] ${data}`)
 })
 
-proc.stderr.on("data", data => {
+proc.stderr.on("data",data=>{
 console.log(`[BOT ${id} ERRO] ${data}`)
 })
 
-proc.on("close", () => {
+proc.on("close",()=>{
 delete runningBots[id]
-console.log(`BOT ${id} finalizado`)
 })
 
-res.send("✅ Bot iniciado")
+res.send("Bot iniciado")
 
 })
 
 //////////////////////////////////////////////////
-// PARAR BOT
+// STOP BOT
 //////////////////////////////////////////////////
 
-app.post("/stop/:id", (req, res) => {
+app.post("/stop/:id",checkAuth,(req,res)=>{
 
-const id = req.params.id
+const id=req.params.id
 
-if (!runningBots[id]) {
-return res.send("❌ Bot não está rodando")
-}
+if(!runningBots[id])
+return res.send("Bot não está rodando")
 
 runningBots[id].kill()
+
 delete runningBots[id]
 
-res.send("⛔ Bot parado")
+res.send("Bot parado")
 
 })
 
@@ -207,38 +253,22 @@ res.send("⛔ Bot parado")
 // LISTAR BOTS
 //////////////////////////////////////////////////
 
-app.get("/bots", (req, res) => {
+app.get("/bots",checkAuth,(req,res)=>{
 
-try {
+let users = JSON.parse(fs.readFileSync(usersFile))
 
-const bots = fs.readdirSync(apps)
+let user = users.find(u=>u.id === req.user.id)
 
 res.json({
-bots,
-running: Object.keys(runningBots)
+bots:user.bots
 })
-
-} catch (err) {
-
-console.error(err)
-res.status(500).send("❌ Erro ao listar bots")
-
-}
 
 })
 
 //////////////////////////////////////////////////
-// HOME
+// SERVER
 //////////////////////////////////////////////////
 
-app.get("/", (req, res) => {
-res.sendFile(path.join(publicFolder, "index.html"))
-})
-
-//////////////////////////////////////////////////
-// SERVIDOR
-//////////////////////////////////////////////////
-
-app.listen(PORT, () => {
-console.log(`☁ EclipseCloud rodando na porta ${PORT}`)
+app.listen(PORT,()=>{
+console.log("☁ EclipseCloud rodando na porta "+PORT)
 })
