@@ -13,6 +13,48 @@ background:#050707;
 color:#e7f8ee;
 font-family:Inter,Arial,sans-serif;
 line-height:1.5;
+overflow-x:hidden;
+}
+
+/* ===================== */
+/* PARTICLES BACKGROUND */
+/* ===================== */
+
+#particles{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+z-index:-1;
+}
+
+/* ===================== */
+/* LOADER */
+/* ===================== */
+
+#loader{
+position:fixed;
+width:100%;
+height:100vh;
+background:#050707;
+display:flex;
+align-items:center;
+justify-content:center;
+z-index:9999;
+}
+
+.spinner{
+width:50px;
+height:50px;
+border:4px solid #1f2937;
+border-top:4px solid #22c55e;
+border-radius:50%;
+animation:spin 1s linear infinite;
+}
+
+@keyframes spin{
+to{transform:rotate(360deg);}
 }
 
 /* ===================== */
@@ -46,10 +88,37 @@ font-size:14px;
 .nav-menu li{
 cursor:pointer;
 opacity:.8;
+position:relative;
 }
 
 .nav-menu li:hover{
 color:#22c55e;
+}
+
+/* ===================== */
+/* DROPDOWN MENU */
+/* ===================== */
+
+.dropdown-menu{
+position:absolute;
+top:30px;
+left:0;
+background:#0f1412;
+border:1px solid #1f2937;
+border-radius:8px;
+display:none;
+padding:10px;
+list-style:none;
+min-width:160px;
+}
+
+.dropdown-menu li{
+padding:8px 10px;
+white-space:nowrap;
+}
+
+.dropdown:hover .dropdown-menu{
+display:block;
 }
 
 /* ===================== */
@@ -71,6 +140,96 @@ margin-bottom:10px;
 
 .hero p{
 color:#9ca3af;
+}
+
+/* ===================== */
+/* HERO BUTTONS */
+/* ===================== */
+
+.hero-buttons{
+margin-top:30px;
+display:flex;
+gap:15px;
+justify-content:center;
+flex-wrap:wrap;
+}
+
+.btn-primary{
+background:#22c55e;
+padding:12px 26px;
+border-radius:8px;
+text-decoration:none;
+color:white;
+font-weight:600;
+transition:0.25s;
+}
+
+.btn-primary:hover{
+transform:scale(1.05);
+box-shadow:0 0 20px rgba(34,197,94,0.5);
+}
+
+.btn-secondary{
+background:#111;
+border:1px solid #333;
+padding:12px 26px;
+border-radius:8px;
+text-decoration:none;
+color:white;
+}
+
+/* ===================== */
+/* USERS */
+/* ===================== */
+
+.users{
+margin-top:35px;
+display:flex;
+align-items:center;
+justify-content:center;
+gap:8px;
+flex-wrap:wrap;
+}
+
+.users img{
+width:36px;
+height:36px;
+border-radius:50%;
+border:2px solid #050707;
+margin-left:-10px;
+}
+
+.stars{
+color:#facc15;
+margin-left:10px;
+}
+
+.users p{
+color:#9ca3af;
+font-size:14px;
+}
+
+/* ===================== */
+/* TECH ICONS */
+/* ===================== */
+
+.tech{
+margin-top:70px;
+display:flex;
+justify-content:center;
+gap:40px;
+opacity:.7;
+}
+
+.tech img{
+width:45px;
+transition:0.3s;
+filter:grayscale(100%);
+}
+
+.tech img:hover{
+filter:grayscale(0%);
+transform:scale(1.15);
 }
 
 /* ===================== */
@@ -101,33 +260,20 @@ margin:auto;
 /* ===================== */
 
 .plan-card{
-
-background:linear-gradient(
-160deg,
-#0f1412,
-#0a0e0c
-);
-
+background:linear-gradient(160deg,#0f1412,#0a0e0c);
 border-radius:16px;
-
 border:1px solid rgba(255,255,255,0.05);
-
 padding:28px;
-
 display:flex;
 flex-direction:column;
 gap:15px;
-
 box-shadow:0 10px 40px rgba(0,0,0,0.7);
-
+transition:0.25s;
 }
 
 .plan-card:hover{
-
 transform:translateY(-6px);
-
 box-shadow:0 15px 50px rgba(0,0,0,0.9);
-
 }
 
 .plan-card h3{
@@ -164,29 +310,18 @@ font-weight:600;
 /* BOTÃO */
 
 .plan-card button{
-
 margin-top:auto;
-
 background:#22c55e;
-
 color:#04110a;
-
 border:none;
-
 padding:12px;
-
 border-radius:8px;
-
 font-weight:700;
-
 cursor:pointer;
-
 }
 
 .plan-card button:hover{
-
 background:#1fb255;
-
 }
 
 /* ===================== */
@@ -194,15 +329,8 @@ background:#1fb255;
 /* ===================== */
 
 .ruby{
-
-background:linear-gradient(
-160deg,
-#150707,
-#0a0e0c
-);
-
+background:linear-gradient(160deg,#150707,#0a0e0c);
 border:1px solid #ef4444;
-
 }
 
 .ruby .ram{
@@ -214,17 +342,11 @@ color:#ef4444;
 /* ===================== */
 
 .features{
-
 margin-top:90px;
-
 display:grid;
-
 grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-
 gap:40px;
-
 text-align:center;
-
 }
 
 .feature h4{
@@ -242,45 +364,24 @@ font-size:14px;
 /* ===================== */
 
 .purple-card{
-
 margin:60px auto;
-
 max-width:420px;
-
 padding:35px;
-
 border-radius:18px;
-
-background:linear-gradient(
-135deg,
-#4c1d95,
-#7e22ce
-);
-
+background:linear-gradient(135deg,#4c1d95,#7e22ce);
 text-align:center;
-
 color:white;
-
 box-shadow:0 0 40px rgba(168,85,247,0.4);
-
 }
 
 .purple-card button{
-
 margin-top:20px;
-
 background:#a855f7;
-
 border:none;
-
 padding:12px 20px;
-
 border-radius:8px;
-
 color:white;
-
 cursor:pointer;
-
 }
 
 /* ===================== */
@@ -288,52 +389,33 @@ cursor:pointer;
 /* ===================== */
 
 .plans-table{
-
 padding:100px 20px;
-
 }
 
 .plans-table table{
-
 width:100%;
-
 max-width:1000px;
-
 margin:auto;
-
 border-collapse:collapse;
-
 background:#0f1412;
-
 border-radius:14px;
-
 overflow:hidden;
-
 }
 
 .plans-table th{
-
 color:#22c55e;
-
 font-size:14px;
-
 }
 
 .plans-table td,
 .plans-table th{
-
 padding:14px;
-
 border-bottom:1px solid #1f2937;
-
 text-align:center;
-
 }
 
 .plans-table tr:hover{
-
 background:#0b0f0c;
-
 }
 
 /* ===================== */
@@ -341,19 +423,35 @@ background:#0b0f0c;
 /* ===================== */
 
 .footer{
-
 margin-top:100px;
-
 padding:40px;
-
 background:#040606;
-
 border-top:1px solid #1f2937;
-
 text-align:center;
-
 color:#6b7280;
+}
 
+/* ===================== */
+/* ANIMAÇÕES */
+/* ===================== */
+
+@keyframes fadeUp{
+from{
+opacity:0;
+transform:translateY(20px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+.hero,
+.plan-card,
+.feature,
+.hardware,
+.cta{
+animation:fadeUp .9s ease;
 }
 
 /* ===================== */
@@ -374,4 +472,9 @@ padding:40px 20px;
 grid-template-columns:1fr;
 }
 
+.navbar{
+flex-direction:column;
+gap:10px;
 }
+
+  }
