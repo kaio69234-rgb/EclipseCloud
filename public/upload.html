@@ -1,107 +1,160 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="pt-BR">
 <head>
-
-<title>Deploy Bot - EclipseCloud</title>
-
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<title>Hospedar Bot | EclipseCloud</title>
 
 <style>
 
 body{
-background:#0f0f0f;
+background:#0b0b0b;
 color:white;
 font-family:Arial;
-text-align:center;
-padding:40px;
+margin:0;
 }
 
+/* navbar */
+
+.nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 40px;
+background:#0f0f0f;
+border-bottom:1px solid #222;
+}
+
+.logo{
+color:#4cff9a;
+font-size:20px;
+font-weight:bold;
+}
+
+/* container */
+
+.container{
+max-width:900px;
+margin:auto;
+padding:40px 20px;
+}
+
+.title{
+font-size:28px;
+margin-bottom:20px;
+}
+
+/* upload box */
+
 .upload-box{
-
-border:2px dashed #2ecc71;
-padding:80px;
-border-radius:10px;
-margin-top:40px;
+border:2px dashed #3cff84;
+border-radius:12px;
+height:250px;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
 cursor:pointer;
-
+transition:0.3s;
 }
 
 .upload-box:hover{
 background:#111;
 }
 
-button{
+.upload-box span{
+opacity:0.7;
+}
 
-background:#2ecc71;
-border:none;
-padding:12px 20px;
-color:white;
-border-radius:6px;
+/* buttons */
+
+.options{
+display:flex;
+gap:10px;
+margin-bottom:20px;
+}
+
+.option-btn{
+background:#151515;
+border:1px solid #333;
+padding:8px 16px;
+border-radius:8px;
 cursor:pointer;
+}
 
+.option-btn:hover{
+background:#1d1d1d;
+}
+
+/* help */
+
+.help{
+background:#0f1722;
+border:1px solid #1f2b3c;
+padding:15px;
+border-radius:10px;
+margin-top:20px;
+}
+
+.generate{
+margin-top:10px;
+background:#2c7be5;
+border:none;
+padding:10px 16px;
+border-radius:6px;
+color:white;
+cursor:pointer;
+}
+
+.footer{
+text-align:center;
+opacity:0.4;
+margin-top:50px;
 }
 
 </style>
-
 </head>
 
 <body>
 
-<h1>☁ EclipseCloud Deploy</h1>
+<div class="nav">
+<div class="logo">EclipseCloud</div>
+</div>
 
-<p>Envie seu bot .zip</p>
+<div class="container">
 
-<div class="upload-box" onclick="document.getElementById('file').click()">
+<div class="title">Hospedar Aplicação</div>
 
-<p>Solte o arquivo aqui ou clique para enviar</p>
+<div class="options">
+<div class="option-btn">ZIP</div>
+<div class="option-btn">GitHub</div>
+<div class="option-btn">Templates</div>
+</div>
+
+<div class="upload-box" onclick="uploadFile()">
+<h3>Solte o arquivo aqui</h3>
+<span>ou clique para enviar</span>
+</div>
+
+<div class="help">
+<strong>Precisa de ajuda com eclipsecloud.config?</strong>
+<p>Use nosso gerador inteligente para criar o arquivo automaticamente.</p>
+
+<button class="generate">Gerar eclipsecloud.config</button>
+</div>
+
+<div class="footer">
+EclipseCloud © 2026
+</div>
 
 </div>
 
-<input type="file" id="file" hidden>
-
-<br><br>
-
-<button onclick="uploadBot()">Enviar Bot</button>
-
-<p id="status"></p>
-
 <script>
 
-async function uploadBot(){
-
-let file = document.getElementById("file").files[0]
-
-if(!file){
-
-alert("Escolha um arquivo")
-
-return
-
-}
-
-let form = new FormData()
-
-form.append("bot", file)
-
-document.getElementById("status").innerText="Enviando..."
-
-let res = await fetch("/upload",{
-
-method:"POST",
-
-body:form
-
-})
-
-let data = await res.text()
-
-document.getElementById("status").innerText=data
-
+function uploadFile(){
+alert("Sistema de upload será conectado ao backend futuramente.");
 }
 
 </script>
 
 </body>
-
 </html>
