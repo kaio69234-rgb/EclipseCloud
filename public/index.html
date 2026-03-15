@@ -309,61 +309,6 @@ font-size:38px;
 
 }
 
-/* NOVO: PREVIEW VS CODE */
-
-.preview-box{
-margin-top:80px;
-background:#0d1117;
-border:1px solid #30363d;
-border-radius:10px;
-overflow:hidden;
-}
-
-.preview-header{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:10px 15px;
-background:#161b22;
-border-bottom:1px solid #30363d;
-}
-
-.preview-dots{
-display:flex;
-gap:6px;
-}
-
-.preview-dots span{
-width:10px;
-height:10px;
-border-radius:50%;
-}
-
-.dot-red{background:#ff5f56;}
-.dot-yellow{background:#ffbd2e;}
-.dot-green{background:#27c93f;}
-
-.preview-buttons{
-display:flex;
-gap:10px;
-}
-
-.preview-buttons button{
-background:#21262d;
-border:1px solid #30363d;
-color:white;
-padding:6px 10px;
-border-radius:6px;
-cursor:pointer;
-}
-
-.preview-code{
-padding:20px;
-font-family:monospace;
-color:#c9d1d9;
-white-space:pre-wrap;
-}
-
 </style>
 
 </head>
@@ -484,46 +429,6 @@ Ver todos os recursos →
 
 </section>
 
-<section class="section">
-
-<h2>Preview de Deploy</h2>
-
-<div class="preview-box">
-
-<div class="preview-header">
-
-<div class="preview-dots">
-
-<span class="dot-red"></span>
-<span class="dot-yellow"></span>
-<span class="dot-green"></span>
-
-</div>
-
-<div class="preview-buttons">
-
-<button onclick="copyCode()">Copiar</button>
-<button onclick="downloadCode()">Baixar</button>
-<button onclick="shareCode()">Compartilhar</button>
-
-</div>
-
-</div>
-
-<div class="preview-code" id="codeBlock">
-
-npm install
-node index.js
-
-Bot iniciado com sucesso!
-Conectando ao Discord...
-
-</div>
-
-</div>
-
-</section>
-
 <footer>
 
 <div>
@@ -579,41 +484,6 @@ opacity:{value:0.4}
 
 ScrollReveal().reveal('.hero',{distance:'60px',duration:1000,origin:'bottom'})
 ScrollReveal().reveal('.section',{interval:200})
-
-function copyCode(){
-
-navigator.clipboard.writeText(
-document.getElementById("codeBlock").innerText
-)
-
-alert("Código copiado!")
-
-}
-
-function downloadCode(){
-
-const text=document.getElementById("codeBlock").innerText
-const blob=new Blob([text])
-
-const a=document.createElement("a")
-a.href=URL.createObjectURL(blob)
-a.download="deploy.txt"
-a.click()
-
-}
-
-function shareCode(){
-
-if(navigator.share){
-
-navigator.share({
-title:"EclipseCloud",
-text:document.getElementById("codeBlock").innerText
-})
-
-}
-
-}
 
 </script>
 
