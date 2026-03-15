@@ -55,7 +55,9 @@ animation:spin 1s linear infinite;
 }
 
 @keyframes spin{
-to{transform:rotate(360deg);}
+to{
+transform:rotate(360deg);
+}
 }
 
 /* ===================== */
@@ -142,6 +144,7 @@ padding:120px 20px 60px;
 text-align:center;
 max-width:800px;
 margin:auto;
+animation:fadeUp .9s ease;
 }
 
 .hero h1{
@@ -285,6 +288,7 @@ flex-direction:column;
 gap:14px;
 box-shadow:0 10px 40px rgba(0,0,0,0.7);
 transition:.25s;
+animation:fadeUp .9s ease;
 }
 
 .plan-card:hover{
@@ -360,6 +364,10 @@ gap:40px;
 text-align:center;
 }
 
+.feature{
+animation:fadeUp .9s ease;
+}
+
 .feature h4{
 color:white;
 margin-top:10px;
@@ -383,6 +391,7 @@ background:linear-gradient(135deg,#4c1d95,#7e22ce);
 text-align:center;
 color:white;
 box-shadow:0 0 40px rgba(168,85,247,0.4);
+animation:fadeUp .9s ease;
 }
 
 .purple-card button{
@@ -459,13 +468,6 @@ transform:translateY(0);
 }
 }
 
-.hero,
-.plan-card,
-.feature,
-.purple-card{
-animation:fadeUp .9s ease;
-}
-
 /* ===================== */
 /* RESPONSIVO */
 /* ===================== */
@@ -504,4 +506,4 @@ gap:25px;
 font-size:13px;
 }
 
-  }
+}
