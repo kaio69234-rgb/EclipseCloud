@@ -10,18 +10,29 @@ const session = require("express-session")
 const passport = require("passport")
 const DiscordStrategy = require("passport-discord").Strategy
 
+// melhorias avançadas
+const compression = require("compression")
+const rateLimit = require("express-rate-limit")
+
 const app = express()
 
 //////////////////////////////////////////////////
 // CONFIG
 //////////////////////////////////////////////////
 
-const PORT = 3000
+const PORT = process.env.PORT || 3000
 
-// COLOQUE SEUS DADOS DO DISCORD AQUI
-const DISCORD_CLIENT_ID = "1482561610798071899"
-const DISCORD_CLIENT_SECRET = "QDbKAyWgUmQxLUrbfstrMcii_iwlp2B6"
-const DISCORD_CALLBACK = "http://localhost:3000/auth/discord/callback"
+// DISCORD
+const DISCORD_CLIENT_ID = process.env.DISCORD_CLIENT_ID || "1482561610798071899"
+const DISCORD_CLIENT_SECRET = process.env.DISCORD_CLIENT_SECRET || "QDbKAyWgUmQxLUrbfstrMcii_iwlp2B6"
+
+// AUTO CALLBACK PARA RENDER
+const DOMAIN = process.env.RENDER_EXTERNAL_URL || `http://localhost:${PORT}`
+const DISCORD_CALLBACK = `${DOMAIN}/auth/discord/callback`
+
+//////////////////////////////////////////////////
+// PATHS
+//////////////////////////////////////////////////
 
 const uploads = path.join(__dirname,"../uploads")
 const apps = path.join(__dirname,"../apps")
@@ -46,12 +57,25 @@ if(!fs.existsSync(usersFile)) fs.writeFileSync(usersFile,"[]")
 
 app.use(cors())
 app.use(express.json())
+app.use(express.urlencoded({extended:true}))
 app.use(express.static(path.join(__dirname,"../public")))
+
+app.use(compression())
+
+const limiter = rateLimit({
+windowMs: 15 * 60 * 1000,
+max: 200
+})
+
+app.use(limiter)
 
 app.use(session({
 secret:"eclipsecloud_secret",
 resave:false,
-saveUninitialized:false
+saveUninitialized:false,
+cookie:{
+maxAge:86400000
+}
 }))
 
 app.use(passport.initialize())
@@ -90,12 +114,15 @@ user={
 id:profile.id,
 username:profile.username,
 avatar:profile.avatar,
-bots:[]
+bots:[],
+created:Date.now()
 }
 
 users.push(user)
 
 fs.writeFileSync(usersFile,JSON.stringify(users,null,2))
+
+console.log("👤 Novo usuário:",profile.username)
 
 }
 
@@ -124,18 +151,22 @@ passport.authenticate("discord"))
 
 app.get("/auth/discord/callback",
 
-passport.authenticate("discord",{
-failureRedirect:"/"
-}),
+passport.authenticate("discord",{failureRedirect:"/"}),
 
 (req,res)=>{
+
+console.log("🔐 Login:",req.user.username)
+
 res.redirect("/dashboard")
+
 })
 
 app.get("/logout",(req,res)=>{
+
 req.logout(()=>{
 res.redirect("/")
 })
+
 })
 
 //////////////////////////////////////////////////
@@ -145,7 +176,8 @@ res.redirect("/")
 app.get("/dashboard",checkAuth,(req,res)=>{
 
 res.json({
-user:req.user
+user:req.user,
+runningBots:Object.keys(runningBots)
 })
 
 })
@@ -166,7 +198,15 @@ cb(null,Date.now()+".zip")
 
 })
 
-const upload = multer({storage})
+const upload = multer({
+
+storage,
+
+limits:{
+fileSize:50 * 1024 * 1024
+}
+
+})
 
 app.post("/upload",checkAuth,upload.single("bot"),async(req,res)=>{
 
@@ -184,14 +224,28 @@ await fs.createReadStream(zipPath)
 
 fs.unlinkSync(zipPath)
 
+// verificar index.js
+if(!fs.existsSync(path.join(botFolder,"index.js"))){
+
+fs.rmSync(botFolder,{recursive:true,force:true})
+
+return res.send("Arquivo index.js não encontrado")
+
+}
+
 let users = JSON.parse(fs.readFileSync(usersFile))
 
 let user = users.find(u=>u.id === req.user.id)
 
 if(user){
+
 user.bots.push(botId)
+
 fs.writeFileSync(usersFile,JSON.stringify(users,null,2))
+
 }
+
+console.log("📦 Bot enviado:",botId)
 
 res.json({
 status:"Bot enviado",
@@ -231,8 +285,14 @@ console.log(`[BOT ${id} ERRO] ${data}`)
 })
 
 proc.on("close",()=>{
+
 delete runningBots[id]
+
+console.log("🛑 Bot finalizado:",id)
+
 })
+
+console.log("🚀 Bot iniciado:",id)
 
 res.send("Bot iniciado")
 
@@ -253,6 +313,8 @@ runningBots[id].kill()
 
 delete runningBots[id]
 
+console.log("🛑 Bot parado:",id)
+
 res.send("Bot parado")
 
 })
@@ -270,9 +332,38 @@ let user = users.find(u=>u.id === req.user.id)
 if(!user) return res.json({bots:[]})
 
 res.json({
-bots:user.bots
+bots:user.bots,
+running:Object.keys(runningBots)
 })
 
+})
+
+//////////////////////////////////////////////////
+// STATUS API
+//////////////////////////////////////////////////
+
+app.get("/status",(req,res)=>{
+
+res.json({
+
+uptime:process.uptime(),
+botsRodando:Object.keys(runningBots).length,
+memoria:process.memoryUsage()
+
+})
+
+})
+
+//////////////////////////////////////////////////
+// ANTI CRASH
+//////////////////////////////////////////////////
+
+process.on("uncaughtException",err=>{
+console.log("Erro:",err)
+})
+
+process.on("unhandledRejection",err=>{
+console.log("Promise erro:",err)
 })
 
 //////////////////////////////////////////////////
@@ -280,5 +371,8 @@ bots:user.bots
 //////////////////////////////////////////////////
 
 app.listen(PORT,()=>{
+
 console.log("☁ EclipseCloud rodando na porta "+PORT)
+console.log("🌐 Painel:",DOMAIN)
+
 })
