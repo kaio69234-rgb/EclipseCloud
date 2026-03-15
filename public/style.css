@@ -66,7 +66,7 @@ to{transform:rotate(360deg);}
 display:flex;
 justify-content:space-between;
 align-items:center;
-padding:20px 40px;
+padding:18px 40px;
 background:#050707;
 border-bottom:1px solid #1f2937;
 position:sticky;
@@ -77,23 +77,27 @@ z-index:999;
 .nav-left h2{
 color:white;
 font-size:20px;
+font-weight:600;
 }
 
 .nav-menu{
 display:flex;
-gap:25px;
+gap:24px;
 list-style:none;
 font-size:14px;
+align-items:center;
 }
 
 .nav-menu li{
 cursor:pointer;
-opacity:.8;
+opacity:.85;
 position:relative;
+transition:.2s;
 }
 
 .nav-menu li:hover{
 color:#22c55e;
+opacity:1;
 }
 
 /* ===================== */
@@ -102,21 +106,27 @@ color:#22c55e;
 
 .dropdown-menu{
 position:absolute;
-top:30px;
+top:32px;
 left:0;
 background:#0f1412;
 border:1px solid #1f2937;
 border-radius:8px;
 display:none;
-padding:10px;
+padding:8px 0;
 list-style:none;
 min-width:160px;
 z-index:1000;
+box-shadow:0 10px 30px rgba(0,0,0,0.6);
 }
 
 .dropdown-menu li{
-padding:8px 10px;
+padding:10px 14px;
 white-space:nowrap;
+font-size:13px;
+}
+
+.dropdown-menu li:hover{
+background:#0b0f0c;
 }
 
 .dropdown:hover .dropdown-menu{
@@ -137,11 +147,13 @@ margin:auto;
 .hero h1{
 font-size:44px;
 color:white;
-margin-bottom:10px;
+margin-bottom:12px;
+font-weight:700;
 }
 
 .hero p{
 color:#9ca3af;
+font-size:16px;
 }
 
 /* ===================== */
@@ -163,7 +175,7 @@ border-radius:8px;
 text-decoration:none;
 color:white;
 font-weight:600;
-transition:0.25s;
+transition:.25s;
 }
 
 .btn-primary:hover{
@@ -220,14 +232,14 @@ margin-top:70px;
 display:flex;
 justify-content:center;
 align-items:center;
-gap:40px;
+gap:45px;
 flex-wrap:wrap;
 opacity:.7;
 }
 
 .tech img{
 width:45px;
-transition:0.3s;
+transition:.3s;
 filter:grayscale(100%);
 }
 
@@ -242,9 +254,9 @@ transform:scale(1.15);
 
 .container{
 width:100%;
-max-width:1050px;
+max-width:1100px;
 margin:auto;
-padding:60px 30px;
+padding:70px 30px;
 }
 
 /* ===================== */
@@ -254,7 +266,7 @@ padding:60px 30px;
 .plans-grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:30px;
+gap:28px;
 max-width:900px;
 margin:auto;
 }
@@ -270,9 +282,9 @@ border:1px solid rgba(255,255,255,0.05);
 padding:28px;
 display:flex;
 flex-direction:column;
-gap:15px;
+gap:14px;
 box-shadow:0 10px 40px rgba(0,0,0,0.7);
-transition:0.25s;
+transition:.25s;
 }
 
 .plan-card:hover{
@@ -316,6 +328,7 @@ padding:12px;
 border-radius:8px;
 font-weight:700;
 cursor:pointer;
+transition:.2s;
 }
 
 .plan-card button:hover{
@@ -428,6 +441,7 @@ background:#040606;
 border-top:1px solid #1f2937;
 text-align:center;
 color:#6b7280;
+font-size:14px;
 }
 
 /* ===================== */
@@ -463,7 +477,7 @@ font-size:32px;
 }
 
 .container{
-padding:40px 20px;
+padding:50px 20px;
 }
 
 .plans-grid{
@@ -479,6 +493,7 @@ padding:15px;
 .nav-menu{
 flex-wrap:wrap;
 justify-content:center;
+gap:15px;
 }
 
 .tech{
@@ -489,4 +504,4 @@ gap:25px;
 font-size:13px;
 }
 
-}
+  }
