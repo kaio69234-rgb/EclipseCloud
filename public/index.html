@@ -309,6 +309,21 @@ font-size:38px;
 
 }
 
+/* CURSOR DIGITAÇÃO (ADICIONADO) */
+
+.cursor{
+display:inline-block;
+margin-left:5px;
+animation:blink 1s infinite;
+color:#22c55e;
+}
+
+@keyframes blink{
+0%{opacity:1;}
+50%{opacity:0;}
+100%{opacity:1;}
+}
+
 </style>
 
 </head>
@@ -358,6 +373,7 @@ font-size:38px;
 <h1>
 
 <span id="typing"></span>
+<span class="cursor">|</span>
 <span class="gradient"> Online Agora!</span>
 
 </h1>
@@ -395,68 +411,11 @@ font-size:38px;
 
 </section>
 
-<section class="section">
-
-<p style="color:#22c55e">Por menos de R$0,37 por dia</p>
-
-<h2>Hospedagem de Sites</h2>
-
-<p>Desde um simples site estático até APIs completas.</p>
-
-<button onclick="location.href='/planos.html'">
-Ver todos os recursos →
-</button>
-
-</section>
-
-<section class="hardware">
-
-<img src="https://i.imgur.com/Wo7R5QK.png">
-
-<div>
-
-<h2>Hardware ideal com <span>Máxima Performance</span></h2>
-
-<ul>
-
-<li>⚡ AMD EPYC Architecture</li>
-<li>💾 Memória RAM de alta frequência</li>
-<li>🚀 SSD NVMe empresarial</li>
-
-</ul>
-
-</div>
-
-</section>
-
-<footer>
-
-<div>
-
-<h3>EclipseCloud</h3>
-
-<ul>
-
-<li>Download Desktop</li>
-<li>Download CLI</li>
-
-</ul>
-
-</div>
-
-</footer>
-
-<div class="copy">
-© 2026 EclipseCloud
-</div>
-
 <script>
 
 window.addEventListener("load",()=>{
 document.getElementById("loader").style.display="none"
 })
-
-/* NOVO EFEITO DE DIGITAÇÃO (SEM APAGAR NADA DO RESTO) */
 
 const palavras = ["Seu Bot","Seu Site","Sua API","Seu Banco de Dados"]
 
@@ -498,7 +457,7 @@ palavraIndex = 0
 
 }
 
-setTimeout(digitar, apagando ? 50 : 100)
+setTimeout(digitar, apagando ? 90 : 180)
 
 }
 
@@ -519,5 +478,4 @@ ScrollReveal().reveal('.section',{interval:200})
 </script>
 
 </body>
-
 </html>
