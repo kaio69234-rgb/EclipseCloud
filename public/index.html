@@ -1,547 +1,187 @@
-<!DOCTYPE html><html lang="pt-br"><head><meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1"><title>EclipseCloud</title>
+<!-- DASHBOARD -->
 
-<script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
-<script src="https://unpkg.com/scrollreveal"></script>
-
-<style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Inter,Arial;
-}
-
-body{
-background:
-radial-gradient(circle at 20% 0%,rgba(34,197,94,.15),transparent 40%),
-#050707;
-color:white;
-overflow-x:hidden;
-}
-
-/* PARTICLES */
-
-#particles{
+<div id="dashboard" style="
+display:none;
 position:fixed;
-width:100%;
-height:100%;
 top:0;
 left:0;
-z-index:-1;
-}
-
-/* LOADER */
-
-#loader{
-position:fixed;
 width:100%;
-height:100vh;
+height:100%;
 background:#050707;
-display:flex;
-align-items:center;
-justify-content:center;
-z-index:9999;
-}
+z-index:999;
+overflow:auto;
+padding:40px;
+">
 
-.spinner{
-width:50px;
-height:50px;
-border:4px solid #1f2937;
-border-top:4px solid #22c55e;
-border-radius:50%;
-animation:spin 1s linear infinite;
-}
+<h1 style="margin-bottom:30px;">Painel EclipseCloud</h1>
 
-@keyframes spin{
-to{transform:rotate(360deg);}
-}
-
-/* NAVBAR */
-
-.navbar{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:20px 40px;
-border-bottom:1px solid rgba(255,255,255,0.05);
-background:rgba(5,7,7,0.6);
-backdrop-filter:blur(10px);
-position:sticky;
-top:0;
-z-index:100;
-}
-
-.logo{
-font-size:22px;
-color:#22c55e;
-font-weight:700;
-letter-spacing:.5px;
-}
-
-.navbar ul{
-display:flex;
-gap:22px;
-list-style:none;
-}
-
-.navbar a{
-color:#cbd5e1;
-text-decoration:none;
-font-size:14px;
-transition:.25s;
-}
-
-.navbar a:hover{
-color:#22c55e;
-}
-
-/* DROPDOWN */
-
-.dropdown{
-position:relative;
-}
-
-.dropdown-menu{
-position:absolute;
-top:35px;
+<div style="
 background:#0f1412;
-border:1px solid #1f2937;
-padding:12px;
+padding:30px;
 border-radius:10px;
-display:none;
-list-style:none;
-box-shadow:0 10px 30px rgba(0,0,0,.6);
-}
+margin-bottom:20px;
+">
 
-.dropdown:hover .dropdown-menu{
-display:block;
-}
+<h2>Controle do Bot</h2>
 
-/* HERO */
-
-.hero{
-text-align:center;
-padding:120px 20px;
-max-width:900px;
-margin:auto;
-}
-
-.hero h1{
-font-size:60px;
-font-weight:700;
-line-height:1.1;
-}
-
-.gradient{
-background:linear-gradient(90deg,#22c55e,#06b6d4);
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
-}
-
-.hero p{
-margin-top:12px;
-color:#9ca3af;
-font-size:18px;
-}
-
-/* BUTTONS */
-
-.hero-buttons{
-margin-top:25px;
-display:flex;
-gap:15px;
-justify-content:center;
-flex-wrap:wrap;
-}
-
-.btn-primary{
-background:linear-gradient(135deg,#22c55e,#16a34a);
-padding:13px 28px;
-border-radius:10px;
-text-decoration:none;
-color:white;
-font-weight:600;
-transition:.25s;
-box-shadow:0 10px 30px rgba(34,197,94,.3);
-}
-
-.btn-primary:hover{
-transform:translateY(-3px);
-box-shadow:0 15px 40px rgba(34,197,94,.5);
-}
-
-.btn-secondary{
-background:#111;
-border:1px solid #333;
-padding:13px 28px;
-border-radius:10px;
-text-decoration:none;
-color:white;
-transition:.2s;
-}
-
-.btn-secondary:hover{
-background:#181818;
-}
-
-/* USERS */
-
-.users{
-margin-top:30px;
-display:flex;
-align-items:center;
-justify-content:center;
-gap:8px;
-flex-wrap:wrap;
-}
-
-.users img{
-width:34px;
-height:34px;
-border-radius:50%;
-border:2px solid #050707;
-margin-left:-8px;
-}
-
-.stars{
-color:#facc15;
-margin-left:10px;
-}
-
-.users p{
-color:#9ca3af;
-margin-left:5px;
-}
-
-/* TECH */
-
-.tech{
-margin-top:80px;
-display:flex;
-justify-content:center;
-gap:60px;
-flex-wrap:wrap;
-}
-
-.tech img{
-width:45px;
-opacity:.7;
-transition:.35s;
-filter:grayscale(1);
-}
-
-.tech img:hover{
-opacity:1;
-transform:scale(1.15);
-filter:grayscale(0);
-}
-
-/* SECTION */
-
-.section{
-max-width:1100px;
-margin:auto;
-padding:120px 30px;
-text-align:center;
-}
-
-.section h2{
-font-size:36px;
-}
-
-.section p{
-margin-top:10px;
-color:#9ca3af;
-}
-
-.section button{
-margin-top:15px;
-background:#111;
-color:white;
-border:1px solid #333;
+<button onclick="startBot()" style="
 padding:10px 20px;
+background:#22c55e;
+border:none;
 border-radius:6px;
 cursor:pointer;
-transition:.2s;
-}
+margin-right:10px;
+">Start</button>
 
-.section button:hover{
-background:#1a1a1a;
-}
+<button onclick="stopBot()" style="
+padding:10px 20px;
+background:#ef4444;
+border:none;
+border-radius:6px;
+cursor:pointer;
+">Stop</button>
 
-/* PLAN CARDS */
+<button onclick="closePanel()" style="
+padding:10px 20px;
+background:#111;
+border:none;
+border-radius:6px;
+cursor:pointer;
+margin-left:10px;
+color:white;
+">Fechar</button>
 
-.section div div{
-transition:.3s;
-box-shadow:0 10px 25px rgba(0,0,0,.6);
-}
+<p id="statusBot" style="margin-top:15px;color:#9ca3af">
+Status: desconhecido
+</p>
 
-.section div div:hover{
-transform:translateY(-6px);
-box-shadow:0 20px 40px rgba(0,0,0,.8);
-}
-
-/* HARDWARE */
-
-.hardware{
-max-width:1100px;
-margin:auto;
-padding:100px 30px;
-display:flex;
-align-items:center;
-gap:60px;
-}
-
-.hardware img{
-width:250px;
-}
-
-.hardware span{
-color:#60a5fa;
-}
-
-/* FOOTER */
-
-footer{
-border-top:1px solid #111;
-padding:50px 30px;
-max-width:1100px;
-margin:auto;
-display:flex;
-justify-content:space-between;
-flex-wrap:wrap;
-gap:40px;
-color:#9ca3af;
-}
-
-.copy{
-text-align:center;
-padding:20px;
-color:#6b7280;
-}
-
-/* MOBILE */
-
-@media(max-width:900px){
-
-.hardware{
-flex-direction:column;
-text-align:center;
-}
-
-.hero h1{
-font-size:40px;
-}
-
-}
-
-/* CURSOR DIGITAÇÃO */
-
-.cursor{
-display:inline-block;
-margin-left:5px;
-animation:blink 1s infinite;
-color:#22c55e;
-}
-
-@keyframes blink{
-0%{opacity:1;}
-50%{opacity:0;}
-100%{opacity:1;}
-}
-
-</style></head>
-
-<body>
-
-<div id="loader">
-<div class="spinner"></div>
 </div>
 
-<div id="particles"></div>
+<div style="
+background:#0f1412;
+padding:30px;
+border-radius:10px;
+margin-bottom:20px;
+">
 
-<nav class="navbar">
-<div class="logo">EclipseCloud</div>
+<h2>Upload de Bot</h2>
 
-<ul>
+<form id="uploadForm">
 
-<li><a href="/">Início</a></li>
-<li><a href="/planos.html">Planos</a></li>
+<input type="file" id="botFile" style="margin-top:10px;color:white">
 
-<li class="dropdown">
-<a href="#">Serviços</a>
+<button type="submit" style="
+margin-top:10px;
+padding:10px 20px;
+background:#22c55e;
+border:none;
+border-radius:6px;
+cursor:pointer;
+">Enviar Bot</button>
 
-<ul class="dropdown-menu">
-<li><a href="/upload.html">Hospedagem de Bots</a></li>
-<li><a href="/sites.html">Hospedagem de Sites</a></li>
-<li><a href="/api.html">API Cloud</a></li>
+</form>
+
+<p id="uploadStatus" style="margin-top:10px;color:#9ca3af"></p>
+
+</div>
+
+<div style="
+background:#0f1412;
+padding:30px;
+border-radius:10px;
+margin-bottom:20px;
+">
+
+<h2>Aplicações</h2>
+
+<ul id="botList" style="color:#9ca3af;list-style:none">
+
+<li>BunnyBot — Online</li>
+<li>APICloud — Offline</li>
+<li>SiteNode — Online</li>
+
 </ul>
 
-</li>
+</div>
 
-<li><a href="#">Ferramentas</a></li>
-<li><a href="#">Recursos</a></li>
-<li><a href="#">Templates</a></li>
-<li><a href="#">Documentação</a></li>
+<div style="
+background:#0f1412;
+padding:30px;
+border-radius:10px;
+">
 
-</ul>
-</nav>
+<h2>Logs</h2>
 
-<section class="hero">
-
-<h1>
-<span id="typing"></span>
-<span class="cursor">|</span>
-<span class="gradient"> Online Agora!</span>
-</h1>
-
-<p>Transformando a forma como você hospeda suas aplicações</p>
-
-<div class="hero-buttons">
-
-<a href="/upload.html" class="btn-primary">
-Comece gratuitamente →
-</a>
-
-<a href="/dashboard" class="btn-secondary">
-Painel
-</a>
+<pre id="logs" style="
+background:#000;
+padding:15px;
+border-radius:6px;
+height:200px;
+overflow:auto;
+"></pre>
 
 </div>
 
-<div class="users">
-
-<img src="https://i.pravatar.cc/40?img=1">
-<img src="https://i.pravatar.cc/40?img=2">
-<img src="https://i.pravatar.cc/40?img=3">
-<img src="https://i.pravatar.cc/40?img=4">
-<img src="https://i.pravatar.cc/40?img=5">
-
-<span class="stars">★★★★★</span>
-<p>mais de 167 mil usuários</p>
-
 </div>
-
-<div class="tech">
-
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg">
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg">
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg">
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg">
-
-</div>
-
-</section>
-
-<section class="section">
-
-<h2>Planos de Hospedagem</h2>
-<p>Escolha o melhor plano para sua aplicação</p>
-
-<div style="margin-top:40px;display:flex;gap:30px;flex-wrap:wrap;justify-content:center">
-
-<div style="background:#0f1412;padding:30px;border-radius:10px;width:220px">
-<h3>Starter</h3>
-<p style="color:#22c55e;font-size:22px">100MB</p>
-<p>1 aplicação</p>
-<p>Logs em tempo real</p>
-<button>Começar</button>
-</div>
-
-<div style="background:#0f1412;padding:30px;border-radius:10px;width:220px">
-<h3>Pro</h3>
-<p style="color:#22c55e;font-size:22px">512MB</p>
-<p>3 aplicações</p>
-<p>Deploy automático</p>
-<button>Começar</button>
-</div>
-
-<div style="background:#0f1412;padding:30px;border-radius:10px;width:220px">
-<h3>Enterprise</h3>
-<p style="color:#22c55e;font-size:22px">1GB</p>
-<p>Aplicações ilimitadas</p>
-<p>Suporte prioritário</p>
-<button>Começar</button>
-</div>
-
-</div>
-
-</section>
-
-<footer>
-
-<div>EclipseCloud © 2026</div>
-<div>Hospedagem moderna para bots e aplicações</div>
-
-</footer>
 
 <script>
 
-window.addEventListener("load",()=>{
-document.getElementById("loader").style.display="none"
+const painelBtn = document.querySelector('a[href="/dashboard"]')
+
+painelBtn.addEventListener("click",function(e){
+e.preventDefault()
+document.getElementById("dashboard").style.display="block"
 })
 
-const palavras = ["Seu Bot","Seu Site","Sua API","Seu Banco de Dados"]
+function closePanel(){
+document.getElementById("dashboard").style.display="none"
+}
 
-let palavraIndex = 0
-let letraIndex = 0
-let apagando = false
+function startBot(){
 
-const elemento = document.getElementById("typing")
+fetch("/start")
+.then(r=>r.text())
+.then(t=>{
+document.getElementById("statusBot").innerText="Status: Online"
+alert(t)
+})
 
-function digitar(){
+}
 
-let palavraAtual = palavras[palavraIndex]
+function stopBot(){
 
-if(!apagando){
+fetch("/stop")
+.then(r=>r.text())
+.then(t=>{
+document.getElementById("statusBot").innerText="Status: Offline"
+alert(t)
+})
 
-elemento.innerHTML = palavraAtual.substring(0, letraIndex + 1)
-letraIndex++
+}
 
-if(letraIndex === palavraAtual.length){
-apagando = true
-setTimeout(digitar,1500)
+document.getElementById("uploadForm").addEventListener("submit",function(e){
+
+e.preventDefault()
+
+const file = document.getElementById("botFile").files[0]
+
+if(!file){
+alert("Selecione um arquivo ZIP do bot")
 return
 }
 
-}else{
+const formData = new FormData()
+formData.append("bot",file)
 
-elemento.innerHTML = palavraAtual.substring(0, letraIndex - 1)
-letraIndex--
-
-if(letraIndex === 0){
-apagando = false
-palavraIndex++
-
-if(palavraIndex === palavras.length){
-palavraIndex = 0
-}
-
-}
-
-}
-
-setTimeout(digitar, apagando ? 90 : 180)
-
-}
-
-digitar()
-
-tsParticles.load("particles",{
-particles:{
-number:{value:40},
-size:{value:2},
-move:{speed:0.5},
-opacity:{value:0.4}
-}
+fetch("/upload",{
+method:"POST",
+body:formData
+})
+.then(r=>r.text())
+.then(t=>{
+document.getElementById("uploadStatus").innerText=t
 })
 
-ScrollReveal().reveal('.hero',{distance:'60px',duration:1000,origin:'bottom'})
-ScrollReveal().reveal('.section',{interval:200})
+})
 
-</script>
-
-</body>
-  </html>
+  </script>
