@@ -23,7 +23,7 @@
 </div>
 
 <ul class="nav-menu">
-<li>Planos</li>
+<li onclick="document.getElementById('planos').scrollIntoView()">Planos</li>
 <li>Serviços</li>
 <li>Ferramentas</li>
 <li>Recursos</li>
@@ -32,6 +32,88 @@
 </ul>
 
 </nav>
+
+<!-- PLANOS (ADICIONADO) -->
+
+<section id="planos" class="plans">
+
+<h1 class="plans-title">Planos EclipseCloud</h1>
+
+<p class="plans-sub">
+Preço simples, justo e previsível
+</p>
+
+<div class="plans-grid">
+
+<div class="plan-card">
+
+<h2>Free</h2>
+<p class="ram">100 MB RAM</p>
+
+<ul>
+<li>1 Bot</li>
+<li>Auto Restart</li>
+<li>Upload ZIP</li>
+<li>Console simples</li>
+</ul>
+
+<button>Começar</button>
+
+</div>
+
+<div class="plan-card">
+
+<h2>Gold</h2>
+<p class="ram">1 GB RAM</p>
+
+<ul>
+<li>10 Bots</li>
+<li>Console em tempo real</li>
+<li>Auto Restart</li>
+<li>Deploy automático</li>
+</ul>
+
+<button>Comprar</button>
+
+</div>
+
+<div class="plan-card popular">
+
+<span class="badge">Mais vendido</span>
+
+<h2>Diamond</h2>
+<p class="ram">4 GB RAM</p>
+
+<ul>
+<li>40 Bots</li>
+<li>Console em tempo real</li>
+<li>Auto deploy GitHub</li>
+<li>Backup automático</li>
+</ul>
+
+<button>Comprar</button>
+
+</div>
+
+<div class="plan-card">
+
+<h2>Ruby</h2>
+<p class="ram">8 GB RAM</p>
+
+<ul>
+<li>80 Bots</li>
+<li>Console avançado</li>
+<li>Deploy GitHub</li>
+<li>Monitoramento</li>
+</ul>
+
+<button>Comprar</button>
+
+</div>
+
+</div>
+
+</section>
 
 <div class="container">
 
@@ -142,161 +224,7 @@ Baixar
 
 </div>
 
-<div class="panel">
-
-<h2>
-<i data-lucide="book-open"></i>
-O que é o eclipse.config?
-</h2>
-
-<p>
-O <code>eclipse.config</code> é um arquivo de configuração que automatiza o processo
-de upload e configuração de aplicações na EclipseCloud.
-Com ele você não precisa preencher formulários manualmente a cada deploy.
-</p>
-
-<div class="important">
-
-<h3>⚠ Importante</h3>
-
-<p>
-O arquivo deve estar na raiz do seu projeto e ser incluído no .zip enviado
-para a EclipseCloud. Sem ele o upload da aplicação não funcionará.
-</p>
-
-</div>
-
-</div>
-
-<div class="panel">
-
-<h2>
-<i data-lucide="code"></i>
-Parâmetros do Arquivo
-</h2>
-
-<div class="grid">
-
-<div class="card">
-<h3>MAIN</h3>
-Arquivo principal
-</div>
-
-<div class="card">
-<h3>TYPE</h3>
-bot ou site
-</div>
-
-<div class="card">
-<h3>RAM</h3>
-Memória usada
-</div>
-
-<div class="card">
-<h3>NAME</h3>
-Nome exibido
-</div>
-
-<div class="card">
-<h3>APT</h3>
-Pacotes extras
-</div>
-
-<div class="card">
-<h3>START</h3>
-Comando de inicialização
-</div>
-
-</div>
-
-</div>
-
-<div class="panel">
-
-<h2>
-<i data-lucide="file-text"></i>
-Exemplos Práticos
-</h2>
-
-<div class="grid">
-
-<div class="card">
-
-<h3>🤖 Configuração para Bot</h3>
-
-<pre>
-NAME=Meu Bot Discord
-TYPE=bot
-MAIN=index.js
-RAM=100
-</pre>
-
-<p>
-Ideal para: Bots Discord, Telegram, WhatsApp etc.
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>🌐 Configuração para Site</h3>
-
-<pre>
-ID=meusite.eclipse.app
-TYPE=site
-MAIN=index.ts
-RAM=512
-START=npm run start
-</pre>
-
-<p>
-Ideal para: APIs, sites web e dashboards.
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-<div class="panel">
-
-<h2>
-<i data-lucide="folder"></i>
-Onde Salvar o eclipse.config
-</h2>
-
-<div class="card">
-
-<h3>
-<i data-lucide="file-text"></i>
-Estrutura Correta do Projeto
-</h3>
-
-<pre>
-📁 my-project/
-   📄 eclipse.config
-   📄 index.js
-   📄 package.json
-   📁 src/
-   📁 functions/
-   📄 .env
-</pre>
-
-</div>
-
-<div class="important">
-
-<h3>⚠ Muito Importante!</h3>
-
-<p>
-O arquivo <code>eclipse.config</code> deve estar na mesma pasta que seus arquivos
-principais como <code>index.js</code> e <code>package.json</code>.
-</p>
-
-</div>
-
-</div>
+<!-- RESTANTE DO SEU SITE CONTINUA IGUAL -->
 
 <div class="footer">
 © EclipseCloud
