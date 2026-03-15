@@ -18,6 +18,11 @@ const app = express()
 
 const PORT = 3000
 
+// COLOQUE SEUS DADOS DO DISCORD AQUI
+const DISCORD_CLIENT_ID = "1482561610798071899"
+const DISCORD_CLIENT_SECRET = "QDbKAyWgUmQxLUrbfstrMcii_iwlp2B6"
+const DISCORD_CALLBACK = "http://localhost:3000/auth/discord/callback"
+
 const uploads = path.join(__dirname,"../uploads")
 const apps = path.join(__dirname,"../apps")
 const database = path.join(__dirname,"../database")
@@ -30,9 +35,9 @@ let runningBots = {}
 // CRIAR PASTAS
 //////////////////////////////////////////////////
 
-if(!fs.existsSync(uploads)) fs.mkdirSync(uploads)
-if(!fs.existsSync(apps)) fs.mkdirSync(apps)
-if(!fs.existsSync(database)) fs.mkdirSync(database)
+if(!fs.existsSync(uploads)) fs.mkdirSync(uploads,{recursive:true})
+if(!fs.existsSync(apps)) fs.mkdirSync(apps,{recursive:true})
+if(!fs.existsSync(database)) fs.mkdirSync(database,{recursive:true})
 if(!fs.existsSync(usersFile)) fs.writeFileSync(usersFile,"[]")
 
 //////////////////////////////////////////////////
@@ -66,9 +71,9 @@ done(null,obj)
 
 passport.use(new DiscordStrategy({
 
-clientID:"SEU_CLIENT_ID",
-clientSecret:"SEU_CLIENT_SECRET",
-callbackURL:"http://localhost:3000/auth/discord/callback",
+clientID: DISCORD_CLIENT_ID,
+clientSecret: DISCORD_CLIENT_SECRET,
+callbackURL: DISCORD_CALLBACK,
 scope:["identify","email"]
 
 },
@@ -165,6 +170,8 @@ const upload = multer({storage})
 
 app.post("/upload",checkAuth,upload.single("bot"),async(req,res)=>{
 
+if(!req.file) return res.send("Nenhum arquivo enviado")
+
 const zipPath=req.file.path
 const botId=Date.now().toString()
 const botFolder=path.join(apps,botId)
@@ -181,9 +188,10 @@ let users = JSON.parse(fs.readFileSync(usersFile))
 
 let user = users.find(u=>u.id === req.user.id)
 
+if(user){
 user.bots.push(botId)
-
 fs.writeFileSync(usersFile,JSON.stringify(users,null,2))
+}
 
 res.json({
 status:"Bot enviado",
@@ -258,6 +266,8 @@ app.get("/bots",checkAuth,(req,res)=>{
 let users = JSON.parse(fs.readFileSync(usersFile))
 
 let user = users.find(u=>u.id === req.user.id)
+
+if(!user) return res.json({bots:[]})
 
 res.json({
 bots:user.bots
