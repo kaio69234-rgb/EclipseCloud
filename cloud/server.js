@@ -10,7 +10,6 @@ const session = require("express-session")
 const passport = require("passport")
 const DiscordStrategy = require("passport-discord").Strategy
 
-// melhorias avançadas
 const compression = require("compression")
 const rateLimit = require("express-rate-limit")
 
@@ -22,11 +21,9 @@ const app = express()
 
 const PORT = process.env.PORT || 3000
 
-// DISCORD
 const DISCORD_CLIENT_ID = process.env.DISCORD_CLIENT_ID || "1482561610798071899"
 const DISCORD_CLIENT_SECRET = process.env.DISCORD_CLIENT_SECRET || "QDbKAyWgUmQxLUrbfstrMcii_iwlp2B6"
 
-// AUTO CALLBACK PARA RENDER
 const DOMAIN = process.env.RENDER_EXTERNAL_URL || `http://localhost:${PORT}`
 const DISCORD_CALLBACK = `${DOMAIN}/auth/discord/callback`
 
@@ -52,6 +49,32 @@ if(!fs.existsSync(database)) fs.mkdirSync(database,{recursive:true})
 
 if(!fs.existsSync(usersFile)){
 fs.writeFileSync(usersFile,JSON.stringify([],null,2))
+}
+
+//////////////////////////////////////////////////
+// FUNÇÃO SEGURA LER USERS
+//////////////////////////////////////////////////
+
+function getUsers(){
+
+try{
+
+const data = fs.readFileSync(usersFile)
+
+return JSON.parse(data)
+
+}catch{
+
+return []
+
+}
+
+}
+
+function saveUsers(users){
+
+fs.writeFileSync(usersFile,JSON.stringify(users,null,2))
+
 }
 
 //////////////////////////////////////////////////
@@ -112,7 +135,7 @@ scope:["identify","email"]
 
 (accessToken,refreshToken,profile,done)=>{
 
-let users = JSON.parse(fs.readFileSync(usersFile))
+let users = getUsers()
 
 let user = users.find(u=>u.id === profile.id)
 
@@ -128,7 +151,7 @@ created:Date.now()
 
 users.push(user)
 
-fs.writeFileSync(usersFile,JSON.stringify(users,null,2))
+saveUsers(users)
 
 console.log("👤 Novo usuário:",profile.username)
 
@@ -139,7 +162,7 @@ return done(null,user)
 }))
 
 //////////////////////////////////////////////////
-// AUTH MIDDLEWARE
+// AUTH
 //////////////////////////////////////////////////
 
 function checkAuth(req,res,next){
@@ -151,7 +174,7 @@ return res.redirect("/login.html")
 }
 
 //////////////////////////////////////////////////
-// ROTAS LOGIN
+// LOGIN
 //////////////////////////////////////////////////
 
 app.get("/auth/discord",
@@ -171,9 +194,13 @@ res.redirect("/dashboard")
 
 app.get("/logout",(req,res)=>{
 
+if(req.logout){
 req.logout(()=>{
 res.redirect("/")
 })
+}else{
+res.redirect("/")
+}
 
 })
 
@@ -232,7 +259,6 @@ await fs.createReadStream(zipPath)
 
 fs.unlinkSync(zipPath)
 
-// verificar index.js
 if(!fs.existsSync(path.join(botFolder,"index.js"))){
 
 fs.rmSync(botFolder,{recursive:true,force:true})
@@ -241,7 +267,7 @@ return res.send("Arquivo index.js não encontrado")
 
 }
 
-let users = JSON.parse(fs.readFileSync(usersFile))
+let users = getUsers()
 
 let user = users.find(u=>u.id === req.user.id)
 
@@ -249,7 +275,7 @@ if(user){
 
 user.bots.push(botId)
 
-fs.writeFileSync(usersFile,JSON.stringify(users,null,2))
+saveUsers(users)
 
 }
 
@@ -278,8 +304,7 @@ if(runningBots[id])
 return res.send("Bot já rodando")
 
 const proc=spawn("node",["index.js"],{
-cwd:botPath,
-shell:true
+cwd:botPath
 })
 
 runningBots[id]=proc
@@ -333,7 +358,7 @@ res.send("Bot parado")
 
 app.get("/bots",checkAuth,(req,res)=>{
 
-let users = JSON.parse(fs.readFileSync(usersFile))
+let users = getUsers()
 
 let user = users.find(u=>u.id === req.user.id)
 
@@ -347,7 +372,7 @@ running:Object.keys(runningBots)
 })
 
 //////////////////////////////////////////////////
-// STATUS API
+// STATUS
 //////////////////////////////////////////////////
 
 app.get("/status",(req,res)=>{
