@@ -524,3 +524,20 @@ max-width:1100px;
 margin:auto;
 padding:40px 20px;
 }
+
+/* ===================== */
+/* CURSOR DIGITAÇÃO */
+/* ===================== */
+
+.cursor{
+display:inline-block;
+margin-left:4px;
+color:#22c55e;
+animation:blink 1s infinite;
+}
+
+@keyframes blink{
+0%{opacity:1;}
+50%{opacity:0;}
+100%{opacity:1;}
+}
