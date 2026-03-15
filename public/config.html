@@ -1,8 +1,16 @@
-<!DOCTYPE html><html lang="pt-br">
+<!DOCTYPE html>
+<html lang="pt-br">
+
 <head>
+
 <meta charset="UTF-8">
-<title>eclipsecloud.config</title>
-<script src="https://unpkg.com/lucide@latest"></script><style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>EclipseCloud Config</title>
+
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<style>
 
 body{
 background:linear-gradient(180deg,#08142c,#0c2a4d);
@@ -36,6 +44,7 @@ margin:20px auto;
 label{
 display:block;
 margin-top:15px;
+font-weight:bold;
 }
 
 input,select{
@@ -50,7 +59,6 @@ color:white;
 
 button{
 padding:10px 15px;
-background:#7b5cff;
 border:none;
 color:white;
 margin-top:15px;
@@ -59,17 +67,27 @@ cursor:pointer;
 }
 
 button:hover{
-background:#6a4be6;
+opacity:0.9;
+}
+
+.generate{
+background:#7b5cff;
+}
+
+.copy{
+background:#2ecc71;
+}
+
+.download{
+background:#3498db;
 }
 
 .buttons{
 display:flex;
 gap:10px;
 margin-bottom:10px;
+flex-wrap:wrap;
 }
-
-.copy{background:#2ecc71;}
-.download{background:#3498db;}
 
 .preview-box{
 background:black;
@@ -98,6 +116,8 @@ margin-top:40px;
 color:#ccc;
 }
 
+/* MOBILE */
+
 @media(max-width:768px){
 
 .grid{
@@ -106,28 +126,43 @@ grid-template-columns:1fr;
 
 }
 
-</style></head><body><div class="container"><div class="title">
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="title">
 <h1><i data-lucide="settings"></i> eclipsecloud.config</h1>
 <p class="subtitle">Gerador inteligente para configurar aplicações</p>
-</div><div class="panel"><h2>Configuração</h2><label>Arquivo Principal *</label>
+</div>
+
+<div class="panel">
+
+<h2>Configuração</h2>
+
+<label>Arquivo Principal *</label>
 <input id="main" value="index.js">
 
 <label>Tipo</label>
 <select id="type">
-
 <option value="bot">bot</option>
 <option value="site">site</option>
-</select><label>RAM (MB)</label>
+</select>
+
+<label>RAM (MB)</label>
 <input id="ram" value="100">
 
 <label>Nome</label>
 <input id="name" placeholder="Meu Bot Incrível">
 
 <label>Avatar URL</label>
-<input id="avatar">
+<input id="avatar" placeholder="https://exemplo.com/avatar.png">
 
 <label>Pacotes APT</label>
-<input id="apt">
+<input id="apt" placeholder="tools, ffmpeg, canvas">
 
 <label>Comando de início</label>
 <input id="start" value="npm run start">
@@ -137,40 +172,100 @@ grid-template-columns:1fr;
 
 <label>Auto Restart</label>
 <select id="restart">
-
 <option value="true">true</option>
 <option value="false">false</option>
-</select><button onclick="gerar()">Gerar Config</button>
+</select>
 
-</div><div class="panel"><div class="buttons">
-<button class="copy" onclick="copiar()">Copiar</button>
-<button class="download" onclick="baixar()">Baixar</button>
-</div><h2>Preview do Arquivo</h2><div class="preview-box">
+<button class="generate" onclick="gerar()">
+Gerar Config
+</button>
+
+</div>
+
+
+<div class="panel">
+
+<div class="buttons">
+
+<button class="copy" onclick="copiar()">
+Copiar
+</button>
+
+<button class="download" onclick="baixar()">
+Baixar
+</button>
+
+</div>
+
+<h2>Preview do Arquivo</h2>
+
+<div class="preview-box">
 <pre id="output">MAIN=index.js</pre>
-</div></div><div class="panel"><h2>O que é o eclipsecloud.config?</h2><p>
+</div>
+
+</div>
+
+
+<div class="panel">
+
+<h2>O que é o eclipsecloud.config?</h2>
+
+<p>
 Arquivo de configuração usado para automatizar o deploy de aplicações na EclipseCloud.
-Ele define informações como memória, arquivo principal e comandos de inicialização.
-</p></div><div class="panel"><h2>Parâmetros do Arquivo</h2><div class="grid"><div class="card">
+Ele define memória, arquivo principal e comandos de inicialização.
+</p>
+
+</div>
+
+
+<div class="panel">
+
+<h2>Parâmetros do Arquivo</h2>
+
+<div class="grid">
+
+<div class="card">
 <h3>MAIN</h3>
 Arquivo principal da aplicação
-</div><div class="card">
+</div>
+
+<div class="card">
 <h3>TYPE</h3>
 bot ou site
-</div><div class="card">
+</div>
+
+<div class="card">
 <h3>RAM</h3>
 Memória da aplicação
-</div><div class="card">
+</div>
+
+<div class="card">
 <h3>NAME</h3>
 Nome exibido no painel
-</div><div class="card">
+</div>
+
+<div class="card">
 <h3>APT</h3>
 Pacotes extras do sistema
-</div><div class="card">
+</div>
+
+<div class="card">
 <h3>START</h3>
 Comando de inicialização
-</div></div></div><div class="footer">
-© EclipseCloud
-</div></div><script>
+</div>
+
+</div>
+
+</div>
+
+<div class="footer">
+© 2026 EclipseCloud
+</div>
+
+</div>
+
+
+<script>
 
 function gerar(){
 
@@ -200,6 +295,7 @@ document.getElementById("output").textContent=config
 
 }
 
+
 function copiar(){
 
 let text=document.getElementById("output").textContent
@@ -211,6 +307,7 @@ alert("Erro ao copiar")
 })
 
 }
+
 
 function baixar(){
 
@@ -232,7 +329,10 @@ document.body.removeChild(link)
 
 }
 
+
 lucide.createIcons()
 
-</script></body>
-  </html>
+</script>
+
+</body>
+</html>
