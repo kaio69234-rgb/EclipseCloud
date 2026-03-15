@@ -6,9 +6,333 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Planos • EclipseCloud</title>
+<title>EclipseCloud • Planos</title>
 
-<link rel="stylesheet" href="style.css">
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Inter,Arial;
+}
+
+body{
+
+background:
+radial-gradient(circle at 20% 0%,#1f8f4a33,transparent 40%),
+radial-gradient(circle at 80% 10%,#1f8f4a33,transparent 40%),
+#040606;
+
+color:white;
+
+}
+
+/* NAVBAR */
+
+.navbar{
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+padding:20px 40px;
+
+border-bottom:1px solid #1a1a1a;
+
+}
+
+.navbar h2{
+
+color:#7CFF9E;
+
+}
+
+.navbar ul{
+
+display:flex;
+gap:25px;
+list-style:none;
+
+font-size:14px;
+
+}
+
+/* HERO */
+
+.hero{
+
+text-align:center;
+
+padding:80px 20px;
+
+max-width:900px;
+
+margin:auto;
+
+}
+
+.hero h1{
+
+font-size:46px;
+
+margin-bottom:10px;
+
+}
+
+.hero p{
+
+color:#9ca3af;
+
+}
+
+/* CONTAINER */
+
+.container{
+
+max-width:1100px;
+
+margin:auto;
+
+padding:40px 20px;
+
+}
+
+/* PLANOS */
+
+.plans{
+
+display:grid;
+
+grid-template-columns:repeat(2,1fr);
+
+gap:30px;
+
+margin-top:40px;
+
+}
+
+.plan{
+
+background:linear-gradient(160deg,#0f1412,#070a09);
+
+border-radius:16px;
+
+padding:25px;
+
+border:1px solid #1c1c1c;
+
+box-shadow:0 10px 30px rgba(0,0,0,.6);
+
+}
+
+.plan h3{
+
+color:#4ade80;
+
+margin-bottom:10px;
+
+}
+
+.plan .ram{
+
+font-size:22px;
+
+font-weight:bold;
+
+margin-bottom:10px;
+
+}
+
+.plan ul{
+
+list-style:none;
+
+color:#9ca3af;
+
+font-size:14px;
+
+}
+
+.plan li{
+
+margin:6px 0;
+
+}
+
+.price{
+
+margin-top:20px;
+
+font-weight:bold;
+
+}
+
+.plan button{
+
+margin-top:10px;
+
+background:#22c55e;
+
+border:none;
+
+padding:10px 20px;
+
+border-radius:6px;
+
+cursor:pointer;
+
+}
+
+/* RUBY */
+
+.ruby{
+
+background:linear-gradient(160deg,#1b0a0a,#070a09);
+
+border:1px solid #7f1d1d;
+
+}
+
+.ruby h3{
+
+color:#f87171;
+
+}
+
+/* FEATURES */
+
+.features{
+
+display:grid;
+
+grid-template-columns:1fr 1fr;
+
+gap:30px;
+
+margin-top:70px;
+
+}
+
+.feature{
+
+text-align:center;
+
+color:#9ca3af;
+
+}
+
+.feature h4{
+
+color:white;
+
+margin-bottom:5px;
+
+}
+
+/* CARD ROXO */
+
+.purple{
+
+background:linear-gradient(135deg,#5b21b6,#9333ea);
+
+padding:30px;
+
+border-radius:16px;
+
+text-align:center;
+
+}
+
+.purple button{
+
+margin-top:10px;
+
+background:#a855f7;
+
+border:none;
+
+padding:10px 20px;
+
+border-radius:6px;
+
+color:white;
+
+}
+
+/* TABELA */
+
+.table-section{
+
+margin-top:80px;
+
+}
+
+table{
+
+width:100%;
+
+border-collapse:collapse;
+
+background:#0c0f0e;
+
+border-radius:12px;
+
+overflow:hidden;
+
+}
+
+th,td{
+
+padding:14px;
+
+border-bottom:1px solid #1a1a1a;
+
+text-align:center;
+
+}
+
+th{
+
+color:#4ade80;
+
+}
+
+/* FOOTER */
+
+footer{
+
+margin-top:80px;
+
+padding:30px;
+
+text-align:center;
+
+color:#6b7280;
+
+border-top:1px solid #1a1a1a;
+
+}
+
+/* RESPONSIVO */
+
+@media(max-width:800px){
+
+.plans{
+
+grid-template-columns:1fr;
+
+}
+
+.features{
+
+grid-template-columns:1fr;
+
+}
+
+}
+
+</style>
 
 </head>
 
@@ -16,144 +340,154 @@
 
 <nav class="navbar">
 
-<div class="nav-left">
 <h2>EclipseCloud</h2>
-</div>
 
-<ul class="nav-menu">
-<li><a href="/">Home</a></li>
-<li><a href="/planos.html">Planos</a></li>
+<ul>
+<li>Home</li>
+<li>Planos</li>
+<li>Ferramentas</li>
+<li>Recursos</li>
 </ul>
 
 </nav>
 
-<section class="plans-hero">
+<section class="hero">
 
 <h1>Preço simples, justo e previsível</h1>
 
 <p>
-Comece gratuitamente e altere o seu plano sempre que precisar.
+Comece gratuitamente e altere seu plano sempre que precisar.
 </p>
 
 </section>
 
-<section class="plans-grid">
+<div class="container">
 
-<div class="plan-card">
+<div class="plans">
 
-<h2>Gold</h2>
-<p class="ram">1 GB RAM</p>
+<div class="plan">
+
+<h3>Gold</h3>
+
+<div class="ram">1 GB RAM</div>
 
 <ul>
+
 <li>1 vCPU</li>
-<li>SSD NVMe Empresarial</li>
+<li>SSD NVMe</li>
 <li>Banda ilimitada</li>
+
 </ul>
 
-<div class="price">
-R$5,99 <span>/mês</span>
-</div>
+<div class="price">R$5,99 / mês</div>
 
 <button>Comprar</button>
 
 </div>
 
-<div class="plan-card">
+<div class="plan">
 
-<h2>Platinum</h2>
-<p class="ram">2 GB RAM</p>
+<h3>Platinum</h3>
+
+<div class="ram">2 GB RAM</div>
 
 <ul>
+
 <li>2 vCPU</li>
-<li>SSD NVMe Empresarial</li>
+<li>SSD NVMe</li>
 <li>Banda ilimitada</li>
+
 </ul>
 
-<div class="price">
-R$10,99 <span>/mês</span>
-</div>
+<div class="price">R$10,99 / mês</div>
 
 <button>Comprar</button>
 
 </div>
 
-<div class="plan-card popular">
+<div class="plan">
 
-<h2>Diamond</h2>
-<p class="ram">4 GB RAM</p>
+<h3>Diamond</h3>
+
+<div class="ram">4 GB RAM</div>
 
 <ul>
+
 <li>4 vCPU</li>
-<li>SSD NVMe Empresarial</li>
+<li>SSD NVMe</li>
 <li>Banda ilimitada</li>
+
 </ul>
 
-<div class="price">
-R$24,00 <span>/mês</span>
-</div>
+<div class="price">R$24 / mês</div>
 
 <button>Comprar</button>
 
 </div>
 
-<div class="plan-card">
+<div class="plan ruby">
 
-<h2>Ruby</h2>
-<p class="ram">8 GB RAM</p>
+<h3>Ruby</h3>
+
+<div class="ram">8 GB RAM</div>
 
 <ul>
+
 <li>8 vCPU</li>
-<li>SSD NVMe Empresarial</li>
+<li>SSD NVMe</li>
 <li>Banda ilimitada</li>
+
 </ul>
 
-<div class="price">
-R$48,00 <span>/mês</span>
-</div>
+<div class="price">R$48 / mês</div>
 
 <button>Comprar</button>
 
 </div>
 
-</section>
+</div>
 
-<section class="plans-features">
+<div class="features">
 
 <div class="feature">
 
-<h3>Milhares de Apps</h3>
+<h4>Milhares de Apps</h4>
+
 <p>Gerencie e controle tudo em um só lugar</p>
 
 </div>
 
 <div class="feature">
 
-<h3>Performance Máxima</h3>
+<h4>Performance Máxima</h4>
+
 <p>Recursos dedicados e IP exclusivo</p>
 
 </div>
 
 <div class="feature">
 
-<h3>Recursos Sob Medida</h3>
+<h4>Recursos Sob Medida</h4>
+
 <p>Defina RAM, vCPU e SSD que quiser</p>
 
 </div>
 
-<div class="feature">
+<div class="purple">
 
-<h3>Plano Vibranium</h3>
+<h4>Plano Vibranium</h4>
+
 <p>Para empresas e grandes projetos</p>
+
+<button>Falar com a equipe</button>
 
 </div>
 
-</section>
+</div>
 
-<section class="plans-table">
+<div class="table-section">
 
 <table>
-
-<thead>
 
 <tr>
 
@@ -165,91 +499,45 @@ R$48,00 <span>/mês</span>
 
 </tr>
 
-</thead>
-
-<tbody>
-
 <tr>
+
 <td>RAM</td>
 <td>100MB</td>
 <td>1GB</td>
 <td>4GB</td>
 <td>8GB</td>
+
 </tr>
 
 <tr>
+
 <td>Processador</td>
 <td>AMD</td>
 <td>AMD</td>
 <td>AMD</td>
 <td>AMD</td>
+
 </tr>
 
 <tr>
+
 <td>Máximo de Bots</td>
 <td>1</td>
 <td>10</td>
 <td>40</td>
 <td>80</td>
-</tr>
 
-<tr>
-<td>Auto Restart</td>
-<td>✔</td>
-<td>✔</td>
-<td>✔</td>
-<td>✔</td>
 </tr>
-
-<tr>
-<td>Deploy GitHub</td>
-<td>✖</td>
-<td>✔</td>
-<td>✔</td>
-<td>✔</td>
-</tr>
-
-</tbody>
 
 </table>
 
-</section>
-
-<footer class="footer">
-
-<div class="footer-grid">
-
-<div>
-<h3>EclipseCloud</h3>
-<p>Hospedagem moderna para bots e aplicações.</p>
-</div>
-
-<div>
-<h4>Empresa</h4>
-<p>Planos</p>
-<p>Sobre</p>
-<p>Marca</p>
-</div>
-
-<div>
-<h4>API</h4>
-<p>Como usar</p>
-<p>NodeJS</p>
-<p>Python</p>
-</div>
-
-<div>
-<h4>Recursos</h4>
-<p>Hospedar</p>
-<p>Contato</p>
-<p>Blog</p>
 </div>
 
 </div>
 
-<p class="copy">
-© 2026 EclipseCloud
-</p>
+<footer>
+
+© 2026 EclipseCloud • Hospedagem moderna para bots e aplicações
 
 </footer>
 
