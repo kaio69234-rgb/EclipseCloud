@@ -8,7 +8,14 @@
 
 <title>EclipseCloud</title>
 
+<!-- LIBS -->
+
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
+<script src="https://unpkg.com/scrollreveal"></script>
+
 <style>
+
+/* RESET */
 
 *{
 margin:0;
@@ -22,6 +29,44 @@ background:
 radial-gradient(circle at 20% 0%,rgba(34,197,94,.15),transparent 40%),
 #050707;
 color:white;
+overflow-x:hidden;
+}
+
+/* PARTICLES */
+
+#particles{
+position:fixed;
+width:100%;
+height:100%;
+top:0;
+left:0;
+z-index:-1;
+}
+
+/* LOADER */
+
+#loader{
+position:fixed;
+width:100%;
+height:100vh;
+background:#050707;
+display:flex;
+align-items:center;
+justify-content:center;
+z-index:9999;
+}
+
+.spinner{
+width:50px;
+height:50px;
+border:4px solid #1f2937;
+border-top:4px solid #22c55e;
+border-radius:50%;
+animation:spin 1s linear infinite;
+}
+
+@keyframes spin{
+to{transform:rotate(360deg);}
 }
 
 /* NAVBAR */
@@ -57,6 +102,27 @@ transition:0.2s;
 color:#22c55e;
 }
 
+/* DROPDOWN */
+
+.dropdown{
+position:relative;
+}
+
+.dropdown-menu{
+position:absolute;
+top:30px;
+background:#0f1412;
+border:1px solid #1f2937;
+padding:10px;
+border-radius:8px;
+display:none;
+list-style:none;
+}
+
+.dropdown:hover .dropdown-menu{
+display:block;
+}
+
 /* HERO */
 
 .hero{
@@ -82,6 +148,8 @@ margin-top:10px;
 color:#9ca3af;
 font-size:18px;
 }
+
+/* BUTTONS */
 
 .hero-buttons{
 margin-top:25px;
@@ -114,6 +182,8 @@ text-decoration:none;
 color:white;
 }
 
+/* USERS */
+
 .users{
 margin-top:30px;
 display:flex;
@@ -141,15 +211,26 @@ color:#9ca3af;
 margin-left:5px;
 }
 
-/* ICONES */
+/* TECH */
 
 .tech{
 margin-top:80px;
 display:flex;
 justify-content:center;
 gap:50px;
-opacity:.6;
-font-size:40px;
+}
+
+.tech img{
+width:45px;
+opacity:.7;
+transition:.3s;
+filter:grayscale(1);
+}
+
+.tech img:hover{
+opacity:1;
+transform:scale(1.1);
+filter:grayscale(0);
 }
 
 /* SECTIONS */
@@ -197,22 +278,8 @@ gap:60px;
 width:250px;
 }
 
-.hardware h2{
-font-size:36px;
-}
-
 .hardware span{
 color:#60a5fa;
-}
-
-.hardware ul{
-margin-top:15px;
-list-style:none;
-}
-
-.hardware li{
-margin:8px 0;
-color:#cbd5e1;
 }
 
 /* CTA */
@@ -220,14 +287,6 @@ color:#cbd5e1;
 .cta{
 text-align:center;
 padding:120px 20px;
-}
-
-.cta h2{
-font-size:40px;
-}
-
-.cta span{
-color:#22c55e;
 }
 
 .cta button{
@@ -252,25 +311,13 @@ flex-wrap:wrap;
 gap:40px;
 }
 
-footer h3{
-margin-bottom:10px;
-}
-
-footer ul{
-list-style:none;
-color:#9ca3af;
-}
-
-footer li{
-margin:6px 0;
-}
-
 .copy{
 text-align:center;
 padding:20px;
 color:#6b7280;
-font-size:14px;
 }
+
+/* MOBILE */
 
 @media(max-width:900px){
 
@@ -292,18 +339,40 @@ font-size:38px;
 
 <body>
 
+<div id="loader">
+<div class="spinner"></div>
+</div>
+
+<div id="particles"></div>
+
 <nav class="navbar">
 
 <div class="logo">EclipseCloud</div>
 
 <ul>
+
 <li><a href="/">Início</a></li>
 <li><a href="/planos.html">Planos</a></li>
-<li><a href="#">Serviços</a></li>
+
+<li class="dropdown">
+
+<a href="#">Serviços</a>
+
+<ul class="dropdown-menu">
+
+<li>Hospedagem de Bots</li>
+<li>Hospedagem de Sites</li>
+<li>API Cloud</li>
+
+</ul>
+
+</li>
+
 <li><a href="#">Ferramentas</a></li>
 <li><a href="#">Recursos</a></li>
 <li><a href="#">Templates</a></li>
 <li><a href="#">Documentação</a></li>
+
 </ul>
 
 </nav>
@@ -315,19 +384,12 @@ font-size:38px;
 <span class="gradient"> Online Agora!</span>
 </h1>
 
-<p>
-Transformando a forma como você hospeda suas aplicações
-</p>
+<p>Transformando a forma como você hospeda suas aplicações</p>
 
 <div class="hero-buttons">
 
-<a href="/planos.html" class="btn-primary">
-Comece gratuitamente →
-</a>
-
-<a href="#" class="btn-secondary">
-Painel
-</a>
+<a href="/planos.html" class="btn-primary">Comece gratuitamente →</a>
+<a href="#" class="btn-secondary">Painel</a>
 
 </div>
 
@@ -347,7 +409,10 @@ Painel
 
 <div class="tech">
 
-⚙️ 🐍 💎 🐳 ☕ ⚡
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg">
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg">
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg">
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg">
 
 </div>
 
@@ -361,31 +426,7 @@ Painel
 
 <h2>Hospedagem de Sites</h2>
 
-<p>
-Desde um simples site estático até APIs completas,
-oferecemos infraestrutura escalável para suas aplicações.
-</p>
-
-<button onclick="location.href='/planos.html'">
-Ver todos os recursos →
-</button>
-
-</div>
-
-</section>
-
-<section class="section">
-
-<div>
-
-<p style="color:#22c55e">Gratuito para sempre</p>
-
-<h2>Hospedamos Bots de qualquer plataforma</h2>
-
-<p>
-Hospede bots Discord, Telegram e outras aplicações
-com estabilidade e performance profissional.
-</p>
+<p>Desde um simples site estático até APIs completas, oferecemos infraestrutura escalável.</p>
 
 <button onclick="location.href='/planos.html'">
 Ver todos os recursos →
@@ -405,95 +446,79 @@ Ver todos os recursos →
 
 <ul>
 
-<li>⚡ AMD EPYC™ Architecture</li>
-<li>⚙️ Processamento de alto desempenho</li>
+<li>⚡ AMD EPYC Architecture</li>
 <li>💾 Memória RAM de alta frequência</li>
 <li>🚀 SSD NVMe empresarial</li>
-<li>📈 Alta escalabilidade</li>
 
 </ul>
 
 </div>
-
-</section>
-
-<section class="cta">
-
-<h2>
-Sua aplicação merece o melhor e nós temos
-o <span>plano perfeito</span> para você
-</h2>
-
-<button onclick="location.href='/planos.html'">
-Conheça agora
-</button>
 
 </section>
 
 <footer>
 
 <div>
+
 <h3>EclipseCloud</h3>
+
 <ul>
 <li>Download Desktop</li>
 <li>Download CLI</li>
 </ul>
-</div>
 
-<div>
-<h3>Empresa</h3>
-<ul>
-<li>Planos</li>
-<li>Sobre</li>
-<li>Marca</li>
-</ul>
-</div>
-
-<div>
-<h3>API</h3>
-<ul>
-<li>NodeJS</li>
-<li>Python</li>
-<li>Como usar</li>
-</ul>
-</div>
-
-<div>
-<h3>Recursos</h3>
-<ul>
-<li>Como hospedar?</li>
-<li>Fale conosco</li>
-<li>Blog</li>
-</ul>
 </div>
 
 </footer>
 
 <div class="copy">
-© 2026 EclipseCloud • Todos os direitos reservados
+© 2026 EclipseCloud
 </div>
 
 <script>
 
-const text = "Seu Bot";
-const speed = 90;
-let i = 0;
+/* LOADER */
+
+window.addEventListener("load",()=>{
+document.getElementById("loader").style.display="none"
+})
+
+/* TYPEWRITER */
+
+const text="Seu Bot"
+let i=0
 
 function typeWriter(){
 
-if(i < text.length){
+if(i<text.length){
 
-document.getElementById("typing").innerHTML += text.charAt(i);
+document.getElementById("typing").innerHTML+=text.charAt(i)
 
-i++;
+i++
 
-setTimeout(typeWriter, speed);
-
-}
+setTimeout(typeWriter,90)
 
 }
 
-typeWriter();
+}
+
+typeWriter()
+
+/* PARTICLES */
+
+tsParticles.load("particles",{
+particles:{
+number:{value:40},
+size:{value:2},
+move:{speed:0.5},
+opacity:{value:0.4}
+}
+})
+
+/* SCROLL ANIMATION */
+
+ScrollReveal().reveal('.hero',{distance:'60px',duration:1000,origin:'bottom'})
+ScrollReveal().reveal('.section',{interval:200})
 
 </script>
 
