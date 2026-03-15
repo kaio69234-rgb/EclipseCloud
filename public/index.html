@@ -1,119 +1,308 @@
-<!DOCTYPE html><html lang="pt-br"><head>
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>EclipseCloud Config Generator</title><link rel="stylesheet" href="style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>EclipseCloud Config Generator</title>
+
+<link rel="stylesheet" href="style.css">
+
 <script src="https://unpkg.com/lucide@latest"></script>
-</head><body><nav class="navbar"><div class="nav-left">
+</head>
+
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+<div class="nav-left">
 <h2>EclipseCloud</h2>
-</div><ul class="nav-menu">
+</div>
+
+<ul class="nav-menu">
 <li>Planos</li>
 <li>Serviços</li>
 <li>Ferramentas</li>
 <li>Recursos</li>
 <li>Templates</li>
 <li>Documentação</li>
-</ul></nav><div class="container"><div class="title"><h1>
+</ul>
+</nav>
+
+
+<div class="container">
+
+
+<!-- TÍTULO -->
+
+<div class="title">
+<h1>
 <i data-lucide="settings"></i>
 eclipse.config
-</h1><p class="subtitle">
+</h1>
+
+<p class="subtitle">
 Gerador inteligente para configurar aplicações
-</p></div><div class="panel"><h2>
+</p>
+</div>
+
+
+<!-- CONFIGURAÇÃO -->
+
+<div class="panel">
+
+<h2>
 <i data-lucide="sliders"></i>
 Configuração
-</h2><label>Arquivo Principal *</label>
+</h2>
+
+<label>Arquivo Principal *</label>
 <input id="main" value="index.js" oninput="gerar()">
+
 
 <label>Tipo</label>
 <select id="type" oninput="gerar()">
 
 <option value="bot">bot</option>
 <option value="site">site</option>
-</select><label>RAM (MB)</label>
+
+</select>
+
+
+<label>RAM (MB)</label>
 <input id="ram" value="100" oninput="gerar()">
+
 
 <label>Nome</label>
 <input id="name" placeholder="Meu Bot Incrível" oninput="gerar()">
 
+
 <label>Avatar URL</label>
 <input id="avatar" oninput="gerar()">
+
 
 <label>Pacotes APT</label>
 <input id="apt" oninput="gerar()">
 
+
 <label>Comando de início</label>
 <input id="start" value="npm run start" oninput="gerar()">
 
+
 <label>Comando de build</label>
 <input id="build" value="npm run build" oninput="gerar()">
+
 
 <label>Auto Restart</label>
 <select id="restart" oninput="gerar()">
 
 <option value="true">true</option>
 <option value="false">false</option>
-</select></div><div class="panel"><div class="preview-header"><h2>
+
+</select>
+
+</div>
+
+
+
+<!-- PREVIEW -->
+
+<div class="panel">
+
+<div class="preview-header">
+
+<h2>
 <i data-lucide="file-text"></i>
 Preview do Arquivo
-</h2><div class="buttons"><button class="copy" onclick="copiar()">
+</h2>
+
+<div class="buttons">
+
+<button class="copy" onclick="copiar()">
 <i data-lucide="copy"></i>
 Copiar
-</button><button class="download" onclick="baixar()">
+</button>
+
+<button class="download" onclick="baixar()">
 <i data-lucide="download"></i>
 Baixar
-</button></div></div><div class="terminal"><div class="terminal-top"><div class="dots">
+</button>
+
+</div>
+
+</div>
+
+
+<div class="terminal">
+
+<div class="terminal-top">
+
+<div class="dots">
 <span class="dot red"></span>
 <span class="dot yellow"></span>
 <span class="dot green"></span>
-</div><div class="terminal-title">
+</div>
+
+<div class="terminal-title">
 ⚙ eclipse.config
-</div></div><pre id="output"></pre></div></div><div class="panel"><h2>
+</div>
+
+</div>
+
+<pre id="output"></pre>
+
+</div>
+</div>
+
+
+
+<!-- O QUE É -->
+
+<div class="panel">
+
+<h2>
 <i data-lucide="book-open"></i>
 O que é o eclipse.config?
-</h2><p>
+</h2>
+
+<p>
 O <code>eclipse.config</code> é um arquivo de configuração que automatiza o
 processo de upload e configuração de aplicações na EclipseCloud.
 Com ele você não precisa preencher formulários manualmente a cada deploy.
-</p><div class="important"><h3>⚠️ Importante</h3><p>
+</p>
+
+<div class="important">
+
+<h3>⚠️ Importante</h3>
+
+<p>
 O arquivo deve estar na raiz do seu projeto e ser incluído no .zip enviado
 para a EclipseCloud. Sem ele o upload da aplicação não funcionará.
-</p></div></div><div class="panel"><h2>
+</p>
+
+</div>
+
+</div>
+
+
+
+<!-- PARÂMETROS -->
+
+<div class="panel">
+
+<h2>
 <i data-lucide="code"></i>
 Parâmetros do Arquivo
-</h2><div class="grid"><div class="card">
+</h2>
+
+<div class="grid">
+
+<div class="card">
 <h3>MAIN</h3>
 Arquivo principal
-</div><div class="card">
+</div>
+
+<div class="card">
 <h3>TYPE</h3>
 bot ou site
-</div><div class="card">
+</div>
+
+<div class="card">
 <h3>RAM</h3>
 Memória usada
-</div><div class="card">
+</div>
+
+<div class="card">
 <h3>NAME</h3>
 Nome exibido
-</div><div class="card">
+</div>
+
+<div class="card">
 <h3>APT</h3>
 Pacotes extras
-</div><div class="card">
+</div>
+
+<div class="card">
 <h3>START</h3>
 Comando de inicialização
-</div></div></div><div class="panel"><h2>
+</div>
+
+</div>
+</div>
+
+
+
+<!-- EXEMPLOS -->
+
+<div class="panel">
+
+<h2>
 <i data-lucide="file-text"></i>
 Exemplos Práticos
-</h2><div class="grid"><div class="card"><h3>🤖 Configuração para Bot</h3><pre>
+</h2>
+
+<div class="grid">
+
+
+<div class="card">
+
+<h3>🤖 Configuração para Bot</h3>
+
+<pre>
 NAME=Meu Bot Discord
 TYPE=bot
 MAIN=index.js
 RAM=100
-</pre><p>Ideal para: Bots Discord, Telegram, WhatsApp etc.</p></div><div class="card"><h3>🌐 Configuração para Site</h3><pre>
+</pre>
+
+<p>
+Ideal para: Bots Discord, Telegram, WhatsApp etc.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h3>🌐 Configuração para Site</h3>
+
+<pre>
 ID=meusite.eclipse.app
 TYPE=site
 MAIN=index.ts
 RAM=512
 START=npm run start
-</pre><p>Ideal para: APIs, sites web e dashboards.</p></div></div></div><div class="panel"><h2>
+</pre>
+
+<p>
+Ideal para: APIs, sites web e dashboards.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- ONDE SALVAR -->
+
+<div class="panel">
+
+<h2>
 <i data-lucide="folder"></i>
 Onde salvar o eclipse.config
-</h2><div class="card"><h3>Estrutura Correta do Projeto</h3><pre>
+</h2>
+
+<div class="card">
+
+<h3>Estrutura Correta do Projeto</h3>
+
+<pre>
 my-project/
  ├ eclipse.config
  ├ index.js
@@ -121,9 +310,25 @@ my-project/
  ├ src/
  ├ functions/
  └ .env
-</pre></div></div><div class="footer">
+</pre>
+
+</div>
+
+</div>
+
+
+
+<!-- FOOTER -->
+
+<div class="footer">
 © EclipseCloud
-</div></div><script>
+</div>
+
+</div>
+
+
+
+<script>
 
 function gerar(){
 
@@ -153,6 +358,7 @@ document.getElementById("output").textContent=config
 
 }
 
+
 function copiar(){
 
 let text=document.getElementById("output").textContent
@@ -161,6 +367,7 @@ navigator.clipboard.writeText(text)
 alert("Config copiado!")
 
 }
+
 
 function baixar(){
 
@@ -176,8 +383,11 @@ link.click()
 
 }
 
+
 lucide.createIcons()
 gerar()
 
-</script></body>
+</script>
+
+</body>
 </html>
