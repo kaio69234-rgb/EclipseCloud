@@ -6,15 +6,23 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>EclipseCloud Config Generator</title>
+<title>EclipseCloud</title>
 
-<link rel="stylesheet" href="style.css?v=2">
+<link rel="stylesheet" href="style.css?v=3">
 
 <script src="https://unpkg.com/lucide@latest"></script>
+
+<style>
+html{
+scroll-behavior:smooth;
+}
+</style>
 
 </head>
 
 <body>
+
+<!-- NAVBAR -->
 
 <nav class="navbar">
 
@@ -23,9 +31,10 @@
 </div>
 
 <ul class="nav-menu">
-<li onclick="document.getElementById('planos').scrollIntoView()">Planos</li>
+<li><a href="#home">Home</a></li>
+<li><a href="#planos">Planos</a></li>
+<li><a href="#config">Ferramenta</a></li>
 <li>Serviços</li>
-<li>Ferramentas</li>
 <li>Recursos</li>
 <li>Templates</li>
 <li>Documentação</li>
@@ -33,7 +42,28 @@
 
 </nav>
 
-<!-- PLANOS (ADICIONADO) -->
+<!-- HERO -->
+
+<section id="home" class="hero">
+
+<div class="hero-content">
+
+<h1>EclipseCloud</h1>
+
+<p>
+Hospedagem inteligente para bots e aplicações.
+Deploy rápido, simples e poderoso.
+</p>
+
+<button onclick="document.getElementById('planos').scrollIntoView()">
+Ver Planos
+</button>
+
+</div>
+
+</section>
+
+<!-- PLANOS -->
 
 <section id="planos" class="plans">
 
@@ -114,6 +144,10 @@ Preço simples, justo e previsível
 </div>
 
 </section>
+
+<!-- GERADOR -->
+
+<section id="config">
 
 <div class="container">
 
@@ -224,13 +258,15 @@ Baixar
 
 </div>
 
-<!-- RESTANTE DO SEU SITE CONTINUA IGUAL -->
+</div>
 
-<div class="footer">
+</section>
+
+<!-- FOOTER -->
+
+<footer class="footer">
 © EclipseCloud
-</div>
-
-</div>
+</footer>
 
 <script>
 
