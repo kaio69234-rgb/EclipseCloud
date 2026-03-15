@@ -1,36 +1,20 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
+
 <meta charset="UTF-8">
-<title>Hospedar Bot | EclipseCloud</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>EclipseCloud - Hospedar Aplicação</title>
 
 <style>
 
 body{
-background:#0b0b0b;
+background:#050707;
 color:white;
-font-family:Arial;
+font-family:Inter,Arial;
 margin:0;
 }
-
-/* navbar */
-
-.nav{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:15px 40px;
-background:#0f0f0f;
-border-bottom:1px solid #222;
-}
-
-.logo{
-color:#4cff9a;
-font-size:20px;
-font-weight:bold;
-}
-
-/* container */
 
 .container{
 max-width:900px;
@@ -38,123 +22,173 @@ margin:auto;
 padding:40px 20px;
 }
 
-.title{
-font-size:28px;
+.topbar{
+display:flex;
+align-items:center;
+gap:15px;
+color:#9ca3af;
+font-size:14px;
+margin-bottom:10px;
+}
+
+.logo{
+color:#22c55e;
+font-weight:700;
+font-size:18px;
 margin-bottom:20px;
 }
 
-/* upload box */
+/* BOTÕES */
 
-.upload-box{
-border:2px dashed #3cff84;
-border-radius:12px;
-height:250px;
-display:flex;
-flex-direction:column;
-align-items:center;
-justify-content:center;
-cursor:pointer;
-transition:0.3s;
-}
-
-.upload-box:hover{
-background:#111;
-}
-
-.upload-box span{
-opacity:0.7;
-}
-
-/* buttons */
-
-.options{
+.buttons{
 display:flex;
 gap:10px;
 margin-bottom:20px;
 }
 
-.option-btn{
-background:#151515;
+.buttons button{
+background:#111;
 border:1px solid #333;
-padding:8px 16px;
+color:#ddd;
+padding:8px 15px;
 border-radius:8px;
 cursor:pointer;
 }
 
-.option-btn:hover{
-background:#1d1d1d;
+.buttons button:hover{
+background:#1f2937;
 }
 
-/* help */
+/* UPLOAD */
 
-.help{
-background:#0f1722;
-border:1px solid #1f2b3c;
-padding:15px;
+.upload-box{
+border:2px dashed #22c55e;
 border-radius:10px;
-margin-top:20px;
+height:220px;
+display:flex;
+align-items:center;
+justify-content:center;
+flex-direction:column;
+color:#9ca3af;
+font-size:14px;
 }
 
-.generate{
+/* CARD CONFIG */
+
+.config-card{
+margin-top:20px;
+background:#0b1220;
+border:1px solid #1f2937;
+padding:20px;
+border-radius:10px;
+}
+
+.config-card button{
 margin-top:10px;
-background:#2c7be5;
+background:#3b82f6;
 border:none;
-padding:10px 16px;
-border-radius:6px;
 color:white;
+padding:8px 14px;
+border-radius:6px;
 cursor:pointer;
 }
 
-.footer{
+/* TERMOS */
+
+.terms{
+margin-top:20px;
 text-align:center;
-opacity:0.4;
-margin-top:50px;
+color:#6b7280;
+font-size:13px;
+}
+
+.terms a{
+color:#22c55e;
+text-decoration:none;
+}
+
+/* FOOTER */
+
+.footer{
+margin-top:40px;
+text-align:center;
+color:#6b7280;
+font-size:13px;
+}
+
+.footer-links{
+margin-top:10px;
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+}
+
+.footer-links a{
+color:#9ca3af;
+text-decoration:none;
+}
+
+.footer-links a:hover{
+color:white;
 }
 
 </style>
+
 </head>
-
 <body>
-
-<div class="nav">
-<div class="logo">EclipseCloud</div>
-</div>
 
 <div class="container">
 
-<div class="title">Hospedar Aplicação</div>
+<div class="logo">EclipseCloud</div>
 
-<div class="options">
-<div class="option-btn">ZIP</div>
-<div class="option-btn">GitHub</div>
-<div class="option-btn">Templates</div>
+<div class="topbar">
+← Voltar
 </div>
 
-<div class="upload-box" onclick="uploadFile()">
-<h3>Solte o arquivo aqui</h3>
-<span>ou clique para enviar</span>
+<h2>Hospedar Aplicação</h2>
+
+<div class="buttons">
+<button>ZIP</button>
+<button>GitHub</button>
+<button>Templates</button>
 </div>
 
-<div class="help">
+<div class="upload-box">
+<p>Solte o arquivo aqui</p>
+<p>ou clique para enviar</p>
+</div>
+
+<div class="config-card">
+
 <strong>Precisa de ajuda com eclipsecloud.config?</strong>
+
 <p>Use nosso gerador inteligente para criar o arquivo automaticamente.</p>
 
-<button class="generate">Gerar eclipsecloud.config</button>
+<button>Gerar eclipsecloud.config</button>
+
+</div>
+
+<div class="terms">
+Ao usar nosso serviço você está concordando com nossos
+<a href="#">termos de serviço</a> e
+<a href="#">políticas de uso</a>
 </div>
 
 <div class="footer">
-EclipseCloud © 2026
+
+EclipseCloud © 2019 - 2026 • Todos os direitos reservados
+
+<div class="footer-links">
+<a href="#">Página de Status</a>
+<a href="#">Como Hospedar</a>
+<a href="#">Termos de Serviço</a>
+<a href="#">Políticas de Uso</a>
 </div>
 
 </div>
 
-<script>
-
-function uploadFile(){
-alert("Sistema de upload será conectado ao backend futuramente.");
-}
-
-</script>
+</div>
 
 </body>
 </html>
