@@ -110,7 +110,7 @@ background:#1fb255;
 
 .container{
 width:100%;
-max-width:900px;
+max-width:1000px;
 margin:auto;
 padding:40px 20px;
 }
@@ -265,7 +265,7 @@ margin-bottom:60px;
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
 gap:35px;
-max-width:1100px;
+max-width:1200px;
 margin:auto;
 }
 
@@ -292,6 +292,23 @@ font-size:24px;
 color:#22c55e;
 font-weight:700;
 }
+
+/* RUBY */
+
+.ruby{
+border:1px solid #ef4444;
+}
+
+.ruby .ram{
+color:#ef4444;
+}
+
+.ruby button{
+background:#ef4444;
+color:white;
+}
+
+/* LISTA */
 
 .plan-card ul{
 list-style:none;
@@ -339,55 +356,6 @@ font-weight:700;
 }
 
 /* ===================== */
-/* PLANOS HERO */
-/* ===================== */
-
-.plans-hero{
-text-align:center;
-padding:80px 20px;
-}
-
-.plans-hero h1{
-font-size:40px;
-color:white;
-}
-
-.plans-hero p{
-color:#9ca3af;
-margin-top:10px;
-}
-
-/* ===================== */
-/* PRICE */
-/* ===================== */
-
-.price{
-font-size:22px;
-color:#22c55e;
-margin:15px 0;
-}
-
-.price span{
-font-size:14px;
-color:#9ca3af;
-}
-
-/* ===================== */
-/* FEATURES */
-/* ===================== */
-
-.plans-features{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-gap:30px;
-padding:80px 20px;
-}
-
-.feature{
-text-align:center;
-}
-
-/* ===================== */
 /* TABELA */
 /* ===================== */
 
@@ -431,19 +399,6 @@ margin-top:60px;
 color:#6c8a7b;
 padding:20px;
 border-top:1px solid #22c55e30;
-}
-
-.footer-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-gap:30px;
-padding:40px;
-}
-
-.copy{
-text-align:center;
-color:#6b7280;
-padding-bottom:30px;
 }
 
 /* ===================== */
