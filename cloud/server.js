@@ -7,59 +7,86 @@ const { spawn } = require("child_process")
 
 const app = express()
 
-// pastas
-const uploads = "./uploads"
-const apps = "./apps"
+//////////////////////////////////////////////////
+// CONFIG
+//////////////////////////////////////////////////
 
-// bots rodando
+const uploads = path.join(__dirname, "uploads")
+const apps = path.join(__dirname, "apps")
+
 let runningBots = {}
 
-// criar pastas se não existirem
+//////////////////////////////////////////////////
+// CRIAR PASTAS
+//////////////////////////////////////////////////
+
 if (!fs.existsSync(uploads)) fs.mkdirSync(uploads)
 if (!fs.existsSync(apps)) fs.mkdirSync(apps)
 
-// permitir html
+//////////////////////////////////////////////////
+// MIDDLEWARE
+//////////////////////////////////////////////////
+
 app.use(express.static("public"))
 app.use(express.json())
 
-// configuração upload
+//////////////////////////////////////////////////
+// MULTER (UPLOAD ZIP)
+//////////////////////////////////////////////////
+
 const storage = multer.diskStorage({
-destination: uploads,
+destination: (req,file,cb)=>{
+cb(null, uploads)
+},
 filename: (req,file,cb)=>{
-cb(null, Date.now()+".zip")
+cb(null, Date.now() + ".zip")
 }
 })
 
-const upload = multer({storage})
+const upload = multer({ storage })
 
-// ler eclipse.config
+//////////////////////////////////////////////////
+// LER eclipse.config
+//////////////////////////////////////////////////
+
 function readConfig(folder){
 
 const configPath = path.join(folder,"eclipse.config")
 
-if(!fs.existsSync(configPath))
+if(!fs.existsSync(configPath)){
 return null
+}
 
 const lines = fs.readFileSync(configPath,"utf8").split("\n")
 
 let config = {}
 
 lines.forEach(line=>{
+
+if(!line.includes("=")) return
+
 const [key,value] = line.split("=")
 
 if(key && value){
 config[key.trim()] = value.trim()
 }
+
 })
 
 return config
 }
 
 //////////////////////////////////////////////////
-// UPLOAD DO BOT
+// UPLOAD BOT
 //////////////////////////////////////////////////
 
-app.post("/upload", upload.single("bot"), (req,res)=>{
+app.post("/upload", upload.single("bot"), async (req,res)=>{
+
+try{
+
+if(!req.file){
+return res.status(400).send("❌ nenhum arquivo enviado")
+}
 
 const zipPath = req.file.path
 const botId = Date.now().toString()
@@ -67,16 +94,17 @@ const botFolder = path.join(apps,botId)
 
 fs.mkdirSync(botFolder)
 
-fs.createReadStream(zipPath)
+await fs.createReadStream(zipPath)
 .pipe(unzipper.Extract({ path: botFolder }))
-.on("close", ()=>{
+.promise()
 
 fs.unlinkSync(zipPath)
 
 const config = readConfig(botFolder)
 
-if(!config)
-return res.send("❌ eclipse.config não encontrado")
+if(!config){
+return res.status(400).send("❌ eclipse.config não encontrado")
+}
 
 res.json({
 status:"✅ bot enviado",
@@ -84,7 +112,12 @@ id:botId,
 config
 })
 
-})
+}catch(err){
+
+console.error(err)
+res.status(500).send("❌ erro ao enviar bot")
+
+}
 
 })
 
@@ -97,20 +130,27 @@ app.post("/start/:id",(req,res)=>{
 const id = req.params.id
 const botPath = path.join(apps,id)
 
-if(!fs.existsSync(botPath))
+if(!fs.existsSync(botPath)){
 return res.send("❌ bot não encontrado")
+}
 
 const config = readConfig(botPath)
 
-if(!config)
+if(!config){
 return res.send("❌ eclipse.config não encontrado")
+}
+
+if(runningBots[id]){
+return res.send("⚠ bot já está rodando")
+}
 
 const startCommand = config.START || "node index.js"
 
 const parts = startCommand.split(" ")
 
 const proc = spawn(parts[0], parts.slice(1),{
-cwd:botPath
+cwd:botPath,
+shell:true
 })
 
 runningBots[id] = proc
@@ -140,8 +180,9 @@ app.post("/stop/:id",(req,res)=>{
 
 const id = req.params.id
 
-if(!runningBots[id])
+if(!runningBots[id]){
 return res.send("❌ bot não está rodando")
+}
 
 runningBots[id].kill()
 
@@ -157,12 +198,20 @@ res.send("⛔ bot parado")
 
 app.get("/bots",(req,res)=>{
 
+try{
+
 const bots = fs.readdirSync(apps)
 
 res.json({
 bots,
 running:Object.keys(runningBots)
 })
+
+}catch(err){
+
+res.status(500).send("❌ erro ao listar bots")
+
+}
 
 })
 
