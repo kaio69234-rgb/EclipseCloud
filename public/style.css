@@ -436,3 +436,68 @@ padding:20px;
 }
 
   }
+.plans-hero{
+text-align:center;
+padding:80px 20px;
+}
+
+.plans-hero h1{
+font-size:40px;
+color:white;
+}
+
+.plans-hero p{
+color:#9ca3af;
+margin-top:10px;
+}
+
+.price{
+font-size:22px;
+color:#22c55e;
+margin:15px 0;
+}
+
+.price span{
+font-size:14px;
+color:#9ca3af;
+}
+
+.plans-features{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:30px;
+padding:80px 20px;
+}
+
+.feature{
+text-align:center;
+}
+
+.plans-table{
+padding:80px 20px;
+}
+
+.plans-table table{
+width:100%;
+border-collapse:collapse;
+}
+
+.plans-table th,
+.plans-table td{
+padding:12px;
+border-bottom:1px solid #1f2937;
+text-align:center;
+}
+
+.footer-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:30px;
+padding:40px;
+}
+
+.copy{
+text-align:center;
+color:#6b7280;
+padding-bottom:30px;
+}
