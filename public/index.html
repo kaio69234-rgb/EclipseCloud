@@ -1,17 +1,5 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-
-<head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-
-<title>EclipseCloud</title>
-
-<script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
-<script src="https://unpkg.com/scrollreveal"></script>
-
-<style>
+<!DOCTYPE html><html lang="pt-br"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>EclipseCloud</title><script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script><script src="https://unpkg.com/scrollreveal"></script><style>
 
 *{
 margin:0;
@@ -309,7 +297,7 @@ font-size:38px;
 
 }
 
-/* CURSOR DIGITAÇÃO (ADICIONADO) */
+/* CURSOR DIGITAÇÃO */
 
 .cursor{
 display:inline-block;
@@ -324,94 +312,53 @@ color:#22c55e;
 100%{opacity:1;}
 }
 
-</style>
-
-</head>
-
-<body>
-
-<div id="loader">
+</style></head><body><div id="loader">
 <div class="spinner"></div>
-</div>
+</div><div id="particles"></div><nav class="navbar"><div class="logo">EclipseCloud</div><ul><li><a href="/">Início</a></li>
+<li><a href="/planos.html">Planos</a></li><li class="dropdown"><a href="#">Serviços</a>
 
-<div id="particles"></div>
-
-<nav class="navbar">
-
-<div class="logo">EclipseCloud</div>
-
-<ul>
-
-<li><a href="/">Início</a></li>
-<li><a href="/planos.html">Planos</a></li>
-
-<li class="dropdown">
-
-<a href="#">Serviços</a>
-
-<ul class="dropdown-menu">
-
-<li><a href="/upload.html">Hospedagem de Bots</a></li>
+<ul class="dropdown-menu"><li><a href="/upload.html">Hospedagem de Bots</a></li>
 <li><a href="/sites.html">Hospedagem de Sites</a></li>
-<li><a href="/api.html">API Cloud</a></li>
-
-</ul>
-
-</li>
-
-<li><a href="#">Ferramentas</a></li>
+<li><a href="/api.html">API Cloud</a></li></ul></li><li><a href="#">Ferramentas</a></li>
 <li><a href="#">Recursos</a></li>
 <li><a href="#">Templates</a></li>
-<li><a href="#">Documentação</a></li>
-
-</ul>
-
-</nav>
-
-<section class="hero">
-
-<h1>
-
+<li><a href="#">Documentação</a></li></ul></nav><section class="hero"><h1>
 <span id="typing"></span>
 <span class="cursor">|</span>
 <span class="gradient"> Online Agora!</span>
-
-</h1>
-
-<p>Transformando a forma como você hospeda suas aplicações</p>
-
-<div class="hero-buttons">
-
+</h1><p>Transformando a forma como você hospeda suas aplicações</p><div class="hero-buttons">
 <a href="/upload.html" class="btn-primary">Comece gratuitamente →</a>
 <a href="/dashboard" class="btn-secondary">Painel</a>
-
-</div>
-
-<div class="users">
-
-<img src="https://i.pravatar.cc/40?img=1">
+</div><div class="users"><img src="https://i.pravatar.cc/40?img=1">
 <img src="https://i.pravatar.cc/40?img=2">
 <img src="https://i.pravatar.cc/40?img=3">
 <img src="https://i.pravatar.cc/40?img=4">
-<img src="https://i.pravatar.cc/40?img=5">
+<img src="https://i.pravatar.cc/40?img=5"><span class="stars">★★★★★</span>
 
-<span class="stars">★★★★★</span>
-<p>mais de 167 mil usuários</p>
-
-</div>
-
-<div class="tech">
-
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg">
+<p>mais de 167 mil usuários</p></div><div class="tech"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg">
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg">
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg">
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg">
-
-</div>
-
-</section>
-
-<script>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg"></div></section><!-- NOVA SEÇÃO PLANOS (ADICIONADO SEM MEXER NO RESTO) --><section class="section"><h2>Planos de Hospedagem</h2>
+<p>Escolha o melhor plano para sua aplicação</p><div style="margin-top:40px;display:flex;gap:30px;flex-wrap:wrap;justify-content:center"><div style="background:#0f1412;padding:30px;border-radius:10px;width:220px">
+<h3>Starter</h3>
+<p style="color:#22c55e;font-size:22px">100MB</p>
+<p>1 aplicação</p>
+<p>Logs em tempo real</p>
+<button>Começar</button>
+</div><div style="background:#0f1412;padding:30px;border-radius:10px;width:220px">
+<h3>Pro</h3>
+<p style="color:#22c55e;font-size:22px">512MB</p>
+<p>3 aplicações</p>
+<p>Deploy automático</p>
+<button>Começar</button>
+</div><div style="background:#0f1412;padding:30px;border-radius:10px;width:220px">
+<h3>Enterprise</h3>
+<p style="color:#22c55e;font-size:22px">1GB</p>
+<p>Aplicações ilimitadas</p>
+<p>Suporte prioritário</p>
+<button>Começar</button>
+</div></div></section><footer><div>EclipseCloud © 2026</div>
+<div>Hospedagem moderna para bots e aplicações</div></footer><script>
 
 window.addEventListener("load",()=>{
 document.getElementById("loader").style.display="none"
@@ -475,25 +422,5 @@ opacity:{value:0.4}
 ScrollReveal().reveal('.hero',{distance:'60px',duration:1000,origin:'bottom'})
 ScrollReveal().reveal('.section',{interval:200})
 
-</script>
-
-<!-- SISTEMA DA CLOUD (ADICIONADO SEM MEXER NO SEU CÓDIGO) -->
-
-<script>
-
-async function statusServidor(){
-try{
-let r = await fetch("/api/status")
-let data = await r.json()
-console.log("Servidor:",data)
-}catch(e){
-console.log("Servidor offline")
-}
-}
-
-statusServidor()
-
-</script>
-
-</body>
+</script></body>
 </html>
