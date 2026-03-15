@@ -28,11 +28,15 @@ top:0;
 z-index:999;
 }
 
+/* LOGO */
+
 .nav-left h2{
-color:#22c55e;
+color:white; /* CORRIGIDO */
 margin:0;
 font-size:20px;
 }
+
+/* MENU */
 
 .nav-menu{
 display:flex;
@@ -40,7 +44,7 @@ gap:25px;
 list-style:none;
 margin:0;
 padding:0;
-color:#9bb7aa;
+color:white; /* CORRIGIDO */
 font-size:14px;
 }
 
@@ -56,7 +60,7 @@ color:#22c55e;
 
 .container{
 width:100%;
-max-width:900px;
+max-width:1100px; /* LARGURA CORRIGIDA */
 margin:0 auto;
 padding:25px 20px;
 }
@@ -98,13 +102,13 @@ align-items:center;
 margin-bottom:20px;
 }
 
-/* LABEL */
+/* LABEL (CONFIGURAÇÃO) */
 
 label{
 display:block;
 margin-top:18px;
 margin-bottom:6px;
-color:#9bb7aa;
+color:white; /* CORRIGIDO */
 font-size:14px;
 }
 
