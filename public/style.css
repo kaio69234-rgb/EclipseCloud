@@ -48,8 +48,6 @@ font-size:20px;
 letter-spacing:.5px;
 }
 
-/* MENU */
-
 .nav-menu{
 display:flex;
 gap:25px;
@@ -194,24 +192,6 @@ button:hover{
 background:#0f1a15;
 }
 
-/* BOTÕES PREVIEW */
-
-.buttons{
-display:flex;
-gap:12px;
-margin-bottom:20px;
-}
-
-.copy,
-.download{
-background:#0e2a1c;
-}
-
-.copy:hover,
-.download:hover{
-background:#153d2a;
-}
-
 /* ===================== */
 /* TERMINAL */
 /* ===================== */
@@ -302,7 +282,7 @@ box-shadow:0 0 25px rgba(34,197,94,0.06);
 }
 
 .plan-card:hover{
-transform:translateY(-8px);
+transform:translateY(-8px) scale(1.02);
 box-shadow:0 15px 40px rgba(0,0,0,0.7);
 border:1px solid #22c55e80;
 }
@@ -324,8 +304,6 @@ color:#cfe9da;
 font-size:14px;
 }
 
-/* BOTÃO PLANO */
-
 .plan-card button{
 margin-top:auto;
 background:#22c55e;
@@ -341,15 +319,12 @@ background:#1fb255;
 transform:scale(1.03);
 }
 
-/* PLANO POPULAR */
+/* POPULAR */
 
 .popular{
 border:2px solid #22c55e;
-transform:scale(1.05);
-box-shadow:0 0 40px rgba(34,197,94,0.3);
+box-shadow:0 0 40px rgba(34,197,94,0.25);
 }
-
-/* BADGE */
 
 .badge{
 position:absolute;
@@ -364,6 +339,89 @@ font-weight:700;
 }
 
 /* ===================== */
+/* PLANOS HERO */
+/* ===================== */
+
+.plans-hero{
+text-align:center;
+padding:80px 20px;
+}
+
+.plans-hero h1{
+font-size:40px;
+color:white;
+}
+
+.plans-hero p{
+color:#9ca3af;
+margin-top:10px;
+}
+
+/* ===================== */
+/* PRICE */
+/* ===================== */
+
+.price{
+font-size:22px;
+color:#22c55e;
+margin:15px 0;
+}
+
+.price span{
+font-size:14px;
+color:#9ca3af;
+}
+
+/* ===================== */
+/* FEATURES */
+/* ===================== */
+
+.plans-features{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:30px;
+padding:80px 20px;
+}
+
+.feature{
+text-align:center;
+}
+
+/* ===================== */
+/* TABELA */
+/* ===================== */
+
+.plans-table{
+padding:80px 20px;
+}
+
+.plans-table table{
+width:100%;
+max-width:1000px;
+margin:auto;
+border-collapse:collapse;
+background:#0f1412;
+border-radius:12px;
+overflow:hidden;
+}
+
+.plans-table th{
+color:#22c55e;
+font-weight:700;
+}
+
+.plans-table th,
+.plans-table td{
+padding:12px;
+border-bottom:1px solid #1f2937;
+text-align:center;
+}
+
+.plans-table tr:hover{
+background:#0b0f0c;
+}
+
+/* ===================== */
 /* FOOTER */
 /* ===================== */
 
@@ -373,6 +431,19 @@ margin-top:60px;
 color:#6c8a7b;
 padding:20px;
 border-top:1px solid #22c55e30;
+}
+
+.footer-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:30px;
+padding:40px;
+}
+
+.copy{
+text-align:center;
+color:#6b7280;
+padding-bottom:30px;
 }
 
 /* ===================== */
@@ -419,10 +490,6 @@ font-size:16px;
 grid-template-columns:1fr;
 }
 
-.buttons{
-flex-direction:column;
-}
-
 button{
 width:100%;
 }
@@ -435,69 +502,4 @@ padding:20px;
 padding:20px;
 }
 
-  }
-.plans-hero{
-text-align:center;
-padding:80px 20px;
-}
-
-.plans-hero h1{
-font-size:40px;
-color:white;
-}
-
-.plans-hero p{
-color:#9ca3af;
-margin-top:10px;
-}
-
-.price{
-font-size:22px;
-color:#22c55e;
-margin:15px 0;
-}
-
-.price span{
-font-size:14px;
-color:#9ca3af;
-}
-
-.plans-features{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-gap:30px;
-padding:80px 20px;
-}
-
-.feature{
-text-align:center;
-}
-
-.plans-table{
-padding:80px 20px;
-}
-
-.plans-table table{
-width:100%;
-border-collapse:collapse;
-}
-
-.plans-table th,
-.plans-table td{
-padding:12px;
-border-bottom:1px solid #1f2937;
-text-align:center;
-}
-
-.footer-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-gap:30px;
-padding:40px;
-}
-
-.copy{
-text-align:center;
-color:#6b7280;
-padding-bottom:30px;
 }
