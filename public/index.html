@@ -477,5 +477,23 @@ ScrollReveal().reveal('.section',{interval:200})
 
 </script>
 
+<!-- SISTEMA DA CLOUD (ADICIONADO SEM MEXER NO SEU CÓDIGO) -->
+
+<script>
+
+async function statusServidor(){
+try{
+let r = await fetch("/api/status")
+let data = await r.json()
+console.log("Servidor:",data)
+}catch(e){
+console.log("Servidor offline")
+}
+}
+
+statusServidor()
+
+</script>
+
 </body>
 </html>
