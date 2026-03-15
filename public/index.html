@@ -24,6 +24,7 @@ body{
 background:#050707;
 color:white;
 overflow-x:hidden;
+scroll-behavior:smooth;
 }
 
 /* PARTICLES */
@@ -35,6 +36,7 @@ height:100%;
 top:0;
 left:0;
 z-index:-1;
+pointer-events:none;
 }
 
 /* LOADER */
@@ -71,6 +73,8 @@ justify-content:space-between;
 align-items:center;
 padding:20px 40px;
 border-bottom:1px solid #111;
+max-width:1200px;
+margin:auto;
 }
 
 .logo{
@@ -89,6 +93,7 @@ list-style:none;
 color:#cbd5e1;
 text-decoration:none;
 font-size:14px;
+transition:.2s;
 }
 
 .navbar a:hover{
@@ -106,12 +111,18 @@ margin:auto;
 
 .hero h1{
 font-size:56px;
+font-weight:700;
 }
 
 .gradient{
 background:linear-gradient(90deg,#22c55e,#06b6d4);
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
+}
+
+.hero p{
+color:#9ca3af;
+margin-top:10px;
 }
 
 /* TECH ICONS */
@@ -121,6 +132,7 @@ margin-top:80px;
 display:flex;
 justify-content:center;
 gap:50px;
+flex-wrap:wrap;
 }
 
 .tech img{
@@ -147,6 +159,8 @@ grid-template-columns:1fr 1fr;
 gap:40px;
 }
 
+/* PANEL */
+
 .panel{
 background:#0f1412;
 padding:25px;
@@ -162,6 +176,7 @@ label{
 display:block;
 margin-top:12px;
 font-size:14px;
+color:#9ca3af;
 }
 
 input,select{
@@ -169,36 +184,52 @@ width:100%;
 padding:10px;
 margin-top:4px;
 border-radius:6px;
-border:none;
+border:1px solid #222;
 background:#111;
 color:white;
+outline:none;
 }
+
+input:focus,select:focus{
+border-color:#22c55e;
+}
+
+/* BUTTONS */
 
 button{
 padding:10px 15px;
 border:none;
 border-radius:6px;
 cursor:pointer;
+font-weight:600;
 }
 
 .generate{
 margin-top:15px;
 background:#22c55e;
+color:black;
 }
 
-/* PREVIEW VSCODE */
+.generate:hover{
+opacity:.9;
+}
+
+/* PREVIEW */
 
 .preview{
 background:#1e1e1e;
 border-radius:10px;
 overflow:hidden;
 border:1px solid #333;
+display:flex;
+flex-direction:column;
 }
 
 .vscode-bar{
 background:#2d2d2d;
-padding:8px;
+padding:8px 12px;
 font-size:13px;
+color:#9ca3af;
 }
 
 .code{
@@ -209,17 +240,25 @@ min-height:200px;
 white-space:pre;
 }
 
-/* BUTTONS */
+/* ACTIONS */
 
 .actions{
 display:flex;
 gap:10px;
-margin-bottom:10px;
+padding:10px;
+border-bottom:1px solid #333;
 }
 
 .copy{background:#22c55e;}
 .download{background:#3b82f6;}
 .share{background:#8b5cf6;}
+
+.actions button{
+color:white;
+font-size:13px;
+}
+
+/* FOOTER */
 
 footer{
 margin-top:100px;
@@ -229,6 +268,8 @@ text-align:center;
 color:#6b7280;
 }
 
+/* MOBILE */
+
 @media(max-width:900px){
 
 .generator{
@@ -237,6 +278,17 @@ grid-template-columns:1fr;
 
 .hero h1{
 font-size:36px;
+}
+
+.navbar{
+flex-direction:column;
+gap:10px;
+padding:20px;
+}
+
+.navbar ul{
+flex-wrap:wrap;
+justify-content:center;
 }
 
 }
@@ -444,10 +496,18 @@ link.click()
 
 function compartilhar(){
 
+if(navigator.share){
+
 navigator.share({
 title:"EclipseCloud Config",
 text:document.getElementById("output").textContent
 })
+
+}else{
+
+alert("Compartilhamento não suportado neste dispositivo.")
+
+}
 
 }
 
