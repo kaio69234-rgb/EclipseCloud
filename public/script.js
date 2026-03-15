@@ -1,23 +1,17 @@
-async function uploadBot(){
+window.addEventListener("load", () => {
+document.getElementById("loader").style.display="none";
+});
 
-const fileInput = document.getElementById("botFile")
+ScrollReveal().reveal('.hero',{
+distance:'60px',
+duration:1200,
+origin:'bottom'
+});
 
-if(!fileInput.files.length){
-alert("Envie um bot .zip")
-return
-}
+ScrollReveal().reveal('.plan-card',{
+interval:200
+});
 
-const form = new FormData()
-
-form.append("bot", fileInput.files[0])
-
-const res = await fetch("/upload",{
-method:"POST",
-body:form
-})
-
-const data = await res.json()
-
-alert(data.status)
-
-}
+ScrollReveal().reveal('.feature',{
+interval:150
+});
