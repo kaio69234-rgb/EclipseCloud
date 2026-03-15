@@ -541,3 +541,20 @@ animation:blink 1s infinite;
 50%{opacity:0;}
 100%{opacity:1;}
 }
+
+/* ===================== */
+/* ADICIONADO (NÃO ALTERA NADA DO SEU STYLE) */
+/* ===================== */
+
+html{
+scroll-behavior:smooth;
+}
+
+a{
+color:inherit;
+text-decoration:none;
+}
+
+button{
+font-family:inherit;
+}
