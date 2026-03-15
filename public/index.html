@@ -1,7 +1,8 @@
 <!DOCTYPE html><html lang="pt-br"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>EclipseCloud Config Generator</title><link rel="stylesheet" href="style.css">
-<script src="https://unpkg.com/lucide@latest"></script></head><body><nav class="navbar"><div class="nav-left">
+<script src="https://unpkg.com/lucide@latest"></script>
+</head><body><nav class="navbar"><div class="nav-left">
 <h2>EclipseCloud</h2>
 </div><ul class="nav-menu">
 <li>Planos</li>
@@ -12,7 +13,7 @@
 <li>Documentação</li>
 </ul></nav><div class="container"><div class="title"><h1>
 <i data-lucide="settings"></i>
-eclipsecloud.config
+eclipse.config
 </h1><p class="subtitle">
 Gerador inteligente para configurar aplicações
 </p></div><div class="panel"><h2>
@@ -66,11 +67,15 @@ Baixar
 ⚙ eclipse.config
 </div></div><pre id="output"></pre></div></div><div class="panel"><h2>
 <i data-lucide="book-open"></i>
-O que é o eclipsecloud.config?
+O que é o eclipse.config?
 </h2><p>
-Arquivo usado para configurar aplicações automaticamente na EclipseCloud.
-Define memória, tipo da aplicação e comandos de inicialização.
-</p></div><div class="panel"><h2>
+O <code>eclipse.config</code> é um arquivo de configuração que automatiza o
+processo de upload e configuração de aplicações na EclipseCloud.
+Com ele você não precisa preencher formulários manualmente a cada deploy.
+</p><div class="important"><h3>⚠️ Importante</h3><p>
+O arquivo deve estar na raiz do seu projeto e ser incluído no .zip enviado
+para a EclipseCloud. Sem ele o upload da aplicação não funcionará.
+</p></div></div><div class="panel"><h2>
 <i data-lucide="code"></i>
 Parâmetros do Arquivo
 </h2><div class="grid"><div class="card">
@@ -99,13 +104,13 @@ NAME=Meu Bot Discord
 TYPE=bot
 MAIN=index.js
 RAM=100
-</pre><p>Ideal para: Bots Discord, Telegram, WhatsApp, etc.</p></div><div class="card"><h3>🌐 Configuração para Site</h3><pre>
+</pre><p>Ideal para: Bots Discord, Telegram, WhatsApp etc.</p></div><div class="card"><h3>🌐 Configuração para Site</h3><pre>
 ID=meusite.eclipse.app
 TYPE=site
 MAIN=index.ts
 RAM=512
 START=npm run start
-</pre><p>Ideal para: APIs, sites web, dashboards, etc.</p></div></div></div><div class="panel"><h2>
+</pre><p>Ideal para: APIs, sites web e dashboards.</p></div></div></div><div class="panel"><h2>
 <i data-lucide="folder"></i>
 Onde salvar o eclipse.config
 </h2><div class="card"><h3>Estrutura Correta do Projeto</h3><pre>
@@ -151,7 +156,6 @@ document.getElementById("output").textContent=config
 function copiar(){
 
 let text=document.getElementById("output").textContent
-
 navigator.clipboard.writeText(text)
 
 alert("Config copiado!")
@@ -165,9 +169,7 @@ let text=document.getElementById("output").textContent
 let blob=new Blob([text],{type:"text/plain"})
 
 let link=document.createElement("a")
-
 link.href=URL.createObjectURL(blob)
-
 link.download="eclipse.config"
 
 link.click()
@@ -175,7 +177,6 @@ link.click()
 }
 
 lucide.createIcons()
-
 gerar()
 
 </script></body>
