@@ -4,261 +4,527 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
 <title>EclipseCloud</title>
 
-<link rel="stylesheet" href="style.css?v=3">
-
-<link rel="icon" href="https://cdn-icons-png.flaticon.com/512/4140/4140048.png">
-
-<script src="https://unpkg.com/lucide@latest"></script>
-
 <style>
-html{
-scroll-behavior:smooth;
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Inter,Arial;
 }
+
+body{
+background:
+radial-gradient(circle at 20% 0%,rgba(34,197,94,.15),transparent 40%),
+#050707;
+
+color:white;
+}
+
+/* NAVBAR */
+
+.navbar{
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+padding:20px 40px;
+
+border-bottom:1px solid #111;
+
+}
+
+.logo{
+
+font-size:22px;
+color:#22c55e;
+font-weight:700;
+
+}
+
+.navbar ul{
+
+display:flex;
+gap:22px;
+list-style:none;
+
+}
+
+.navbar a{
+
+color:#cbd5e1;
+text-decoration:none;
+font-size:14px;
+
+}
+
+.navbar a:hover{
+
+color:#22c55e;
+
+}
+
+/* HERO */
+
+.hero{
+
+text-align:center;
+
+padding:120px 20px;
+
+max-width:900px;
+
+margin:auto;
+
+}
+
+.hero h1{
+
+font-size:50px;
+
+}
+
+.hero span{
+
+color:#22c55e;
+
+}
+
+.hero p{
+
+margin-top:10px;
+
+color:#9ca3af;
+
+}
+
+.hero button{
+
+margin-top:25px;
+
+background:#22c55e;
+
+border:none;
+
+padding:12px 26px;
+
+border-radius:8px;
+
+font-weight:600;
+
+cursor:pointer;
+
+}
+
+/* ICONES */
+
+.tech{
+
+margin-top:80px;
+
+display:flex;
+
+justify-content:center;
+
+gap:50px;
+
+opacity:.6;
+
+font-size:40px;
+
+}
+
+/* SECTIONS */
+
+.section{
+
+max-width:1100px;
+
+margin:auto;
+
+padding:120px 30px;
+
+display:flex;
+
+align-items:center;
+
+gap:60px;
+
+}
+
+.section img{
+
+width:280px;
+
+}
+
+.section h2{
+
+font-size:36px;
+
+}
+
+.section p{
+
+margin-top:10px;
+
+color:#9ca3af;
+
+}
+
+.section button{
+
+margin-top:15px;
+
+background:#111;
+
+color:white;
+
+border:1px solid #333;
+
+padding:10px 20px;
+
+border-radius:6px;
+
+}
+
+/* HARDWARE */
+
+.hardware{
+
+max-width:1100px;
+
+margin:auto;
+
+padding:100px 30px;
+
+display:flex;
+
+align-items:center;
+
+gap:60px;
+
+}
+
+.hardware img{
+
+width:250px;
+
+}
+
+.hardware h2{
+
+font-size:36px;
+
+}
+
+.hardware span{
+
+color:#60a5fa;
+
+}
+
+.hardware ul{
+
+margin-top:15px;
+
+list-style:none;
+
+}
+
+.hardware li{
+
+margin:8px 0;
+
+color:#cbd5e1;
+
+}
+
+/* CTA */
+
+.cta{
+
+text-align:center;
+
+padding:120px 20px;
+
+}
+
+.cta h2{
+
+font-size:40px;
+
+}
+
+.cta span{
+
+color:#22c55e;
+
+}
+
+.cta button{
+
+margin-top:20px;
+
+background:#22c55e;
+
+border:none;
+
+padding:12px 25px;
+
+border-radius:8px;
+
+}
+
+/* FOOTER */
+
+footer{
+
+border-top:1px solid #111;
+
+padding:50px 30px;
+
+max-width:1100px;
+
+margin:auto;
+
+display:flex;
+
+justify-content:space-between;
+
+flex-wrap:wrap;
+
+gap:40px;
+
+}
+
+footer h3{
+
+margin-bottom:10px;
+
+}
+
+footer ul{
+
+list-style:none;
+
+color:#9ca3af;
+
+}
+
+footer li{
+
+margin:6px 0;
+
+}
+
+.copy{
+
+text-align:center;
+
+padding:20px;
+
+color:#6b7280;
+
+font-size:14px;
+
+}
+
+/* RESPONSIVO */
+
+@media(max-width:900px){
+
+.section,
+.hardware{
+
+flex-direction:column;
+
+text-align:center;
+
+}
+
+.hero h1{
+
+font-size:36px;
+
+}
+
+}
+
 </style>
 
 </head>
 
 <body>
 
-<!-- NAVBAR -->
-
 <nav class="navbar">
 
-<div class="nav-left">
-<h2>EclipseCloud</h2>
-</div>
+<div class="logo">EclipseCloud</div>
 
-<ul class="nav-menu">
+<ul>
 
-<li><a href="#home">Home</a></li>
-
-<li><a href="planos.html">Planos</a></li>
-
-<li><a href="#config">Ferramenta</a></li>
-
+<li><a href="/">Início</a></li>
+<li><a href="#">Planos</a></li>
 <li><a href="#">Serviços</a></li>
-
+<li><a href="#">Ferramentas</a></li>
 <li><a href="#">Recursos</a></li>
-
 <li><a href="#">Templates</a></li>
-
 <li><a href="#">Documentação</a></li>
 
 </ul>
 
 </nav>
 
-<!-- HERO -->
+<section class="hero">
 
-<section id="home" class="hero">
-
-<div class="hero-content">
-
-<h1>EclipseCloud</h1>
+<h1>Sua Cloud <span>Online Agora!</span></h1>
 
 <p>
-Hospedagem inteligente para bots e aplicações.<br>
-Deploy rápido, simples e poderoso.
+Transformando a forma como você hospeda suas aplicações
 </p>
 
-<button onclick="window.location.href='planos.html'">
-Ver Planos
-</button>
+<button>Comece gratuitamente →</button>
+
+<div class="tech">
+
+⚙️ 🐍 💎 🐳 ☕ ⚡
 
 </div>
 
 </section>
 
-<!-- GERADOR -->
+<section class="section">
 
-<section id="config">
+<div>
 
-<div class="container">
+<p style="color:#22c55e">Por menos de R$0,37 por dia</p>
 
-<div class="title">
+<h2>Hospedagem de Sites</h2>
 
-<h1>
-<i data-lucide="settings"></i>
-eclipse.config
-</h1>
-
-<p class="subtitle">
-Gerador inteligente para configurar aplicações
+<p>
+Desde um simples site estático até APIs completas,
+oferecemos infraestrutura escalável para suas aplicações.
 </p>
 
-</div>
-
-<div class="panel">
-
-<h2>
-<i data-lucide="sliders"></i>
-Configuração
-</h2>
-
-<label>Arquivo Principal *</label>
-<input id="main" value="index.js" oninput="gerar()">
-
-<label>Tipo</label>
-<select id="type" oninput="gerar()">
-<option value="bot">bot</option>
-<option value="site">site</option>
-</select>
-
-<label>RAM (MB)</label>
-<input id="ram" value="100" oninput="gerar()">
-
-<label>Nome</label>
-<input id="name" placeholder="Meu Bot Incrível" oninput="gerar()">
-
-<label>Avatar URL</label>
-<input id="avatar" oninput="gerar()">
-
-<label>Pacotes APT</label>
-<input id="apt" oninput="gerar()">
-
-<label>Comando de início</label>
-<input id="start" value="npm run start" oninput="gerar()">
-
-<label>Comando de build</label>
-<input id="build" value="npm run build" oninput="gerar()">
-
-<label>Auto Restart</label>
-
-<select id="restart" oninput="gerar()">
-<option value="true">true</option>
-<option value="false">false</option>
-</select>
-
-</div>
-
-<div class="panel">
-
-<div class="preview-header">
-
-<h2>
-<i data-lucide="file-text"></i>
-Preview do Arquivo
-</h2>
-
-<div class="buttons">
-
-<button class="copy" onclick="copiar()">
-<i data-lucide="copy"></i>
-Copiar
-</button>
-
-<button class="download" onclick="baixar()">
-<i data-lucide="download"></i>
-Baixar
-</button>
-
-</div>
-
-</div>
-
-<div class="terminal">
-
-<div class="terminal-top">
-
-<div class="dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-
-<div class="terminal-title">
-⚙ eclipse.config
-</div>
-
-</div>
-
-<pre id="output"></pre>
-
-</div>
-
-</div>
+<button>Ver todos os recursos →</button>
 
 </div>
 
 </section>
 
-<!-- FOOTER -->
+<section class="section">
 
-<footer class="footer">
+<div>
 
-<p>© 2026 EclipseCloud - Todos os direitos reservados</p>
+<p style="color:#22c55e">Gratuito para sempre</p>
+
+<h2>Hospedamos Bots de qualquer plataforma</h2>
+
+<p>
+Hospede bots Discord, Telegram e outras aplicações
+com estabilidade e performance profissional.
+</p>
+
+<button>Ver todos os recursos →</button>
+
+</div>
+
+</section>
+
+<section class="hardware">
+
+<img src="https://i.imgur.com/Wo7R5QK.png">
+
+<div>
+
+<h2>Hardware ideal com <span>Máxima Performance</span></h2>
+
+<ul>
+
+<li>⚡ AMD EPYC™ Architecture</li>
+<li>⚙️ Processamento de alto desempenho</li>
+<li>💾 Memória RAM de alta frequência</li>
+<li>🚀 SSD NVMe empresarial</li>
+<li>📈 Alta escalabilidade</li>
+
+</ul>
+
+</div>
+
+</section>
+
+<section class="cta">
+
+<h2>
+Sua aplicação merece o melhor e nós temos
+o <span>plano perfeito</span> para você
+</h2>
+
+<button>Conheça agora</button>
+
+</section>
+
+<footer>
+
+<div>
+
+<h3>EclipseCloud</h3>
+
+<ul>
+<li>Download Desktop</li>
+<li>Download CLI</li>
+</ul>
+
+</div>
+
+<div>
+
+<h3>Empresa</h3>
+
+<ul>
+<li>Planos</li>
+<li>Sobre</li>
+<li>Marca</li>
+</ul>
+
+</div>
+
+<div>
+
+<h3>API</h3>
+
+<ul>
+<li>NodeJS</li>
+<li>Python</li>
+<li>Como usar</li>
+</ul>
+
+</div>
+
+<div>
+
+<h3>Recursos</h3>
+
+<ul>
+<li>Como hospedar?</li>
+<li>Fale conosco</li>
+<li>Blog</li>
+</ul>
+
+</div>
 
 </footer>
 
-<script>
+<div class="copy">
 
-function gerar(){
+© 2026 EclipseCloud • Todos os direitos reservados
 
-const main=document.getElementById("main").value
-const type=document.getElementById("type").value
-const ram=document.getElementById("ram").value
-const name=document.getElementById("name").value
-const avatar=document.getElementById("avatar").value
-const apt=document.getElementById("apt").value
-const start=document.getElementById("start").value
-const build=document.getElementById("build").value
-const restart=document.getElementById("restart").value
-
-let config=""
-
-if(type) config+=`TYPE=${type}\n`
-if(main) config+=`MAIN=${main}\n`
-if(ram) config+=`RAM=${ram}\n`
-if(name) config+=`NAME=${name}\n`
-if(avatar) config+=`AVATAR=${avatar}\n`
-if(apt) config+=`APT=${apt}\n`
-if(start) config+=`START=${start}\n`
-if(build) config+=`BUILD=${build}\n`
-if(restart) config+=`AUTORESTART=${restart}\n`
-
-document.getElementById("output").textContent=config
-
-}
-
-function copiar(){
-
-const text=document.getElementById("output").textContent
-
-navigator.clipboard.writeText(text)
-
-alert("Config copiado!")
-
-}
-
-function baixar(){
-
-const text=document.getElementById("output").textContent
-
-const blob=new Blob([text],{type:"text/plain"})
-
-const link=document.createElement("a")
-
-link.href=URL.createObjectURL(blob)
-
-link.download="eclipse.config"
-
-link.click()
-
-}
-
-window.onload = () => {
-
-lucide.createIcons()
-
-gerar()
-
-}
-
-</script>
+</div>
 
 </body>
 </html>
