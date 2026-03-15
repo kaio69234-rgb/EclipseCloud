@@ -21,9 +21,7 @@ font-family:Inter,Arial;
 }
 
 body{
-background:
-radial-gradient(circle at 20% 0%,rgba(34,197,94,.15),transparent 40%),
-#050707;
+background:#050707;
 color:white;
 overflow-x:hidden;
 }
@@ -91,32 +89,10 @@ list-style:none;
 color:#cbd5e1;
 text-decoration:none;
 font-size:14px;
-transition:0.2s;
 }
 
 .navbar a:hover{
 color:#22c55e;
-}
-
-/* DROPDOWN */
-
-.dropdown{
-position:relative;
-}
-
-.dropdown-menu{
-position:absolute;
-top:30px;
-background:#0f1412;
-border:1px solid #1f2937;
-padding:10px;
-border-radius:8px;
-display:none;
-list-style:none;
-}
-
-.dropdown:hover .dropdown-menu{
-display:block;
 }
 
 /* HERO */
@@ -130,7 +106,6 @@ margin:auto;
 
 .hero h1{
 font-size:56px;
-font-weight:700;
 }
 
 .gradient{
@@ -139,75 +114,7 @@ background:linear-gradient(90deg,#22c55e,#06b6d4);
 -webkit-text-fill-color:transparent;
 }
 
-.hero p{
-margin-top:10px;
-color:#9ca3af;
-font-size:18px;
-}
-
-/* BUTTONS */
-
-.hero-buttons{
-margin-top:25px;
-display:flex;
-gap:15px;
-justify-content:center;
-flex-wrap:wrap;
-}
-
-.btn-primary{
-background:#22c55e;
-padding:12px 25px;
-border-radius:8px;
-text-decoration:none;
-color:white;
-font-weight:600;
-transition:0.2s;
-}
-
-.btn-primary:hover{
-transform:scale(1.05);
-}
-
-.btn-secondary{
-background:#111;
-border:1px solid #333;
-padding:12px 25px;
-border-radius:8px;
-text-decoration:none;
-color:white;
-}
-
-/* USERS */
-
-.users{
-margin-top:30px;
-display:flex;
-align-items:center;
-justify-content:center;
-gap:8px;
-flex-wrap:wrap;
-}
-
-.users img{
-width:34px;
-height:34px;
-border-radius:50%;
-border:2px solid #050707;
-margin-left:-8px;
-}
-
-.stars{
-color:#facc15;
-margin-left:10px;
-}
-
-.users p{
-color:#9ca3af;
-margin-left:5px;
-}
-
-/* TECH */
+/* TECH ICONS */
 
 .tech{
 margin-top:80px;
@@ -219,8 +126,8 @@ gap:50px;
 .tech img{
 width:45px;
 opacity:.7;
-transition:.3s;
 filter:grayscale(1);
+transition:.3s;
 }
 
 .tech img:hover{
@@ -229,82 +136,107 @@ transform:scale(1.1);
 filter:grayscale(0);
 }
 
-/* SECTION */
+/* GENERATOR */
 
-.section{
+.generator{
 max-width:1100px;
 margin:auto;
-padding:120px 30px;
+padding:80px 30px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:40px;
 }
 
-.section h2{
-font-size:36px;
+.panel{
+background:#0f1412;
+padding:25px;
+border-radius:12px;
+border:1px solid #1f2937;
 }
 
-.section p{
-margin-top:10px;
-color:#9ca3af;
+.panel h2{
+margin-bottom:15px;
 }
 
-.section button{
-margin-top:15px;
+label{
+display:block;
+margin-top:12px;
+font-size:14px;
+}
+
+input,select{
+width:100%;
+padding:10px;
+margin-top:4px;
+border-radius:6px;
+border:none;
 background:#111;
 color:white;
-border:1px solid #333;
-padding:10px 20px;
+}
+
+button{
+padding:10px 15px;
+border:none;
 border-radius:6px;
 cursor:pointer;
 }
 
-/* HARDWARE */
+.generate{
+margin-top:15px;
+background:#22c55e;
+}
 
-.hardware{
-max-width:1100px;
-margin:auto;
-padding:100px 30px;
+/* PREVIEW VSCODE */
+
+.preview{
+background:#1e1e1e;
+border-radius:10px;
+overflow:hidden;
+border:1px solid #333;
+}
+
+.vscode-bar{
+background:#2d2d2d;
+padding:8px;
+font-size:13px;
+}
+
+.code{
+padding:15px;
+font-family:monospace;
+color:#d4d4d4;
+min-height:200px;
+white-space:pre;
+}
+
+/* BUTTONS */
+
+.actions{
 display:flex;
-align-items:center;
-gap:60px;
+gap:10px;
+margin-bottom:10px;
 }
 
-.hardware img{
-width:250px;
-}
-
-.hardware span{
-color:#60a5fa;
-}
-
-/* FOOTER */
+.copy{background:#22c55e;}
+.download{background:#3b82f6;}
+.share{background:#8b5cf6;}
 
 footer{
+margin-top:100px;
+padding:40px;
 border-top:1px solid #111;
-padding:50px 30px;
-max-width:1100px;
-margin:auto;
-display:flex;
-justify-content:space-between;
-flex-wrap:wrap;
-gap:40px;
-}
-
-.copy{
 text-align:center;
-padding:20px;
 color:#6b7280;
 }
 
-/* MOBILE */
-
 @media(max-width:900px){
 
-.hardware{
-flex-direction:column;
-text-align:center;
+.generator{
+grid-template-columns:1fr;
 }
 
 .hero h1{
-font-size:38px;
+font-size:36px;
 }
 
 }
@@ -327,27 +259,10 @@ font-size:38px;
 
 <ul>
 
-<li><a href="/">Início</a></li>
-<li><a href="/planos.html">Planos</a></li>
-
-<li class="dropdown">
-
-<a href="#">Serviços</a>
-
-<ul class="dropdown-menu">
-
-<li><a href="/upload.html">Hospedagem de Bots</a></li>
-<li><a href="/sites.html">Hospedagem de Sites</a></li>
-<li><a href="/api.html">API Cloud</a></li>
-
-</ul>
-
-</li>
-
-<li><a href="#">Ferramentas</a></li>
-<li><a href="#">Recursos</a></li>
-<li><a href="#">Templates</a></li>
-<li><a href="#">Documentação</a></li>
+<li><a href="#">Início</a></li>
+<li><a href="#">Planos</a></li>
+<li><a href="#">API</a></li>
+<li><a href="#">Docs</a></li>
 
 </ul>
 
@@ -356,74 +271,71 @@ font-size:38px;
 <section class="hero">
 
 <h1>
+
 <span id="typing"></span>
-<span class="gradient"> Online Agora!</span>
+<span class="gradient"> Online Agora</span>
+
 </h1>
 
-<p>Transformando a forma como você hospeda suas aplicações</p>
-
-<div class="hero-buttons">
-
-<a href="/upload.html" class="btn-primary">Comece gratuitamente →</a>
-
-<a href="/dashboard" class="btn-secondary">Painel</a>
-
-</div>
-
-<div class="users">
-
-<img src="https://i.pravatar.cc/40?img=1">
-<img src="https://i.pravatar.cc/40?img=2">
-<img src="https://i.pravatar.cc/40?img=3">
-<img src="https://i.pravatar.cc/40?img=4">
-<img src="https://i.pravatar.cc/40?img=5">
-
-<span class="stars">★★★★★</span>
-
-<p>mais de 167 mil usuários</p>
-
-</div>
+<p>Hospedagem profissional para Bots e Sites</p>
 
 <div class="tech">
 
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg">
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg">
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg">
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg">
 
 </div>
 
 </section>
 
-<section class="section">
+<section class="generator">
 
-<p style="color:#22c55e">Por menos de R$0,37 por dia</p>
+<div class="panel">
 
-<h2>Hospedagem de Sites</h2>
+<h2>Gerador eclipsecloud.config</h2>
 
-<p>Desde um simples site estático até APIs completas.</p>
+<label>Arquivo principal</label>
+<input id="main" value="index.js">
 
-<button onclick="location.href='/planos.html'">
-Ver todos os recursos →
-</button>
+<label>Tipo</label>
+<select id="type">
+<option value="bot">bot</option>
+<option value="site">site</option>
+</select>
 
-</section>
+<label>RAM</label>
+<input id="ram" value="100">
 
-<section class="hardware">
+<label>Nome</label>
+<input id="name">
 
-<img src="https://i.imgur.com/Wo7R5QK.png">
+<label>Start</label>
+<input id="start" value="npm start">
 
-<div>
+<button class="generate" onclick="gerar()">Gerar Config</button>
 
-<h2>Hardware ideal com <span>Máxima Performance</span></h2>
+</div>
 
-<ul>
+<div class="preview">
 
-<li>⚡ AMD EPYC Architecture</li>
-<li>💾 Memória RAM de alta frequência</li>
-<li>🚀 SSD NVMe empresarial</li>
+<div class="vscode-bar">
+eclipsecloud.config
+</div>
 
-</ul>
+<div class="actions">
+
+<button class="copy" onclick="copiar()">Copiar</button>
+<button class="download" onclick="baixar()">Baixar</button>
+<button class="share" onclick="compartilhar()">Compartilhar</button>
+
+</div>
+
+<div class="code" id="output">
+MAIN=index.js
+TYPE=bot
+RAM=100
+</div>
 
 </div>
 
@@ -431,28 +343,17 @@ Ver todos os recursos →
 
 <footer>
 
-<div>
-
-<h3>EclipseCloud</h3>
-
-<ul>
-<li>Download Desktop</li>
-<li>Download CLI</li>
-</ul>
-
-</div>
+© 2026 EclipseCloud
 
 </footer>
-
-<div class="copy">
-© 2026 EclipseCloud
-</div>
 
 <script>
 
 window.addEventListener("load",()=>{
 document.getElementById("loader").style.display="none"
 })
+
+/* TYPE WRITER */
 
 const text="Seu Bot"
 let i=0
@@ -473,17 +374,82 @@ setTimeout(typeWriter,90)
 
 typeWriter()
 
+/* PARTICLES */
+
 tsParticles.load("particles",{
 particles:{
-number:{value:40},
+number:{value:35},
 size:{value:2},
-move:{speed:0.5},
-opacity:{value:0.4}
+move:{speed:0.6},
+opacity:{value:0.3}
 }
 })
 
-ScrollReveal().reveal('.hero',{distance:'60px',duration:1000,origin:'bottom'})
-ScrollReveal().reveal('.section',{interval:200})
+/* SCROLL */
+
+ScrollReveal().reveal('.hero',{distance:'60px',duration:1000})
+ScrollReveal().reveal('.panel',{interval:200})
+
+/* GERADOR */
+
+function gerar(){
+
+let main=document.getElementById("main").value
+let type=document.getElementById("type").value
+let ram=document.getElementById("ram").value
+let name=document.getElementById("name").value
+let start=document.getElementById("start").value
+
+let config=`MAIN=${main}
+TYPE=${type}
+RAM=${ram}
+NAME=${name}
+START=${start}`
+
+document.getElementById("output").textContent=config
+
+}
+
+/* COPIAR */
+
+function copiar(){
+
+navigator.clipboard.writeText(
+document.getElementById("output").textContent
+)
+
+alert("Copiado!")
+
+}
+
+/* BAIXAR */
+
+function baixar(){
+
+let text=document.getElementById("output").textContent
+
+let blob=new Blob([text])
+
+let link=document.createElement("a")
+
+link.href=URL.createObjectURL(blob)
+
+link.download="eclipsecloud.config"
+
+link.click()
+
+}
+
+/* SHARE */
+
+function compartilhar(){
+
+navigator.share({
+title:"EclipseCloud Config",
+text:document.getElementById("output").textContent
+})
+
+}
 
 </script>
 
