@@ -6,7 +6,6 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
-transition:all .25s ease;
 }
 
 body{
@@ -17,15 +16,6 @@ line-height:1.5;
 }
 
 /* ===================== */
-/* LINKS */
-/* ===================== */
-
-a{
-text-decoration:none;
-color:inherit;
-}
-
-/* ===================== */
 /* NAVBAR */
 /* ===================== */
 
@@ -33,19 +23,17 @@ color:inherit;
 display:flex;
 justify-content:space-between;
 align-items:center;
-padding:16px 40px;
+padding:20px 40px;
 background:#050707;
-border-bottom:1px solid #22c55e30;
+border-bottom:1px solid #1f2937;
 position:sticky;
 top:0;
 z-index:999;
-backdrop-filter:blur(10px);
 }
 
 .nav-left h2{
-color:#ffffff;
+color:white;
 font-size:20px;
-letter-spacing:.5px;
 }
 
 .nav-menu{
@@ -57,12 +45,11 @@ font-size:14px;
 
 .nav-menu li{
 cursor:pointer;
-opacity:.85;
+opacity:.8;
 }
 
 .nav-menu li:hover{
 color:#22c55e;
-opacity:1;
 }
 
 /* ===================== */
@@ -70,38 +57,20 @@ opacity:1;
 /* ===================== */
 
 .hero{
-padding:120px 20px;
+padding:120px 20px 60px;
 text-align:center;
-max-width:900px;
+max-width:800px;
 margin:auto;
 }
 
 .hero h1{
-font-size:60px;
-color:#22c55e;
-margin-bottom:15px;
+font-size:44px;
+color:white;
+margin-bottom:10px;
 }
 
 .hero p{
-color:#9bb8a8;
-font-size:18px;
-margin-bottom:30px;
-}
-
-.hero button{
-background:#22c55e;
-border:none;
-padding:14px 30px;
-border-radius:8px;
-font-size:16px;
-font-weight:700;
-color:#04110a;
-cursor:pointer;
-}
-
-.hero button:hover{
-transform:scale(1.05);
-background:#1fb255;
+color:#9ca3af;
 }
 
 /* ===================== */
@@ -110,249 +79,208 @@ background:#1fb255;
 
 .container{
 width:100%;
-max-width:1000px;
+max-width:1050px;
 margin:auto;
-padding:40px 20px;
+padding:60px 30px;
 }
 
 /* ===================== */
-/* TITLE */
+/* PLANOS GRID */
 /* ===================== */
-
-.title{
-text-align:center;
-margin-bottom:40px;
-}
-
-.title h1{
-font-size:42px;
-color:#22c55e;
-margin-bottom:8px;
-}
-
-.subtitle{
-color:#8aa699;
-}
-
-/* ===================== */
-/* PANEL */
-/* ===================== */
-
-.panel{
-background:#0f1412;
-border:1px solid #22c55e30;
-border-radius:14px;
-padding:30px;
-margin-bottom:25px;
-box-shadow:0 0 30px rgba(34,197,94,0.08);
-}
-
-/* FORM */
-
-label{
-display:block;
-margin-top:18px;
-margin-bottom:6px;
-font-size:14px;
-}
-
-input,select{
-width:100%;
-padding:12px;
-border-radius:8px;
-border:1px solid #22c55e30;
-background:#0b0f0c;
-color:#fff;
-}
-
-input:focus,select:focus{
-outline:none;
-border-color:#22c55e;
-box-shadow:0 0 0 2px rgba(34,197,94,0.2);
-}
-
-/* ===================== */
-/* BUTTONS */
-/* ===================== */
-
-button{
-padding:10px 16px;
-border-radius:8px;
-border:1px solid #22c55e;
-cursor:pointer;
-font-weight:600;
-background:#0b0f0c;
-color:#22c55e;
-display:inline-flex;
-align-items:center;
-gap:6px;
-}
-
-button:hover{
-background:#0f1a15;
-}
-
-/* ===================== */
-/* TERMINAL */
-/* ===================== */
-
-.terminal{
-background:#050707;
-border:1px solid #22c55e30;
-border-radius:12px;
-overflow:hidden;
-}
-
-.terminal-top{
-display:flex;
-align-items:center;
-gap:12px;
-padding:12px 16px;
-background:#080c09;
-border-bottom:1px solid #22c55e30;
-}
-
-.dots{
-display:flex;
-gap:8px;
-}
-
-.dot{
-width:12px;
-height:12px;
-border-radius:50%;
-}
-
-.red{background:#ff5f56;}
-.yellow{background:#ffbd2e;}
-.green{background:#27c93f;}
-
-.terminal-title{
-color:#8aa699;
-font-size:14px;
-}
-
-.terminal pre{
-margin:0;
-padding:20px;
-font-family:monospace;
-color:#22c55e;
-font-size:15px;
-white-space:pre-wrap;
-}
-
-/* ===================== */
-/* PLANOS */
-/* ===================== */
-
-.plans{
-padding:100px 20px;
-text-align:center;
-}
-
-.plans-title{
-font-size:42px;
-color:#22c55e;
-margin-bottom:10px;
-}
-
-.plans-sub{
-color:#8aa699;
-margin-bottom:60px;
-}
 
 .plans-grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:35px;
-max-width:1200px;
+gap:30px;
+max-width:900px;
 margin:auto;
 }
 
+/* ===================== */
+/* CARDS */
+/* ===================== */
+
 .plan-card{
-background:#0f1412;
-border:1px solid #22c55e30;
+
+background:linear-gradient(
+160deg,
+#0f1412,
+#0a0e0c
+);
+
 border-radius:16px;
-padding:32px;
+
+border:1px solid rgba(255,255,255,0.05);
+
+padding:28px;
+
 display:flex;
 flex-direction:column;
 gap:15px;
-position:relative;
-box-shadow:0 0 25px rgba(34,197,94,0.06);
+
+box-shadow:0 10px 40px rgba(0,0,0,0.7);
+
 }
 
 .plan-card:hover{
-transform:translateY(-8px) scale(1.02);
-box-shadow:0 15px 40px rgba(0,0,0,0.7);
-border:1px solid #22c55e80;
+
+transform:translateY(-6px);
+
+box-shadow:0 15px 50px rgba(0,0,0,0.9);
+
 }
 
-.plan-card .ram{
+.plan-card h3{
+color:#22c55e;
+font-size:18px;
+}
+
+.ram{
 font-size:24px;
 color:#22c55e;
 font-weight:700;
-}
-
-/* RUBY */
-
-.ruby{
-border:1px solid #ef4444;
-}
-
-.ruby .ram{
-color:#ef4444;
-}
-
-.ruby button{
-background:#ef4444;
-color:white;
 }
 
 /* LISTA */
 
 .plan-card ul{
 list-style:none;
-margin:12px 0 20px 0;
+margin:10px 0;
 }
 
 .plan-card li{
-margin:8px 0;
-color:#cfe9da;
+color:#9ca3af;
 font-size:14px;
+margin:6px 0;
 }
 
+/* PREÇO */
+
+.price{
+margin-top:10px;
+font-weight:600;
+}
+
+/* BOTÃO */
+
 .plan-card button{
+
 margin-top:auto;
+
 background:#22c55e;
+
 color:#04110a;
+
 border:none;
+
 padding:12px;
+
 border-radius:8px;
+
 font-weight:700;
+
+cursor:pointer;
+
 }
 
 .plan-card button:hover{
+
 background:#1fb255;
-transform:scale(1.03);
+
 }
 
-/* POPULAR */
+/* ===================== */
+/* RUBY */
+/* ===================== */
 
-.popular{
-border:2px solid #22c55e;
-box-shadow:0 0 40px rgba(34,197,94,0.25);
+.ruby{
+
+background:linear-gradient(
+160deg,
+#150707,
+#0a0e0c
+);
+
+border:1px solid #ef4444;
+
 }
 
-.badge{
-position:absolute;
-top:-12px;
-right:-12px;
-background:#22c55e;
-color:#04110a;
-padding:6px 12px;
-font-size:12px;
-border-radius:6px;
-font-weight:700;
+.ruby .ram{
+color:#ef4444;
+}
+
+/* ===================== */
+/* FEATURES */
+/* ===================== */
+
+.features{
+
+margin-top:90px;
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+
+gap:40px;
+
+text-align:center;
+
+}
+
+.feature h4{
+color:white;
+margin-top:10px;
+}
+
+.feature p{
+color:#9ca3af;
+font-size:14px;
+}
+
+/* ===================== */
+/* BLOCO ROXO */
+/* ===================== */
+
+.purple-card{
+
+margin:60px auto;
+
+max-width:420px;
+
+padding:35px;
+
+border-radius:18px;
+
+background:linear-gradient(
+135deg,
+#4c1d95,
+#7e22ce
+);
+
+text-align:center;
+
+color:white;
+
+box-shadow:0 0 40px rgba(168,85,247,0.4);
+
+}
+
+.purple-card button{
+
+margin-top:20px;
+
+background:#a855f7;
+
+border:none;
+
+padding:12px 20px;
+
+border-radius:8px;
+
+color:white;
+
+cursor:pointer;
+
 }
 
 /* ===================== */
@@ -360,33 +288,52 @@ font-weight:700;
 /* ===================== */
 
 .plans-table{
-padding:80px 20px;
+
+padding:100px 20px;
+
 }
 
 .plans-table table{
+
 width:100%;
+
 max-width:1000px;
+
 margin:auto;
+
 border-collapse:collapse;
+
 background:#0f1412;
-border-radius:12px;
+
+border-radius:14px;
+
 overflow:hidden;
+
 }
 
 .plans-table th{
+
 color:#22c55e;
-font-weight:700;
+
+font-size:14px;
+
 }
 
-.plans-table th,
-.plans-table td{
-padding:12px;
+.plans-table td,
+.plans-table th{
+
+padding:14px;
+
 border-bottom:1px solid #1f2937;
+
 text-align:center;
+
 }
 
 .plans-table tr:hover{
+
 background:#0b0f0c;
+
 }
 
 /* ===================== */
@@ -394,32 +341,19 @@ background:#0b0f0c;
 /* ===================== */
 
 .footer{
+
+margin-top:100px;
+
+padding:40px;
+
+background:#040606;
+
+border-top:1px solid #1f2937;
+
 text-align:center;
-margin-top:60px;
-color:#6c8a7b;
-padding:20px;
-border-top:1px solid #22c55e30;
-}
 
-/* ===================== */
-/* SCROLLBAR */
-/* ===================== */
+color:#6b7280;
 
-::-webkit-scrollbar{
-width:8px;
-}
-
-::-webkit-scrollbar-track{
-background:#050707;
-}
-
-::-webkit-scrollbar-thumb{
-background:#22c55e40;
-border-radius:10px;
-}
-
-::-webkit-scrollbar-thumb:hover{
-background:#22c55e;
 }
 
 /* ===================== */
@@ -428,33 +362,16 @@ background:#22c55e;
 
 @media(max-width:768px){
 
-.navbar{
-flex-direction:column;
-gap:10px;
-}
-
 .hero h1{
-font-size:40px;
+font-size:32px;
 }
 
-.hero p{
-font-size:16px;
+.container{
+padding:40px 20px;
 }
 
 .plans-grid{
 grid-template-columns:1fr;
-}
-
-button{
-width:100%;
-}
-
-.container{
-padding:20px;
-}
-
-.panel{
-padding:20px;
 }
 
 }
