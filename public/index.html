@@ -1,5 +1,10 @@
 <!DOCTYPE html><html lang="pt-br"><head><meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1"><title>EclipseCloud</title><script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script><script src="https://unpkg.com/scrollreveal"></script><style>
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>EclipseCloud</title>
+
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
+<script src="https://unpkg.com/scrollreveal"></script>
+
+<style>
 
 *{
 margin:0;
@@ -60,13 +65,19 @@ display:flex;
 justify-content:space-between;
 align-items:center;
 padding:20px 40px;
-border-bottom:1px solid #111;
+border-bottom:1px solid rgba(255,255,255,0.05);
+background:rgba(5,7,7,0.6);
+backdrop-filter:blur(10px);
+position:sticky;
+top:0;
+z-index:100;
 }
 
 .logo{
 font-size:22px;
 color:#22c55e;
 font-weight:700;
+letter-spacing:.5px;
 }
 
 .navbar ul{
@@ -79,7 +90,7 @@ list-style:none;
 color:#cbd5e1;
 text-decoration:none;
 font-size:14px;
-transition:0.2s;
+transition:.25s;
 }
 
 .navbar a:hover{
@@ -94,13 +105,14 @@ position:relative;
 
 .dropdown-menu{
 position:absolute;
-top:30px;
+top:35px;
 background:#0f1412;
 border:1px solid #1f2937;
-padding:10px;
-border-radius:8px;
+padding:12px;
+border-radius:10px;
 display:none;
 list-style:none;
+box-shadow:0 10px 30px rgba(0,0,0,.6);
 }
 
 .dropdown:hover .dropdown-menu{
@@ -117,8 +129,9 @@ margin:auto;
 }
 
 .hero h1{
-font-size:56px;
+font-size:60px;
 font-weight:700;
+line-height:1.1;
 }
 
 .gradient{
@@ -128,7 +141,7 @@ background:linear-gradient(90deg,#22c55e,#06b6d4);
 }
 
 .hero p{
-margin-top:10px;
+margin-top:12px;
 color:#9ca3af;
 font-size:18px;
 }
@@ -144,26 +157,33 @@ flex-wrap:wrap;
 }
 
 .btn-primary{
-background:#22c55e;
-padding:12px 25px;
-border-radius:8px;
+background:linear-gradient(135deg,#22c55e,#16a34a);
+padding:13px 28px;
+border-radius:10px;
 text-decoration:none;
 color:white;
 font-weight:600;
-transition:0.2s;
+transition:.25s;
+box-shadow:0 10px 30px rgba(34,197,94,.3);
 }
 
 .btn-primary:hover{
-transform:scale(1.05);
+transform:translateY(-3px);
+box-shadow:0 15px 40px rgba(34,197,94,.5);
 }
 
 .btn-secondary{
 background:#111;
 border:1px solid #333;
-padding:12px 25px;
-border-radius:8px;
+padding:13px 28px;
+border-radius:10px;
 text-decoration:none;
 color:white;
+transition:.2s;
+}
+
+.btn-secondary:hover{
+background:#181818;
 }
 
 /* USERS */
@@ -201,19 +221,20 @@ margin-left:5px;
 margin-top:80px;
 display:flex;
 justify-content:center;
-gap:50px;
+gap:60px;
+flex-wrap:wrap;
 }
 
 .tech img{
 width:45px;
 opacity:.7;
-transition:.3s;
+transition:.35s;
 filter:grayscale(1);
 }
 
 .tech img:hover{
 opacity:1;
-transform:scale(1.1);
+transform:scale(1.15);
 filter:grayscale(0);
 }
 
@@ -223,6 +244,7 @@ filter:grayscale(0);
 max-width:1100px;
 margin:auto;
 padding:120px 30px;
+text-align:center;
 }
 
 .section h2{
@@ -242,6 +264,23 @@ border:1px solid #333;
 padding:10px 20px;
 border-radius:6px;
 cursor:pointer;
+transition:.2s;
+}
+
+.section button:hover{
+background:#1a1a1a;
+}
+
+/* PLAN CARDS */
+
+.section div div{
+transition:.3s;
+box-shadow:0 10px 25px rgba(0,0,0,.6);
+}
+
+.section div div:hover{
+transform:translateY(-6px);
+box-shadow:0 20px 40px rgba(0,0,0,.8);
 }
 
 /* HARDWARE */
@@ -274,6 +313,7 @@ display:flex;
 justify-content:space-between;
 flex-wrap:wrap;
 gap:40px;
+color:#9ca3af;
 }
 
 .copy{
@@ -292,7 +332,7 @@ text-align:center;
 }
 
 .hero h1{
-font-size:38px;
+font-size:40px;
 }
 
 }
@@ -312,53 +352,132 @@ color:#22c55e;
 100%{opacity:1;}
 }
 
-</style></head><body><div id="loader">
-<div class="spinner"></div>
-</div><div id="particles"></div><nav class="navbar"><div class="logo">EclipseCloud</div><ul><li><a href="/">Início</a></li>
-<li><a href="/planos.html">Planos</a></li><li class="dropdown"><a href="#">Serviços</a>
+</style></head>
 
-<ul class="dropdown-menu"><li><a href="/upload.html">Hospedagem de Bots</a></li>
+<body>
+
+<div id="loader">
+<div class="spinner"></div>
+</div>
+
+<div id="particles"></div>
+
+<nav class="navbar">
+<div class="logo">EclipseCloud</div>
+
+<ul>
+
+<li><a href="/">Início</a></li>
+<li><a href="/planos.html">Planos</a></li>
+
+<li class="dropdown">
+<a href="#">Serviços</a>
+
+<ul class="dropdown-menu">
+<li><a href="/upload.html">Hospedagem de Bots</a></li>
 <li><a href="/sites.html">Hospedagem de Sites</a></li>
-<li><a href="/api.html">API Cloud</a></li></ul></li><li><a href="#">Ferramentas</a></li>
+<li><a href="/api.html">API Cloud</a></li>
+</ul>
+
+</li>
+
+<li><a href="#">Ferramentas</a></li>
 <li><a href="#">Recursos</a></li>
 <li><a href="#">Templates</a></li>
-<li><a href="#">Documentação</a></li></ul></nav><section class="hero"><h1>
+<li><a href="#">Documentação</a></li>
+
+</ul>
+</nav>
+
+<section class="hero">
+
+<h1>
 <span id="typing"></span>
 <span class="cursor">|</span>
 <span class="gradient"> Online Agora!</span>
-</h1><p>Transformando a forma como você hospeda suas aplicações</p><div class="hero-buttons">
-<a href="/upload.html" class="btn-primary">Comece gratuitamente →</a>
-<a href="/dashboard" class="btn-secondary">Painel</a>
-</div><div class="users"><img src="https://i.pravatar.cc/40?img=1">
+</h1>
+
+<p>Transformando a forma como você hospeda suas aplicações</p>
+
+<div class="hero-buttons">
+
+<a href="/upload.html" class="btn-primary">
+Comece gratuitamente →
+</a>
+
+<a href="/dashboard" class="btn-secondary">
+Painel
+</a>
+
+</div>
+
+<div class="users">
+
+<img src="https://i.pravatar.cc/40?img=1">
 <img src="https://i.pravatar.cc/40?img=2">
 <img src="https://i.pravatar.cc/40?img=3">
 <img src="https://i.pravatar.cc/40?img=4">
-<img src="https://i.pravatar.cc/40?img=5"><span class="stars">★★★★★</span>
+<img src="https://i.pravatar.cc/40?img=5">
 
-<p>mais de 167 mil usuários</p></div><div class="tech"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg">
+<span class="stars">★★★★★</span>
+<p>mais de 167 mil usuários</p>
+
+</div>
+
+<div class="tech">
+
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg">
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg">
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg">
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg"></div></section><!-- NOVA SEÇÃO PLANOS (ADICIONADO SEM MEXER NO RESTO) --><section class="section"><h2>Planos de Hospedagem</h2>
-<p>Escolha o melhor plano para sua aplicação</p><div style="margin-top:40px;display:flex;gap:30px;flex-wrap:wrap;justify-content:center"><div style="background:#0f1412;padding:30px;border-radius:10px;width:220px">
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg">
+
+</div>
+
+</section>
+
+<section class="section">
+
+<h2>Planos de Hospedagem</h2>
+<p>Escolha o melhor plano para sua aplicação</p>
+
+<div style="margin-top:40px;display:flex;gap:30px;flex-wrap:wrap;justify-content:center">
+
+<div style="background:#0f1412;padding:30px;border-radius:10px;width:220px">
 <h3>Starter</h3>
 <p style="color:#22c55e;font-size:22px">100MB</p>
 <p>1 aplicação</p>
 <p>Logs em tempo real</p>
 <button>Começar</button>
-</div><div style="background:#0f1412;padding:30px;border-radius:10px;width:220px">
+</div>
+
+<div style="background:#0f1412;padding:30px;border-radius:10px;width:220px">
 <h3>Pro</h3>
 <p style="color:#22c55e;font-size:22px">512MB</p>
 <p>3 aplicações</p>
 <p>Deploy automático</p>
 <button>Começar</button>
-</div><div style="background:#0f1412;padding:30px;border-radius:10px;width:220px">
+</div>
+
+<div style="background:#0f1412;padding:30px;border-radius:10px;width:220px">
 <h3>Enterprise</h3>
 <p style="color:#22c55e;font-size:22px">1GB</p>
 <p>Aplicações ilimitadas</p>
 <p>Suporte prioritário</p>
 <button>Começar</button>
-</div></div></section><footer><div>EclipseCloud © 2026</div>
-<div>Hospedagem moderna para bots e aplicações</div></footer><script>
+</div>
+
+</div>
+
+</section>
+
+<footer>
+
+<div>EclipseCloud © 2026</div>
+<div>Hospedagem moderna para bots e aplicações</div>
+
+</footer>
+
+<script>
 
 window.addEventListener("load",()=>{
 document.getElementById("loader").style.display="none"
@@ -422,5 +541,7 @@ opacity:{value:0.4}
 ScrollReveal().reveal('.hero',{distance:'60px',duration:1000,origin:'bottom'})
 ScrollReveal().reveal('.section',{interval:200})
 
-</script></body>
-</html>
+</script>
+
+</body>
+  </html>
