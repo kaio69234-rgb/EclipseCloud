@@ -1,146 +1,84 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
+
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Planos - EclipseCloud</title>
 
-<style>
+<link rel="stylesheet" href="style.css">
 
-body{
-background:#0a0a0a;
-font-family:Arial;
-color:white;
-margin:0;
-}
-
-header{
-display:flex;
-justify-content:space-between;
-padding:20px;
-background:#000;
-}
-
-.logo{
-color:#00ff88;
-font-size:22px;
-}
-
-nav a{
-color:white;
-margin:10px;
-text-decoration:none;
-}
-
-.container{
-padding:60px;
-text-align:center;
-}
-
-.title{
-font-size:40px;
-margin-bottom:10px;
-}
-
-.subtitle{
-color:gray;
-margin-bottom:50px;
-}
-
-.planos{
-display:flex;
-justify-content:center;
-flex-wrap:wrap;
-gap:30px;
-}
-
-.card{
-background:#111;
-padding:30px;
-width:250px;
-border-radius:10px;
-border:1px solid #1f1f1f;
-}
-
-.card h2{
-color:#00ff88;
-}
-
-.preco{
-margin:20px 0;
-font-size:25px;
-}
-
-button{
-background:#00ff88;
-border:none;
-padding:10px 20px;
-border-radius:5px;
-cursor:pointer;
-}
-
-button:hover{
-background:#00cc6a;
-}
-
-</style>
 </head>
 
 <body>
 
-<header>
+<nav class="navbar">
 
-<div class="logo">EclipseCloud</div>
+<div class="nav-left">
+<h2>EclipseCloud</h2>
+</div>
 
-<nav>
-<a href="/">Home</a>
-<a href="/planos">Planos</a>
+<ul class="nav-menu">
+<li><a href="/">Home</a></li>
+<li><a href="/planos.html">Planos</a></li>
+</ul>
+
 </nav>
 
-</header>
+<section class="plans-page">
 
-<div class="container">
+<h1>Preço simples, justo e previsível</h1>
 
-<div class="title">
-Preço simples, justo e previsível
-</div>
-
-<div class="subtitle">
+<p class="subtitle">
 Comece gratuitamente e altere seu plano quando quiser
-</div>
+</p>
 
-<div class="planos">
+<div class="plans-grid">
 
-<div class="card">
+<div class="plan-card">
+
 <h2>Free</h2>
-<div>100MB RAM</div>
-<div class="preco">R$0</div>
+<p>100MB RAM</p>
+<h3>R$0</h3>
+
 <button>Começar</button>
+
 </div>
 
-<div class="card">
+<div class="plan-card">
+
 <h2>Gold</h2>
-<div>1GB RAM</div>
-<div class="preco">R$5,99</div>
+<p>1GB RAM</p>
+<h3>R$5,99</h3>
+
 <button>Comprar</button>
+
 </div>
 
-<div class="card">
+<div class="plan-card">
+
 <h2>Diamond</h2>
-<div>4GB RAM</div>
-<div class="preco">R$24,00</div>
+<p>4GB RAM</p>
+<h3>R$24,00</h3>
+
 <button>Comprar</button>
+
 </div>
 
-<div class="card">
+<div class="plan-card">
+
 <h2>Ruby</h2>
-<div>8GB RAM</div>
-<div class="preco">R$48,00</div>
+<p>8GB RAM</p>
+<h3>R$48,00</h3>
+
 <button>Comprar</button>
-</div>
 
 </div>
 
 </div>
+
+</section>
 
 </body>
 </html>
