@@ -34,6 +34,7 @@ const DISCORD_CALLBACK = `${DOMAIN}/auth/discord/callback`
 const uploads = path.join(__dirname,"uploads")
 const apps = path.join(__dirname,"apps")
 const database = path.join(__dirname,"database")
+const publicFolder = path.join(__dirname,"public")
 
 const usersFile = path.join(database,"users.json")
 
@@ -46,6 +47,7 @@ let runningBots = {}
 if(!fs.existsSync(uploads)) fs.mkdirSync(uploads,{recursive:true})
 if(!fs.existsSync(apps)) fs.mkdirSync(apps,{recursive:true})
 if(!fs.existsSync(database)) fs.mkdirSync(database,{recursive:true})
+if(!fs.existsSync(publicFolder)) fs.mkdirSync(publicFolder,{recursive:true})
 
 if(!fs.existsSync(usersFile)){
 fs.writeFileSync(usersFile,JSON.stringify([],null,2))
@@ -86,7 +88,7 @@ app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 
-app.use(express.static(path.join(__dirname,"public")))
+app.use(express.static(publicFolder))
 
 app.use(compression())
 
