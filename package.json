@@ -1,20 +1,21 @@
 {
-  "name": "eclipsecloud",
-  "version": "1.0.0",
-  "description": "Cloud hosting platform for Discord bots",
-  "main": "cloud/server.js",
-  "type": "commonjs",
-  "scripts": {
-    "start": "node cloud/server.js",
-    "dev": "node cloud/server.js"
-  },
-  "engines": {
-    "node": ">=18"
-  },
-  "dependencies": {
-    "cors": "^2.8.5",
-    "express": "^4.18.2",
-    "multer": "^1.4.5-lts.1",
-    "unzipper": "^0.10.11"
-  }
+"name":"eclipsecloud",
+"version":"1.0.0",
+"description":"EclipseCloud Hosting",
+"main":"cloud/server.js",
+"scripts":{
+"start":"node cloud/server.js"
+},
+"engines":{
+"node":"18.x"
+},
+"dependencies":{
+"express":"^4.18.2",
+"multer":"^1.4.5-lts.1",
+"cors":"^2.8.5",
+"unzipper":"^0.10.11",
+"passport":"^0.6.0",
+"passport-discord":"^0.1.4",
+"express-session":"^1.17.3"
+}
 }
