@@ -34,9 +34,9 @@ const DISCORD_CALLBACK = `${DOMAIN}/auth/discord/callback`
 // PATHS
 //////////////////////////////////////////////////
 
-const uploads = path.join(__dirname,"../uploads")
-const apps = path.join(__dirname,"../apps")
-const database = path.join(__dirname,"../database")
+const uploads = path.join(__dirname,"uploads")
+const apps = path.join(__dirname,"apps")
+const database = path.join(__dirname,"database")
 
 const usersFile = path.join(database,"users.json")
 
@@ -49,22 +49,29 @@ let runningBots = {}
 if(!fs.existsSync(uploads)) fs.mkdirSync(uploads,{recursive:true})
 if(!fs.existsSync(apps)) fs.mkdirSync(apps,{recursive:true})
 if(!fs.existsSync(database)) fs.mkdirSync(database,{recursive:true})
-if(!fs.existsSync(usersFile)) fs.writeFileSync(usersFile,"[]")
+
+if(!fs.existsSync(usersFile)){
+fs.writeFileSync(usersFile,JSON.stringify([],null,2))
+}
 
 //////////////////////////////////////////////////
 // MIDDLEWARE
 //////////////////////////////////////////////////
 
 app.use(cors())
+
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
-app.use(express.static(path.join(__dirname,"../public")))
+
+app.use(express.static(path.join(__dirname,"public")))
 
 app.use(compression())
 
 const limiter = rateLimit({
 windowMs: 15 * 60 * 1000,
-max: 200
+max: 200,
+standardHeaders:true,
+legacyHeaders:false
 })
 
 app.use(limiter)
@@ -74,7 +81,8 @@ secret:"eclipsecloud_secret",
 resave:false,
 saveUninitialized:false,
 cookie:{
-maxAge:86400000
+maxAge:86400000,
+secure:false
 }
 }))
 
@@ -138,7 +146,7 @@ function checkAuth(req,res,next){
 
 if(req.isAuthenticated()) return next()
 
-res.redirect("/login.html")
+return res.redirect("/login.html")
 
 }
 
@@ -216,7 +224,7 @@ const zipPath=req.file.path
 const botId=Date.now().toString()
 const botFolder=path.join(apps,botId)
 
-fs.mkdirSync(botFolder)
+fs.mkdirSync(botFolder,{recursive:true})
 
 await fs.createReadStream(zipPath)
 .pipe(unzipper.Extract({path:botFolder}))
